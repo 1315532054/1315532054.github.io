@@ -1201,7 +1201,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #9cff50;
+  background: #4ec4ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2003,6 +2003,11 @@ pre .javascript .function {
 }
 #qr p {
   text-align: center;
+}
+#QR > div:hover p {
+  animation: roll 0.1s infinite linear;
+  -webkit-animation: roll 0.1s infinite linear;
+  -moz-animation: roll 0.1s infinite linear;
 }
 .post-copyright {
   background: #f5f5f5;
