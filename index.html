@@ -146,17 +146,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">4</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">6</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-schedule">
@@ -577,6 +577,126 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/06/09/Mysql%E4%BA%8B%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/09/Mysql%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">Mysql事务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-09 15:26:52" itemprop="dateCreated datePublished" datetime="2019-06-09T15:26:52+08:00">2019-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-21 16:50:56" itemprop="dateModified" datetime="2019-12-21T16:50:56+08:00">2019-12-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL 事务"></a>MySQL 事务</h1><p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</p>
+<ul>
+<li>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</li>
+<li>事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。</li>
+<li>事务用来管理 insert,update,delete 语句</li>
+</ul>
+<p>一般来说，事务是必须满足4个条件（ACID）：：原子性（<strong>A</strong>tomicity，或称不可分割性）、一致性（<strong>C</strong>onsistency）、隔离性（<strong>I</strong>solation，又称独立性）、持久性（<strong>D</strong>urability）。</p>
+<ul>
+<li><strong>原子性：</strong>一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li><strong>一致性：</strong>在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</li>
+<li><strong>隔离性：</strong>数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</li>
+<li><strong>持久性：</strong>事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+<hr>
+<p>‘- 显示数据库：show databases;</p>
+<h5 id="数据库："><a href="#数据库：" class="headerlink" title="数据库："></a>数据库：</h5><p>​    sql server（微软）windows 专有数据<br>​    mysql    默认端口:3306<br>​    oracle（重点）甲骨文<br>​    access<br>​    sqlite<br>​    ibm db2<br>​    关系型数据库管理系统</p>
+<p>-查看 mysql 版本： select version();<br>primary key 主键   auto_increment 自动递增   not null ,要求该约束所修饰的字段，不能为null或空    unsigned 约束的字段，会去掉负值，添加到正值，范围 x 2 + 1</p>
+<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><p>命令格式：select * from 表名 order by 字段名 asc(升序)|desc（降序）;<br>多字段排序<br>select * from department order by groups desc,kpi desc;<br>多字段排序时，先按第一字段排序，第一段相同的，再按第二字段排序。</p>
+<h5 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h5><ul>
+<li>创建数据库命令格式： <code>create database 数据库名字 charset=字符集</code></li>
+<li>创建表命令格式: <code>create table 表名( 字段 属性 );</code></li>
+</ul>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><ul>
+<li>删除表<br>命令格式：drop table 表名;</li>
+<li>删库<br>格式: <code>drop database 库名;</code><br>删除主键<br>alter table 表名 drop 主键字段名;<br>删除数据<br>命令格式<br>delete from 表名 where 【条件】</li>
+</ul>
+<h5 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h5><p>-修改已创建的表名<br>命令格式：alter table 原表名 rename to  新表名;</p>
+<p>旧改法：<br>      alter user ‘root’@’localhost’ identified by ‘mysql’;</p>
+<p>-10.1.38-MariaDB 修改密码：<br>    update mysql.user set Password = password(‘1999’) where             user=’(root）’;<br>    flush privileges;<br>    exit;</p>
+<p>远程链接:<br>    GRANT ALL PRIVILEGES ON * .* TO ‘root’@’%’ IDENTIFIED BY ‘root’ WITH GRANT OPTION;</p>
+<p>mysql 配置文件：<br>     windows -&gt; mysql/bin/my.ini<br>     linux -&gt; mysq/my.cnf</p>
+<h5 id="修改创建好的表字"><a href="#修改创建好的表字" class="headerlink" title="修改创建好的表字"></a>修改创建好的表字</h5><p>段命令格式: alter table 表名 change 原字段名 新字段名 字段类型 字段属性（约束）;<br>添加新的字段<br>命令格式: alter table 表名 add 字段名 字段类型 字段属性（约束）;<br>修改表名<br>命令格式：alter table 旧表名 rename to 新表名;<br>创建表后修改主键<br>alter table 表名 change 原字段名（要设为主键的字段） 新字段名 int primary key auto_incremnt not null;<br>修改数据<br>update 表名 set 字段名1=要修改值1,字段名2=要修改值2 where [条件]</p>
+<h5 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h5><p>基本查询<br>命令格式：select [要查询的字段，如果是所有字段，就是*;如果单个，写字段名] from 【表名】 where 【条件】<br>范围查询<br>命令格式： select [字段] from 表名 where 字段名 between 开始 and 结束<br>in ( ) 在 … 里 not in<br>模糊查询<br>命令格式： select [字段] from 表名 where 字段 like …%…<br>内联接查询<br>命令格式:select [字段] from 表名1 inner join 表名2 on 表名1.连接字段=表名2.连接字段<br>右链接<br>select * from student s right join class c on s.cls_id=c.id<br>左连接<br>select *  from class c left join student s on s.cls_id=c.id;<br>全联接<br> select * from class c left join student s on c.id=s.cls_id<br> union<br> select * from class c right join student s on c.id=s.cls_id;<br>自联接（自查询)<br>表和自身的连接，使用 inner join 来完成</p>
+<h5 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h5><p>命令格式:<br>insert into 表名（字段名1,字段名2,字段名3…..）values(值1,值2,值3…);<br>另外一种形式<br>insert into 表名 values(字段1的值，字段2的值，字段3的值。。。。);</p>
+<p>-分组<br>group by 分组<br>分组  group_concat()+group by </p>
+<h5 id="聚合函数"><a href="#聚合函数" class="headerlink" title="-聚合函数"></a>-聚合函数</h5><p>统计函数 count（）<br>命令格式： select count(要统计的字段) from 表名 where [条件]<br>求最大值<br>命令格式：select max(求最大值的字段) from 表名;<br>求最小值<br>命令格式：select min(要计算最小值的字段) from 表名;<br>求和<br>命令格式:<br>select sum(要求和/总数的字段) from 表名;<br>求平均值<br>select avg(要求平均值字段) from 表名;</p>
+<p>having<br>having 和 where 都 可以对记录进行筛选；但是having跟在group by 后面，group by 跟在 where 后面；having 后面条件必须在 select 字段中出现，没有，就会报错；where 是必须是表中字段<br>where … group by … having</p>
+<h5 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h5><p>命令格式：<br>create view 视图名字 as select语句;<br>查看视图<br>命令格式：show tables;<br>删除视图<br>drop view 视图名字<br>修改视图<br>create or replace view 视图名字 as select语句;</p>
+<h5 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h5><p>查看索引<br>命令格式：<br>show index from 表名；<br>创建索引的命令<br>格式：<br>create index idx_索引名  on 表名（字段名（索引长度））<br>删除索引<br>命令格式:<br>drop index 索引名称 on 表名;</p>
+<h5 id="三范式："><a href="#三范式：" class="headerlink" title="三范式："></a>三范式：</h5><p>1：确保每列保持原子性<br>2：确保表中每列都和主键直接相关<br>3：确保每列都和主键列直接相关，而不是间接相关</p>
+<h5 id="事务："><a href="#事务：" class="headerlink" title="事务："></a>事务：</h5><p>​    是一个操作序列，这些操作要么都执行，要么都不执行，它是一个完整的，不可分割的工作单位。<br>事务具有的特性：原子性 ，一致，隔离，持久<br>开启事务：start transaction   / begin<br>提交         commit</p>
+<p>当前时间加1天<br>select date_add(now(),interyal 1day)</p>
+
+      
+    </div>
+
+    
+    
+    
+    <div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://luckyle.top/2018/09/21/%E5%9B%9B%E5%8D%81%E5%B2%81%E7%9A%84%E5%90%83%E9%B8%A1%E7%8E%A9%E5%AE%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -608,7 +728,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-21 13:32:53" itemprop="dateModified" datetime="2019-12-21T13:32:53+08:00">2019-12-21</time>
+                <time title="修改时间：2019-12-21 15:29:44" itemprop="dateModified" datetime="2019-12-21T15:29:44+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -910,20 +1030,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -985,7 +1105,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.2k字</span>
+  <span class="post-count">博客全站共6.8k字</span>
 </div>
 
 
