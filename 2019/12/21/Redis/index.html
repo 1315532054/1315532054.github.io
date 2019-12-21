@@ -48,18 +48,18 @@
   };
 </script>
 
-  <meta name="description" content="Django +vue 验证码发送12345678910111213#导包from django.core.mail import send_mailfrom web.settings import DEFAULT_FROM_EMAIL   #settings里的一些配置import random#settings配置具体如下:	EMAIL_USE_SSL = True # Secure Sock">
-<meta name="keywords" content="Python">
+  <meta name="description" content="Reids的特点Redis本质上是一个Key-Value类型的内存数据库，很像memcached，整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。 因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。 Redis的出色之处不仅仅是性能，Redis最大的魅力是支持保存多种数据结构，此外">
+<meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="send_verify">
-<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;2019&#x2F;12&#x2F;20&#x2F;send-verify&#x2F;index.html">
+<meta property="og:title" content="Redis简介">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;2019&#x2F;12&#x2F;21&#x2F;Redis&#x2F;index.html">
 <meta property="og:site_name" content="扼">
-<meta property="og:description" content="Django +vue 验证码发送12345678910111213#导包from django.core.mail import send_mailfrom web.settings import DEFAULT_FROM_EMAIL   #settings里的一些配置import random#settings配置具体如下:	EMAIL_USE_SSL = True # Secure Sock">
+<meta property="og:description" content="Reids的特点Redis本质上是一个Key-Value类型的内存数据库，很像memcached，整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。 因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。 Redis的出色之处不仅仅是性能，Redis最大的魅力是支持保存多种数据结构，此外">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-20T06:10:42.430Z">
+<meta property="og:updated_time" content="2019-12-21T11:04:18.713Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://luckyle.top/2019/12/20/send-verify/">
+<link rel="canonical" href="https://luckyle.top/2019/12/21/Redis/">
 
 
 <script id="page-configurations">
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>send_verify | 扼</title>
+  <title>Redis简介 | 扼</title>
   
 
 
@@ -222,7 +222,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/12/20/send-verify/">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/12/21/Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -235,7 +235,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          send_verify
+          Redis简介
         </h1>
 
         <div class="post-meta">
@@ -246,7 +246,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-20 08:49:11 / 修改时间：14:10:42" itemprop="dateCreated datePublished" datetime="2019-12-20T08:49:11+08:00">2019-12-20</time>
+              <time title="创建时间：2019-12-21 19:03:16 / 修改时间：19:04:18" itemprop="dateCreated datePublished" datetime="2019-12-21T19:03:16+08:00">2019-12-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,8 +254,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
             </span>
@@ -271,22 +271,76 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Django-vue-验证码发送"><a href="#Django-vue-验证码发送" class="headerlink" title="Django +vue 验证码发送"></a>Django +vue 验证码发送</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导包</span></span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL   <span class="comment">#settings里的一些配置</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment">#settings配置具体如下:</span></span><br><span class="line">	EMAIL_USE_SSL = <span class="literal">True</span> <span class="comment"># Secure Sockets Layer 安全套接层, 取决于邮件服务器是否开启加密协议</span></span><br><span class="line">    EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment"># 邮件服务器地址</span></span><br><span class="line">    EMAIL_PORT = <span class="number">465</span> <span class="comment"># 邮件服务器端口</span></span><br><span class="line"> </span><br><span class="line">    EMAIL_HOST_USER = <span class="string">'1315532054@qq.com'</span> <span class="comment"># 登陆邮件服务器的账号</span></span><br><span class="line">    EMAIL_HOST_PASSWORD = <span class="string">'ownkpkdkumubhdjg'</span>  <span class="comment"># 登陆邮件服务器的密码</span></span><br><span class="line">    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER <span class="comment"># 邮件的发送者</span></span><br></pre></td></tr></table></figure>
-
-<!-- < !--more--> 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取随机6位字符</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_str</span><span class="params">()</span>:</span></span><br><span class="line">    a_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">97</span>,<span class="number">123</span>)])</span><br><span class="line">    A_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">65</span>,<span class="number">91</span>)])</span><br><span class="line">    num_=[str(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">9</span>)]</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(random.sample(a_+A_+num_,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#邮件发送</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">send_verify</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">           1. 先检查 对应邮件是否再memcache里已经存在了验证码</span></span><br><span class="line"><span class="string">           2. 发现没有存在,那么需要生成6位随机字符</span></span><br><span class="line"><span class="string">           3. 存储入到memcache里,并设置60s的过期时间</span></span><br><span class="line"><span class="string">               email: 6str :60s</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           遇到了同步发送邮件的问题,应该怎么办</span></span><br><span class="line"><span class="string">       '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self,request)</span>:</span></span><br><span class="line">        email=request.data[<span class="string">'email'</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># email=request.POST.get('email')</span></span><br><span class="line">        <span class="comment"># 1. 先检查 对应邮件是否再memcache里已经存在了验证码</span></span><br><span class="line">        token=men.get(email)</span><br><span class="line">        <span class="comment">#2.如果没有存在，那么需要生成随机字符</span></span><br><span class="line">        <span class="keyword">if</span> token:</span><br><span class="line">            <span class="keyword">return</span> Response(&#123;</span><br><span class="line">                <span class="string">'code'</span>:<span class="number">0</span>,</span><br><span class="line">                <span class="string">'message'</span>:<span class="string">'该邮箱已存在验证码'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment">#该邮箱没有，生成随机字符</span></span><br><span class="line">            token=get_random_str()  <span class="comment">#随机字符</span></span><br><span class="line">            subject=<span class="string">'实验楼。。。。。。。。。。。'</span></span><br><span class="line">            message=<span class="string">'你的验证码是:%s'</span>%token</span><br><span class="line">            men.set(email,token,<span class="number">100</span>)  <span class="comment">#存储到memcache</span></span><br><span class="line">            <span class="comment"># print(men.get(token))</span></span><br><span class="line">            send_mail(subject,message,DEFAULT_FROM_EMAIL,[email])</span><br><span class="line">            <span class="keyword">return</span> Response(&#123;</span><br><span class="line">                <span class="string">'code'</span>:<span class="number">1</span>,</span><br><span class="line">                <span class="string">'message'</span>:<span class="string">'验证码已发送'</span></span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">send_verify()&#123;</span><br><span class="line">        <span class="keyword">if</span>(!this.email)&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        let form_data=new FormData()</span><br><span class="line">        form_data.append(<span class="string">'email'</span>,this.email)</span><br><span class="line"></span><br><span class="line">        axios(&#123;</span><br><span class="line">            url:<span class="string">'http://127.0.0.1:8000/api/send_verify/'</span>,</span><br><span class="line">            method:<span class="string">'post'</span>,</span><br><span class="line">            data:form_data</span><br><span class="line">        &#125;).then(res=&gt;&#123;</span><br><span class="line">            <span class="keyword">if</span>(res.data.code==<span class="number">1</span>)&#123;</span><br><span class="line">                alert(res.data.message)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
-
+        <p>Reids的特点<br>Redis本质上是一个Key-Value类型的内存数据库，很像memcached，整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。</p>
+<p>因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。</p>
+<p>Redis的出色之处不仅仅是性能，Redis最大的魅力是支持保存多种数据结构，此外单个value的最大限制是1GB，不像 memcached只能保存1MB的数据，因此Redis可以用来实现很多有用的功能。</p>
+<p>比方说用他的List来做FIFO双向链表，实现一个轻量级的高性 能消息队列服务，用他的Set可以做高性能的tag系统等等。另外Redis也可以对存入的Key-Value设置expire时间，因此也可以被当作一 个功能加强版的memcached来用。</p>
+<p>Redis的主要缺点是数据库容量受到物理内存的限制，不能用作海量数据的高性能读写，因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上。</p>
+<p>使用redis有哪些好处？<br>1.速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
+<p>2.支持丰富数据类型，支持string，list，set，sorted set，hash</p>
+<p>3.支持事务，操作都是原子性，所谓的原子性就是对数据的更改要么全部执行，要么全部不执行</p>
+<p>4.丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
+<p>为什么redis需要把所有数据放到内存中?<br>Redis为了达到最快的读写速度将数据都读到内存中，并通过异步的方式将数据写入磁盘。所以redis具有快速和数据持久化的特征。如果不将数据放在内存中，磁盘I/O速度为严重影响redis的性能。在内存越来越便宜的今天，redis将会越来越受欢迎。</p>
+<p>如果设置了最大使用的内存，则数据已有记录数达到内存限值后不能继续插入新值。</p>
+<p>Redis是单进程单线程的<br>redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
+<p>单线程的redis为什么这么快<br>回答:主要是以下三点</p>
+<p>(一)纯内存操作</p>
+<p>(二)单线程操作，避免了频繁的上下文切换</p>
+<p>(三)采用了非阻塞I/O多路复用机制</p>
+<p>redis持久化的几种方式<br>1、快照（snapshots）</p>
+<p>缺省情况情况下，Redis把数据快照存放在磁盘上的二进制文件中，文件名为dump.rdb。你可以配置Redis的持久化策略，例如数据集中每N秒钟有超过M次更新，就将数据写入磁盘；或者你可以手工调用命令SAVE或BGSAVE。</p>
+<p>工作原理</p>
+<p>Redis forks.</p>
+<p>子进程开始将数据写到临时RDB文件中。</p>
+<p>当子进程完成写RDB文件，用新文件替换老文件。</p>
+<p>这种方式可以使Redis使用copy-on-write技术。</p>
+<p>2、AOF</p>
+<p>快照模式并不十分健壮，当系统停止，或者无意中Redis被kill掉，最后写入Redis的数据就会丢失。</p>
+<p>这对某些应用也许不是大问题，但对于要求高可靠性的应用来说，Redis就不是一个合适的选择。Append-only文件模式是另一种选择。你可以在配置文件中打开AOF模式</p>
+<p>3、虚拟内存方式</p>
+<p>当你的key很小而value很大时,使用VM的效果会比较好.因为这样节约的内存比较大.</p>
+<p>当你的key不小时,可以考虑使用一些非常方法将很大的key变成很大的value,比如你可以考虑将key,value组合成一个新的value.</p>
+<p>vm-max-threads这个参数,可以设置访问swap文件的线程数,设置最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的.可能会造成比较长时间的延迟,但是对数据完整性有很好的保证.</p>
+<p>自己测试的时候发现用虚拟内存性能也不错。如果数据量很大，可以考虑分布式或者其他数据库。</p>
+<p>使用过Redis分布式锁么，<br>它是什么回事？先拿setnx来争抢锁，抢到之后，再用expire给锁加一个过期时间防止锁忘记了释放。这时候对方会告诉你说你回答得不错，然后接着问如果在setnx之后执行expire之前进程意外crash或者要重启维护了，那会怎么样？这时候你要给予惊讶的反馈：唉，是喔，这个锁就永远得不到释放了。紧接着你需要抓一抓自己得脑袋，故作思考片刻，好像接下来的结果是你主动思考出来的，然后回答：我记得set指令有非常复杂的参数，这个应该是可以同时把setnx和expire合成一条指令来用的！对方这时会显露笑容，心里开始默念：摁，这小子还不错。</p>
+<p>假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？<br>使用keys指令可以扫出指定模式的key列表。对方接着追问：如果这个redis正在给线上的业务提供服务，那使用keys指令会有什么问题？这个时候你要回答redis关键的一个特性：redis的单线程的。keys指令会导致线程阻塞一段时间，线上服务会停顿，直到指令执行完毕，服务才能恢复。这个时候可以使用scan指令，scan指令可以无阻塞的提取出指定模式的key列表，但是会有一定的重复概率，在客户端做一次去重就可以了，但是整体所花费的时间会比直接用keys指令长。</p>
+<p>使用过Redis做异步队列么，你是怎么用的？<br>一般使用list结构作为队列，rpush生产消息，lpop消费消息。当lpop没有消息的时候，要适当sleep一会再重试。如果对方追问可不可以不用sleep呢？list还有个指令叫blpop，在没有消息的时候，它会阻塞住直到消息到来。 如果对方追问能不能生产一次消费多次呢？使用pub/sub主题订阅者模式，可以实现1:N的消息队列。如果对方追问pub/sub有什么缺点？在消费者下线的情况下，生产的消息会丢失，得使用专业的消息队列如rabbitmq等。如果对方追问redis如何实现延时队列？我估计现在你很想把面试官一棒打死如果你手上有一根棒球棍的话，怎么问的这么详细。但是你很克制，然后神态自若的回答道：使用sortedset，拿时间戳作为score，消息内容作为key调用zadd来生产消息，消费者用zrangebyscore指令获取N秒之前的数据轮询进行处理。到这里，面试官暗地里已经对你竖起了大拇指。但是他不知道的是此刻你却竖起了中指，在椅子背后。</p>
+<p>如果有大量的key需要设置同一时间过期，一般需要注意什么？<br>如果大量的key过期时间设置的过于集中，到过期的那个时间点，redis可能会出现短暂的卡顿现象。一般需要在时间上加一个随机值，使得过期时间分散一些。</p>
+<p>Pipeline有什么好处，为什么要用pipeline？<br>可以将多次IO往返的时间缩减为一次，前提是pipeline执行的指令之间没有因果相关性。使用redis-benchmark进行压测的时候可以发现影响redis的QPS峰值的一个重要因素是pipeline批次指令的数目。</p>
+<p>Redis的同步机制了解么？<br>Redis可以使用主从同步，从从同步。第一次同步时，主节点做一次bgsave，并同时将后续修改操作记录到内存buffer，待完成后将rdb文件全量同步到复制节点，复制节点接受完成后将rdb镜像加载到内存。加载完成后，再通知主节点将期间修改的操作记录同步到复制节点进行重放就完成了同步过程。</p>
+<p>是否使用过Redis集群，集群的原理是什么？<br>Redis Sentinal着眼于高可用，在master宕机时会自动将slave提升为master，继续提供服务。Redis Cluster着眼于扩展性，在单个redis内存不足时，使用Cluster进行分片存储。</p>
+<p>什么是Redis的并发竞争问题<br>Redis的并发竞争问题，主要是发生在并发写竞争。</p>
+<p>考虑到redis没有像db中的sql语句，update val = val + 10 where …，无法使用这种方式进行对数据的更新。</p>
+<p>假如有某个key = “price”， value值为10，现在想把value值进行+10操作。正常逻辑下，就是先把数据key为price的值读回来，加上10，再把值给设置回去。如果只有一个连接的情况下，这种方式没有问题，可以工作得很好，但如果有两个连接时，两个连接同时想对还price进行+10操作，就可能会出现问题了。</p>
+<p>例如：两个连接同时对price进行写操作，同时加10，最终结果我们知道，应该为30才是正确。</p>
+<p>考虑到一种情况：</p>
+<p>T1时刻，连接1将price读出，目标设置的数据为10+10 = 20。</p>
+<p>T2时刻，连接2也将数据读出，也是为10，目标设置为20。</p>
+<p>T3时刻，连接1将price设置为20。</p>
+<p>T4时刻，连接2也将price设置为20，则最终结果是一个错误值20。</p>
+<p>解决方案<br>使用乐观锁的方式进行解决（成本较低，非阻塞，性能较高）</p>
+<p>如何用乐观锁方式进行解决？</p>
+<p>本质上是假设不会进行冲突，使用redis的命令watch进行构造条件。伪代码如下：</p>
+<p>watch price</p>
+<p>get price $price</p>
+<p>$price = $price + 10</p>
+<p>multi</p>
+<p>set price $price</p>
+<p>exec<br>watch这里表示监控该key值，后面的事务是有条件的执行，如果从watch的exec语句执行时，watch的key对应的value值被修改了，则事务不会执行。</p>
+<p>方案2 这个是针对客户端来的，在代码里要对redis操作的时候，针对同一key的资源，就先进行加锁（java里的synchronized或lock）。</p>
+<p>方案3 利用redis的setnx实现内置的锁。</p>
+<p>redis和memcached的区别（总结）<br>1、Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等；</p>
+<p>2、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，hash等数据结构的存储；</p>
+<p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘；</p>
+<p>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。Redis可以通过例如expire 设定，例如expire name 10；</p>
+<p>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从；</p>
+<p>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）；</p>
+<p>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复；</p>
+<p>8、Redis支持数据的备份，即master-slave模式的数据备份；</p>
+<p>应用场景</p>
+<p>redis：数据量较小的更性能操作和运算上</p>
+<p>memcache：用于在动态系统中减少数据库负载，提升性能;做缓存，提高性能（适合读多写少，对于数据量比较大，可以采用sharding）</p>
+<p>MongoDB:主要解决海量数据的访问效率问题</p>
 
     </div>
 
@@ -312,7 +366,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://luckyle.top/2019/12/20/send-verify/" title="send_verify">https://luckyle.top/2019/12/20/send-verify/</a>
+    <a href="https://luckyle.top/2019/12/21/Redis/" title="Redis简介">https://luckyle.top/2019/12/21/Redis/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -323,7 +377,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Redis/" rel="tag"># Redis</a>
           </div>
 
         
@@ -332,13 +386,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/08/11/python%E5%9F%BA%E7%A1%80/" rel="prev" title="python基础">
-      <i class="fa fa-chevron-left"></i> python基础
+    <a href="/2019/12/21/%E5%85%AB%E5%A4%A7%E6%9F%A5%E6%89%BE/" rel="prev" title="八大查找">
+      <i class="fa fa-chevron-left"></i> 八大查找
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/12/20/hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="next" title="'hexo快速搭建博客'">
-      'hexo快速搭建博客' <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -400,7 +451,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django-vue-验证码发送"><span class="nav-text">Django +vue 验证码发送</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
