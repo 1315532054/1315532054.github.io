@@ -156,7 +156,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">15</span></a>
 
   </li>
         <li class="menu-item menu-item-schedule">
@@ -1066,7 +1066,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/08/11/python%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/09/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -1080,7 +1080,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/08/11/python%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">python基础</a>
+            <a href="/2019/09/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">数据结构</a>
         </h1>
 
         <div class="post-meta">
@@ -1090,14 +1090,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-08-11 10:18:24" itemprop="dateCreated datePublished" datetime="2019-08-11T10:18:24+08:00">2019-08-11</time>
+              <time title="创建时间：2019-09-02 14:05:01" itemprop="dateCreated datePublished" datetime="2019-09-02T14:05:01+08:00">2019-09-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-21 18:46:36" itemprop="dateModified" datetime="2019-12-21T18:46:36+08:00">2019-12-21</time>
+                <time title="修改时间：2019-12-23 14:06:43" itemprop="dateModified" datetime="2019-12-23T14:06:43+08:00">2019-12-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1122,99 +1122,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h5 id="解释一下Python中的三元运算"><a href="#解释一下Python中的三元运算" class="headerlink" title="解释一下Python中的三元运算"></a>解释一下Python中的三元运算</h5><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">on</span> <span class="literal">true</span>] <span class="keyword">if</span> [expression] <span class="keyword">else</span> [<span class="keyword">on</span> <span class="literal">false</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-<p>如果表达式为True，就执行[on true]中的语句。否则，就执行[on false]中的语句</p>
-<p>a,b=2,3</p>
-<p>min=a if a&lt;b else b</p>
-<p>min</p>
-<h5 id="GIl全局解释器锁"><a href="#GIl全局解释器锁" class="headerlink" title="GIl全局解释器锁"></a>GIl全局解释器锁</h5><p>GIL: 全局解释器锁（英语：Global Interpreter Lock，缩写GIL），是计算机程序设计语言解释器用于同步线程的一种机制，它使得任何时刻仅有一个线程在执行。[1]即便在多核心处理器上，使用 GIL 的解释器也只允许同一时间执行一个线程。</p>
-<p>解释一下Python中的继承</p>
-<p>当一个类继承自另一个类，它就被称为一个子类/派生类，继承自父类/基类/超类。它会继承/获取所有类成员（属性和方法）。</p>
-<p>继承能让我们重新使用代码，也能更容易的创建和维护应用。Python支持如下种类的继承：</p>
-<h5 id="单继承"><a href="#单继承" class="headerlink" title="单继承"></a>单继承</h5><p>一个类继承自单个基类 多继承：一个类继承自多个基类 多级继承：一个类继承自单个基类，后者则继承自另一个基类 分层继承：多个类继承自单个基类 混合继承：两种或多种类型继承的混合</p>
-<h5 id="解释Python中的help-和dir-函数"><a href="#解释Python中的help-和dir-函数" class="headerlink" title="解释Python中的help()和dir()函数"></a>解释Python中的help()和dir()函数</h5><p>Help()函数是一个内置函数，用于查看函数或模块用途的详细说明：</p>
-<p>import copy</p>
-<p>help(copy.copy)</p>
-<p>Dir()函数也是Python内置函数，dir() 函数不带参数时，返回当前范围内的变量、方法和定义的类型列表；带参数时，返回参数的属性、方法列表。</p>
-<p>dir(copy.copy)</p>
-<h5 id="什么是猴子补丁？"><a href="#什么是猴子补丁？" class="headerlink" title="什么是猴子补丁？"></a>什么是猴子补丁？</h5><p>在运行期间动态修改一个类或模块。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class A:</span><br><span class="line"></span><br><span class="line">   def func(self):</span><br><span class="line"></span><br><span class="line">     print(&quot;Hi&quot;)</span><br><span class="line"></span><br><span class="line">def monkey(self):</span><br><span class="line"></span><br><span class="line">    print(&quot;Hi, monkey&quot;)</span><br><span class="line"></span><br><span class="line">m.A.func = monkey</span><br><span class="line"></span><br><span class="line">a = m.A()</span><br><span class="line"></span><br><span class="line">a.func()</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="请解释使用args和-kwargs的含义"><a href="#请解释使用args和-kwargs的含义" class="headerlink" title="请解释使用args和*kwargs的含义"></a>请解释使用args和*kwargs的含义</h5><p>当我们不知道向函数传递多少参数时，比如我们向传递一个列表或元组，我们就使用*args。</p>
-<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def func<span class="comment">(*args):</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    for i in args:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        print(i)  </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">func(3,2,1,4,7)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>在我们不知道该传递多少关键字参数时，使用**kwargs来收集关键字参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def func(**kwargs):</span><br><span class="line"></span><br><span class="line">    for i in kwargs:</span><br><span class="line"></span><br><span class="line">        print(i,kwargs[i])</span><br><span class="line"> func(a=1,b=2,c=7)</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="什么是负索引？"><a href="#什么是负索引？" class="headerlink" title="什么是负索引？"></a>什么是负索引？</h5><p>负索引和正索引不同，它是从右边开始检索。</p>
-<p>它也能用于列表中的切片：</p>
-<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mylist=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">mylist[-<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">mylist[-<span class="number">6</span>:-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="解释Python中的join-和split-函数"><a href="#解释Python中的join-和split-函数" class="headerlink" title="解释Python中的join()和split()函数"></a>解释Python中的join()和split()函数</h5><p>Join()能让我们将指定字符添加至字符串中。</p>
-<p>Split()能让我们用指定字符分割字符串。</p>
-<h5 id="怎么移除一个字符串中的前导空格？"><a href="#怎么移除一个字符串中的前导空格？" class="headerlink" title="怎么移除一个字符串中的前导空格？"></a>怎么移除一个字符串中的前导空格？</h5><p>字符串中的前导空格就是出现在字符串中第一个非空格字符前的空格。我们使用方法Istrip()可以将它从字符串中移除。</p>
-<p>‘   Ayushi ‘.lstrip()</p>
-<p>可以看到，该字符串既有前导字符，也有后缀字符，调用Istrip()去除了前导空格。如果我们想去除后缀空格，就用rstrip()方法。</p>
-<p>‘   Ayushi ‘.rstrip()</p>
-<h5 id="Python中的pass语句是什么？"><a href="#Python中的pass语句是什么？" class="headerlink" title="Python中的pass语句是什么？"></a>Python中的pass语句是什么？</h5><p>在用Python写代码时，有时可能还没想好函数怎么写，只写了函数声明，但为了保证语法正确，必须输入一些东西，在这种情况下，我们会使用pass语句。</p>
-<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def func<span class="comment">(*args):</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    pass</span></span><br></pre></td></tr></table></figure>
-
-<p>同样，break语句能让我们跳出循环。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i in range(7):</span><br><span class="line"></span><br><span class="line">    if i==3: </span><br><span class="line">		break</span><br></pre></td></tr></table></figure>
-
-<p>最后，continue语句能让我们跳到下个循环。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i in range(7):</span><br><span class="line"></span><br><span class="line">   if i==3: </span><br><span class="line">   		continue</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="Python中的闭包是什么？"><a href="#Python中的闭包是什么？" class="headerlink" title="Python中的闭包是什么？"></a>Python中的闭包是什么？</h5><p>当一个嵌套函数在其外部区域引用了一个值时，该嵌套函数就是一个闭包。其意义就是会记录这个值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def A(x):</span><br><span class="line"></span><br><span class="line">    def B():</span><br><span class="line"></span><br><span class="line">        print(x)</span><br><span class="line"></span><br><span class="line">    return B</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="谈一谈Python的装饰器（decorator）"><a href="#谈一谈Python的装饰器（decorator）" class="headerlink" title="谈一谈Python的装饰器（decorator）"></a>谈一谈Python的装饰器（decorator）</h5><p>装饰器本质上是一个Python函数，它可以让其它函数在不作任何变动的情况下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景。比如：插入日志、性能测试、事务处理、缓存、权限校验等。有了装饰器我们就可以抽离出大量的与函数功能无关的雷同代码进行重用。</p>
-<p>装饰器其实就是一个闭包，把一个函数当做参数然后返回一个替代版函数</p>
-<h5 id="解释一下Python中的逻辑运算符"><a href="#解释一下Python中的逻辑运算符" class="headerlink" title="解释一下Python中的逻辑运算符"></a>解释一下Python中的逻辑运算符</h5><p>Python中有3个逻辑运算符：and，or，not</p>
-<h5 id="Python支持什么数据类型？"><a href="#Python支持什么数据类型？" class="headerlink" title="Python支持什么数据类型？"></a>Python支持什么数据类型？</h5><p>Numbers（数字）——用于保存数值</p>
-<p>Strings（字符串）——字符串是一个字符序列。我们用单引号或双引号来声明字符串。</p>
-<p>Lists（列表）——列表就是一些值的有序集合，我们用方括号声明列表。</p>
-<p>Tuples（元组）——元组和列表一样，也是一些值的有序集合，区别是元组是不可变的，意味着我们无法改变元组内的值。</p>
-<p>Dictionary（字典）——字典是一种数据结构，含有键值对。我们用大括号声明字典</p>
-<h5 id="什么是切片？"><a href="#什么是切片？" class="headerlink" title="什么是切片？"></a>什么是切片？</h5><p>切片是Python中的一种方法，能让我们只检索列表、元素或字符串的一部分。在切片时，我们使用切片操作符[]。</p>
-<p>(1,2,3,4,5)[2:4]</p>
-<p>Python中的不可变集合（frozenset）是什么？</p>
-<p>首先，我们讨论一下什么是集合。集合就是一系列数据项的合集，不存在任何副本。另外，集合是无序的。</p>
-<p>这就意味着我们无法索引它。</p>
-<p>不过，集合是可变的。而不可变集合却不可变，这意味着我们无法改变它的值，从而也使其无法作为字典的键值。</p>
-<p>myset=frozenset([1,3,2,2])</p>
-<p>myset</p>
-<h5 id="解释lambda表达式，什么时候会用到它？"><a href="#解释lambda表达式，什么时候会用到它？" class="headerlink" title="解释lambda表达式，什么时候会用到它？"></a>解释lambda表达式，什么时候会用到它？</h5><p>如果我们需要一个只有单一表达式的函数，我们可以匿名定义它。拉姆达表达式通常是在需要一个函数，但是又不想费神去命名一个函数的场合下使用，也就是指匿名函数。</p>
-<p>(lambda a,b:a if a&gt;b else b)(3,3.5)</p>
-<h5 id="实现斐波那契数列"><a href="#实现斐波那契数列" class="headerlink" title="实现斐波那契数列"></a>实现斐波那契数列</h5><p>fib = lambda n : n if n &lt;= 2 else fib(n-1)+fib(n-2)</p>
-<h5 id="什么是递归？"><a href="#什么是递归？" class="headerlink" title="什么是递归？"></a>什么是递归？</h5><p>在调用一个函数的过程中，直接或间接地调用了函数本身这个就叫递归。但为了避免出现死循环，必须要有一个结束条件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def facto(n):</span><br><span class="line"></span><br><span class="line">    if n==1: </span><br><span class="line">    	return 1</span><br><span class="line"></span><br><span class="line">    return n*facto(n-1)</span><br><span class="line"></span><br><span class="line">facto(4)</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="什么是生成器？"><a href="#什么是生成器？" class="headerlink" title="什么是生成器？"></a>什么是生成器？</h5><p>生成器会生成一系列的值用于迭代，这样看它又是一种可迭代对象。它是在for循环的过程中不断计算出下一个元素，并在适当的条件结束for循环。</p>
-<h5 id="什么是迭代器？"><a href="#什么是迭代器？" class="headerlink" title="什么是迭代器？"></a>什么是迭代器？</h5><p>迭代器是访问集合元素的一种方式。迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。我们使用inter()函数创建迭代器。</p>
-<h5 id="请说说生成器和迭代器之间的区别"><a href="#请说说生成器和迭代器之间的区别" class="headerlink" title="请说说生成器和迭代器之间的区别?"></a>请说说生成器和迭代器之间的区别?</h5><p>在使用生成器时，我们创建一个函数；在使用迭代器时，我们使用内置函数iter()和next()。 在生成器中，我们使用关键字‘yield’来每次生成/返回一个对象。 生成器中有多少‘yield’语句，你可以自定义。 每次‘yield’暂停循环时，生成器会保存本地变量的状态。而迭代器并不会使用局部变量，它只需要一个可迭代对象进行迭代。 使用类可以实现你自己的迭代器，但无法实现生成器。 生成器运行速度快，语法简洁，更简单。 迭代器更能节约内存。</p>
-<h5 id="Python中的yield用法"><a href="#Python中的yield用法" class="headerlink" title="Python中的yield用法"></a>Python中的yield用法</h5><p>yield简单说来就是一个生成器，这样函数它记住上次返 回时在函数体中的位置。对生成器第 二次(或n 次)调用跳转至该函 次)调用跳转至该函数。</p>
-<h5 id="解释Python的参数传递机制"><a href="#解释Python的参数传递机制" class="headerlink" title="解释Python的参数传递机制"></a>解释Python的参数传递机制</h5><p>Python使用按引用传递（pass-by-reference）将参数传递到函数中。如果你改变一个函数内的参数，会影响到函数的调用。这是Python的默认操作。不过，如果我们传递字面参数，比如字符串、数字或元组，它们是按值传递，这是因为它们是不可变的。</p>
-<p>python不允许程序员选择采用传值还是传引用。Python参数传递采用的肯定是“传对象引用”的方式。这种方式相当于传值和传引用的一种综合。如果函数收到的是一个可变对象（比如字典或者列表）的引用，就能修改对象的原始值－－相当于通过“传引用”来传递对象。如果函数收到的是一个不可变对象（比如数字、字符或者元组）的引用，就不能直接修改原始对象－－相当于通过“传值’来传递对象。</p>
-<h5 id="如何在Python中创建自己的包？"><a href="#如何在Python中创建自己的包？" class="headerlink" title="如何在Python中创建自己的包？"></a>如何在Python中创建自己的包？</h5><p>Python中创建包是比较方便的，只需要在当前目录建立一个文件夹，文件夹中包含一个init.py文件和若干个模块文件，其中init.py可以是一个空文件，但还是建议将包中所有需要导出的变量放到all中，这样可以确保包的接口清晰明了，易于使用。</p>
-<h5 id="元类"><a href="#元类" class="headerlink" title="元类"></a>元类</h5><p>元类是类的类对象，换言之类是元类的实例，Python中默认的元类为type，可以通过自定义元类的方式实现对类创建的控制。</p>
+          <h1 id="关于数据结构"><a href="#关于数据结构" class="headerlink" title="关于数据结构"></a>关于数据结构</h1><h5 id="什么是数据结构？"><a href="#什么是数据结构？" class="headerlink" title="什么是数据结构？"></a>什么是数据结构？</h5><p>简单地说，数据结构是以某种特定的布局方式存储数据的容器。这种“布局方式”决定了数据结构对于某些操作是高效的，而对于其他操作则是低效的。首先我们需要理解各种数据结构，才能在处理实际问题时选取最合适的数据结构。</p>
+<h5 id="为什么我们需要数据结构？"><a href="#为什么我们需要数据结构？" class="headerlink" title="为什么我们需要数据结构？"></a>为什么我们需要数据结构？</h5><p>数据是计算机科学当中最关键的实体，而数据结构则可以将数据以某种组织形式存储，因此，数据结构的价值不言而喻。</p>
+<p>无论你以何种方式解决何种问题，你都需要处理数据——无论是涉及员工薪水、股票价格、购物清单，还是只是简单的电话簿问题。</p>
+<p>数据需要根据不同的场景，按照特定的格式进行存储。有很多数据结构能够满足以不同格式存储数据的需求。</p>
+<h5 id="常见的数据结构"><a href="#常见的数据结构" class="headerlink" title="常见的数据结构"></a>常见的数据结构</h5><p>首先列出一些最常见的数据结构，我们将逐一说明：</p>
+<p>数组 栈 队列 链表 树 字典树（这是一种高效的树形结构，但值得单独说明） 散列表（哈希表）</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组是最简单、也是使用最广泛的数据结构。栈、队列等其他数据结构均由数组演变而来。下图是一个包含元素（1，2，3和4）的简单数组，数组长度为4。</p>
+<p>每个数据元素都关联一个正数值，我们称之为索引，它表明数组中每个元素所在的位置。大部分语言将初始索引定义为零。</p>
+<p>以下是数组的两种类型：</p>
+<p>一维数组（如上所示） 多维数组（数组的数组）</p>
+<p>数组的基本操作</p>
+<p>Insert——在指定索引位置插入一个元素 Get——返回指定索引位置的元素 Delete——删除指定索引位置的元素 Size——得到数组所有元素的数量</p>
+<p>面试中关于数组的常见问题</p>
+<p>寻找数组中第二小的元素 找到数组中第一个不重复出现的整数 合并两个有序数组 重新排列数组中的正值和负值</p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>著名的撤销操作几乎遍布任意一个应用。但你有没有思考过它是如何工作的呢？这个问题的解决思路是按照将最后的状态排列在先的顺序，在内存中存储历史工作状态（当然，它会受限于一定的数量）。这没办法用数组实现。但有了栈，这就变得非常方便了。</p>
+<p>可以把栈想象成一列垂直堆放的书。为了拿到中间的书，你需要移除放置在这上面的所有书。这就是LIFO（后进先出）的工作原理。</p>
+<p>下图是包含三个数据元素（1，2和3）的栈，其中顶部的3将被最先移除：</p>
+<h5 id="栈的基本操作"><a href="#栈的基本操作" class="headerlink" title="栈的基本操作"></a>栈的基本操作</h5><p>Push——在顶部插入一个元素 Pop——返回并移除栈顶元素 isEmpty——如果栈为空，则返回true Top——返回顶部元素，但并不移除它</p>
+<h5 id="面试中关于栈的常见问题"><a href="#面试中关于栈的常见问题" class="headerlink" title="面试中关于栈的常见问题"></a>面试中关于栈的常见问题</h5><p>使用栈计算后缀表达式 对栈的元素进行排序 判断表达式是否括号平衡</p>
+<p>应用场景：逆序输出，语法检查，进制转换</p>
+<p>在我们日常编程中，括号都是成对出现的，比如“()”“[]”“{}”“&lt;&gt;”这些成对出现的符号</p>
+<p>那么具体处理的方法就是:凡是遇到括号的前半部分，即把这个元素入栈，凡是遇到括号的后半部分就比对栈顶元素是否该元素相匹配，如果匹配，则前半部分出栈，否则就是匹配出错</p>
+<p>将十进制的数转换为2-9的任意进制的数</p>
+<p>我们都知道，通过求余法，可以将十进制数转换为其他进制，比如要转为八进制，将十进制数除以8，记录余数，然后继续将商除以8，一直到商等于0为止，最后将余数倒着写数来就可以了。</p>
+<p>比如100的八进制，100首先除以8商12余4,4首先进栈，然后12除以8商1余4，第二个余数4进栈，接着1除以8，商0余1，第三个余数1进栈，最后将三个余数出栈，就得到了100的八进制数144,</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>与栈相似，队列是另一种顺序存储元素的线性数据结构。栈与队列的最大差别在于栈是LIFO（后进先出），而队列是FIFO，即先进先出。</p>
+<p>一个完美的队列现实例子：售票亭排队队伍。如果有新人加入，他需要到队尾去排队，而非队首——排在前面的人会先拿到票，然后离开队伍。</p>
+<p>下图是包含四个元素（1，2，3和4）的队列，其中在顶部的1将被最先移除：</p>
+<p>移除先入队的元素、插入新元素</p>
+<h5 id="队列的基本操作"><a href="#队列的基本操作" class="headerlink" title="队列的基本操作"></a>队列的基本操作</h5><p>Enqueue()——在队列尾部插入元素 Dequeue()——移除队列头部的元素 isEmpty()——如果队列为空，则返回true Top()——返回队列的第一个元素</p>
+<p>面试中关于队列的常见问题</p>
+<p>使用队列表示栈 对队列的前k个元素倒序 使用队列生成从1到n的二进制数</p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是另一个重要的线性数据结构，乍一看可能有点像数组，但在内存分配、内部结构以及数据插入和删除的基本操作方面均有所不同。</p>
+<p>链表就像一个节点链，其中每个节点包含着数据和指向后续节点的指针。 链表还包含一个头指针，它指向链表的第一个元素，但当列表为空时，它指向null或无具体内容。</p>
+<p>链表一般用于实现文件系统、哈希表和邻接表。</p>
+<p>这是链表内部结构的展示：</p>
+<p>链表包括以下类型：</p>
+<p>单链表（单向） 双向链表（双向）</p>
+<h5 id="链表的基本操作："><a href="#链表的基本操作：" class="headerlink" title="链表的基本操作："></a>链表的基本操作：</h5><p>InsertAtEnd - 在链表的末尾插入指定元素 InsertAtHead - 在链接列表的开头/头部插入指定元素 Delete - 从链接列表中删除指定元素 DeleteAtHead - 删除链接列表的第一个元素 Search - 从链表中返回指定元素 isEmpty - 如果链表为空，则返回true</p>
+<p>面试中关于链表的常见问题</p>
+<p>反转链表 检测链表中的循环 返回链表倒数第N个节点 删除链表中的重复项</p>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>树形结构是一种层级式的数据结构，由顶点（节点）和连接它们的边组成。 树类似于图，但区分树和图的重要特征是树中不存在环路。</p>
+<p>树形结构被广泛应用于人工智能和复杂算法，它可以提供解决问题的有效存储机制。</p>
+<p>这是一个简单树的示意图，以及树数据结构中使用的基本术语：</p>
+<p>Root - 根节点</p>
+<p>Parent - 父节点</p>
+<p>Child - 子节点</p>
+<p>Leaf - 叶子节点</p>
+<p>Sibling - 兄弟节点</p>
+<p>以下是树形结构的主要类型：</p>
+<p>N元树 平衡树 二叉树 二叉搜索树 AVL树 红黑树 2-3树</p>
+<p>其中，二叉树和二叉搜索树是最常用的树。</p>
+<h5 id="面试中关于树结构的常见问题："><a href="#面试中关于树结构的常见问题：" class="headerlink" title="面试中关于树结构的常见问题："></a>面试中关于树结构的常见问题：</h5><p>求二叉树的高度 在二叉搜索树中查找第k个最大值 查找与根节点距离k的节点 在二叉树中查找给定节点的祖先节点</p>
+<p>字典树（Trie）</p>
+<p>字典树，也称为“前缀树”，是一种特殊的树状数据结构，对于解决字符串相关问题非常有效。它能够提供快速检索，主要用于搜索字典中的单词，在搜索引擎中自动提供建议，甚至被用于IP的路由。</p>
+<p>这些单词以顶部到底部的方式存储，其中绿色节点“p”，“s”和“r”分别表示“top”，“thus”和“theirs”的底部。</p>
+<p>面试中关于字典树的常见问题</p>
+<p>计算字典树中的总单词数 打印存储在字典树中的所有单词 使用字典树对数组的元素进行排序 使用字典树从字典中形成单词 构建T9字典（字典树+ DFS ）</p>
+<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>哈希法（Hashing）是一个用于唯一标识对象并将每个对象存储在一些预先计算的唯一索引（称为“键（key）”）中的过程。因此，对象以键值对的形式存储，这些键值对的集合被称为“字典”。可以使用键搜索每个对象。基于哈希法有很多不同的数据结构，但最常用的数据结构是哈希表。</p>
+<p>哈希表通常使用数组实现。</p>
 
       
     </div>
@@ -1307,7 +1274,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1382,7 +1349,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共14.8k字</span>
+  <span class="post-count">博客全站共17k字</span>
 </div>
 
 
