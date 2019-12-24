@@ -48,30 +48,28 @@
   };
 </script>
 
-  <meta name="description" content="docker 什么是docker：小海腾 KVM、Xen、VMware、VirtualBox、Hyper-V VMM   容器技术：在计算机的世界中, 容器拥有一段漫长且传奇的历史。容器与管理程序虚拟化 (hypervisor virtualization，HV)有所不同，管理程序虚拟化通过中间层将一台或者多台独立 的机器虚拟运行与物理硬件之上，而容器则是直接运行在操作系统内核之上的用户空间。因">
-<meta name="keywords" content="Docker">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker">
-<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;2018&#x2F;03&#x2F;23&#x2F;Docker&#x2F;index.html">
+  <meta name="description" content="Progress is not created by contented people..">
+<meta property="og:type" content="website">
+<meta property="og:title" content="扼">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;page&#x2F;4&#x2F;index.html">
 <meta property="og:site_name" content="扼">
-<meta property="og:description" content="docker 什么是docker：小海腾 KVM、Xen、VMware、VirtualBox、Hyper-V VMM   容器技术：在计算机的世界中, 容器拥有一段漫长且传奇的历史。容器与管理程序虚拟化 (hypervisor virtualization，HV)有所不同，管理程序虚拟化通过中间层将一台或者多台独立 的机器虚拟运行与物理硬件之上，而容器则是直接运行在操作系统内核之上的用户空间。因">
+<meta property="og:description" content="Progress is not created by contented people..">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-23T07:00:51.154Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://luckyle.top/2018/03/23/Docker/">
+<link rel="canonical" href="https://luckyle.top/page/4/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome: true,
+    isPost: false
   };
 </script>
 
-  <title>Docker | 扼</title>
+  <title>扼</title>
   
 
 
@@ -208,10 +206,155 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2018/07/15/Django/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/15/Django/" class="post-title-link" itemprop="url">Django</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-07-15 19:44:03" itemprop="dateCreated datePublished" datetime="2018-07-15T19:44:03+08:00">2018-07-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-23 14:40:17" itemprop="dateModified" datetime="2019-12-23T14:40:17+08:00">2019-12-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
+          <h1 id="Django-、Flask、Tornado的对比"><a href="#Django-、Flask、Tornado的对比" class="headerlink" title="Django 、Flask、Tornado的对比"></a>Django 、Flask、Tornado的对比</h1><p>1.Django走的是大而全的方向,开发效率高。它的MTV框架,自带的ORM,admin后台管理,自带的sqlite数据库和开发测试用的服务器 给开发者提高了超高的开发效率</p>
+<p>2.Flask是轻量级的框架,自由,灵活,可扩展性很强,核心基于Werkzeug WSGI工具和jinja2模板引擎</p>
+<p>3.Tornado走的是少而精的方向,性能优越。它最出名的是异步非阻塞的设计方式</p>
+<p>Tornado的两大核心模块： 1.iostraem：对非阻塞式的socket进行简单的封装 2.ioloop：对I/O多路复用的封装，它实现了一个单例</p>
+<h2 id="什么是wsgi？"><a href="#什么是wsgi？" class="headerlink" title="什么是wsgi？"></a>什么是wsgi？</h2><p>WSGI，描述web server如何与web application通信的一种规范</p>
+<p>WSGI协议主要包括server和application两部分：</p>
+<p>WSGI server负责从客户端接收请求，将request转发给application，将application返回的response返回给客户端； WSGI application接收由server转发的request，处理请求，并将处理结果返回给server。</p>
+<p>application中可以包括多个栈式的中间件(middlewares)，这些中间件需要同时实现server与application，因此可以在WSGI服务器与WSGI应用之间起调节作用：对服务器来说，中间件扮演应用程序，对应用程序来说，中间件扮演服务器。</p>
+<h2 id="简述什么是FBV和CBV？"><a href="#简述什么是FBV和CBV？" class="headerlink" title="简述什么是FBV和CBV？"></a>简述什么是FBV和CBV？</h2><p>FBV（function base views） 基于函数的视图 CBV（class base views） 基于类的视图</p>
+<p>使用fbv的模式,在url匹配成功之后,会直接执行对应的视图函数</p>
+<p>使用cbv模式,在url匹配成功之后,会找到视图函数中对应的类,然后这个类回到请求头中找到对应的Request Method</p>
+<p>用户发送url请求,Django会依次遍历路由映射表中的所有记录,一旦路由映射表其中的一条匹配成功了,就执行视图函数中对应的函数名,这是fbv的执行流程</p>
+<p>当服务端使用cbv模式的时候,用户发给服务端的请求包含url和method,这两个信息都是字符串类型 服务端通过路由映射表匹配成功后会自动去找dispatch方法,然后Django会通过dispatch反射的方式找到类中对应的方法并执行 类中的方法执行完毕之后,会把客户端想要的数据返回给dispatch方法,由dispatch方法把数据返回经客户端</p>
+<h2 id="django请求的生命周期"><a href="#django请求的生命周期" class="headerlink" title="django请求的生命周期"></a>django请求的生命周期</h2><p><img src="C:%5CUsers%5Clenovo%5CDesktop%5Cdjango_r.png" alt=""></p>
+<p>1.wsgi,请求封装后交给web框架 （Flask、Django）</p>
+<p>2.中间件，对请求进行校验或在请求对象中添加其他相关数据，例如：csrf、request.session</p>
+<p>3.路由匹配 根据浏览器发送的不同url去匹配不同的视图函数</p>
+<p>4.视图函数，在视图函数中进行业务逻辑的处理，可能涉及到：orm、templates =&gt; 渲染</p>
+<p>5.中间件，对响应的数据进行处理。</p>
+<p>6.wsgi,将响应的内容发送给浏览器。</p>
+<h2 id="说一下Django，MIDDLEWARES中间件的作用和应用场景？"><a href="#说一下Django，MIDDLEWARES中间件的作用和应用场景？" class="headerlink" title="说一下Django，MIDDLEWARES中间件的作用和应用场景？"></a>说一下Django，MIDDLEWARES中间件的作用和应用场景？</h2><p>中间件是介于request与response处理之间的一道处理过程,用于在全局范围内改变Django的输入和输出。</p>
+<p>简单的来说中间件是帮助我们在视图函数执行之前和执行之后都可以做一些额外的操作</p>
+<p>例如：</p>
+<p>1.Django项目中默认启用了csrf保护,每次请求时通过CSRF中间件检查请求中是否有正确#token值</p>
+<p>2.当用户在页面上发送请求时，通过自定义的认证中间件，判断用户是否已经登陆，未登陆就去登陆。</p>
+<p>3.当有用户请求过来时，判断用户是否在白名单或者在黑名单里</p>
+<p>其内置的五个方法:</p>
+<p>1.process_request : 请求进来时,权限认证</p>
+<p>2.process_view : 路由匹配之后,能够得到视图函数</p>
+<p>3.process_exception : 异常时执行</p>
+<p>4.process_template_responseprocess : 模板渲染时执行</p>
+<p>5.process_response : 请求有响应时执行</p>
+<p>如果你想修改请求，例如被传送到view中的HttpRequest对象</p>
+<p>或者你想修改view返回的HttpResponse对象，这些都可以通过中间件来实现</p>
+<p>可能你还想在view执行之前做一些操作，这种情况也可以用 middleware来实现。 比如我们写一个判断浏览器来源，是pc还是手机，这里手机我们采用iphone，因为暂时没有其他设备。我们有不想把这个逻辑加到视图函数里，想作为一个通用服务，作为一个可插拔的组件被使用，最好的方法就是实现为中间件</p>
+<p>或者说做一个拦截器，发现一定的时间内某个ip对网页的访问次数过多，则将其加入黑名单</p>
+<h2 id="django-orm-和-queryset"><a href="#django-orm-和-queryset" class="headerlink" title="django orm 和 queryset"></a>django orm 和 queryset</h2><p>O(objects):类和对象。</p>
+<p>R(Relation):关系，关系数据库中的表格。</p>
+<p>M(Mapping):映射。</p>
+<p>Django ORM框架的功能：</p>
+<p>a) 建立模型类和表之间的对应关系，允许我们通过面向对象的方式来操作数据库。</p>
+<p>b) 根据设计的模型类生成数据库中的表格。</p>
+<p>c) 通过方便的配置就可以进行数据库的切换。</p>
+<p>缺点：</p>
+<p>性能损耗，过度封装</p>
+<p>有一定的学习成本</p>
+<h2 id="使用orm和原生sql的优缺点？"><a href="#使用orm和原生sql的优缺点？" class="headerlink" title="使用orm和原生sql的优缺点？"></a>使用orm和原生sql的优缺点？</h2><p>使用 ORM 最大的优点就是快速开发，让我们将更多的精力放在业务上而不是数据库上，下面是 ORM 的几个优点</p>
+<p>隐藏了数据访问细节，使通用数据库交互变得简单易行。同时 ORM 避免了不规范、冗余、风格不统一的 SQL 语句，可以避免很多人为的 bug，方便编码风格的统一和后期维护。 将数据库表和对象模型关联，我们只需针对相关的对象模型进行编码，无须考虑对象模型和数据库表之间的转化，大大提高了程序的开发效率。 方便数据库的迁移。当需要迁移到新的数据库时，不需要修改对象模型，只需要修改数据库的配置。 ORM 的最令人诟病的地方就是性能问题，不过现在已经提高了很多，下面是 ORM 的几个缺点</p>
+<p>性能问题 自动化进行数据库关系的映射需要消耗系统资源 程序员编码 在处理多表联查、where 条件复杂的查询时，ORM 可能会生成的效率低下的 SQL 通过 Lazy load 和 Cache 很大程度上改善了性能问题 SQL 调优，SQL 语句是由 ORM 框架自动生成，虽然减少了 SQL 语句错误的发生，但是也给 SQL 调优带来了困难。 越是功能强大的 ORM 越消耗内存，因为一个 ORM Object 会带有很多成员变量和成员函数。 对象和关系之间并不是完美映射 一般来说 ORM 足以满足我们的需求，如果对性能要求特别高或者查询十分复杂，可以考虑使用原生 SQL 和 ORM 共用的方式 使用原生sql优点：</p>
+<p>进行复杂的查询时更加灵活 可以根据需要编写特殊的sql语句 使用原生sql缺点：</p>
+<p>需要对输入进行严格的检测 自己写的sql语句，很多时候使用的是字符串拼接，可能会有sql注入的漏洞 不能使用django orm相关的一些特性</p>
+<h2 id="列举django-orm-中所有的方法（QuerySet对象的所有方法）"><a href="#列举django-orm-中所有的方法（QuerySet对象的所有方法）" class="headerlink" title="列举django orm 中所有的方法（QuerySet对象的所有方法）"></a>列举django orm 中所有的方法（QuerySet对象的所有方法）</h2><p>从数据库中查询出来的结果一般是一个集合，这个集合叫做 QuerySet</p>
+<p>filter 过滤 exclude 排除 annotate 聚合 order_by 排序 reverse 反向排序 distinct 去除查询结果中重复的行 values 迭代时返回字典而不是模型实例对象 values_list 迭代时返回元组而不是字典 dates 表示特定种类的所有可用日期 datetimes 表示特定种类的所有可用日期 none 不返回任何对象 all 返回所有结果 select_related 外键查询 prefetch_related 在单个批处理中自动检索每个指定查找的相关对象 defer 告诉django不要查询某些字段 using 多个数据库时控制QuerySet在哪个数据库上求值</p>
+<h2 id="Django本身提供了runserver，为什么不能用来部署？-runserver与uWSGI的区别"><a href="#Django本身提供了runserver，为什么不能用来部署？-runserver与uWSGI的区别" class="headerlink" title="Django本身提供了runserver，为什么不能用来部署？(runserver与uWSGI的区别)"></a>Django本身提供了runserver，为什么不能用来部署？(runserver与uWSGI的区别)</h2><p>1.runserver方法是调试 Django 时经常用到的运行方式，它使用Django自带的 WSGI Server 运行，主要在测试和开发中使用，并且 runserver 开启的方式也是单进程 。 2.uWSGI是一个Web服务器，它实现了WSGI协议、uwsgi、http 等协议。注意uwsgi是一种通信协议，而uWSGI是实现uwsgi协议和WSGI协议的 Web 服务器。uWSGI具有超快的性能、低内存占用和多app管理等优点，并且搭配着Nginx就是一个生产环境了，能够将用户访问请求与应用 app 隔离开，实现真正的部署 。相比来讲，支持的并发量更高，方便管理多进程，发挥多核的优势，提升性能。</p>
+<h2 id="谈谈你对restful规范的认识？"><a href="#谈谈你对restful规范的认识？" class="headerlink" title="谈谈你对restful规范的认识？"></a>谈谈你对restful规范的认识？</h2><p>首先restful是一种软件架构风格或者说是一种设计风格，并不是标准，它只是提供了一组设计原则和约束条件，主要用于客户端和服务器交互类的软件。<br>就像设计模式一样，并不是一定要遵循这些原则，而是基于这个风格设计的软件可以更简洁，更有层次，我们可以根据开发的实际情况，做相应的改变。</p>
+<p>它里面提到了一些规范，例如：</p>
+<p>1.restful 提倡面向资源编程,在url接口中尽量要使用名词，不要使用动词</p>
+<p>2、在url接口中推荐使用Https协议，让网络接口更加安全 <a href="https://baidum/v1/mycss？page=3" target="_blank" rel="noopener">https://baidum/v1/mycss？page=3</a> （Https是Http的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL， 因此加密的详细内容就需要SSL（安全套接层协议））</p>
+<p>3、在url中可以体现版本号 <a href="https://v1.bootcss.com/mycss" target="_blank" rel="noopener">https://v1.bootcss.com/mycss</a></p>
+<p>不同的版本可以有不同的接口，使其更加简洁，清晰</p>
+<p>4、url中可以体现是否是API接口 <a href="https://baidum/api/mycss" target="_blank" rel="noopener">https://baidum/api/mycss</a></p>
+<p>5、url中可以添加条件去筛选匹配 <a href="https://baidum/v1/mycss？page=3" target="_blank" rel="noopener">https://baidum/v1/mycss？page=3</a></p>
+<p>6、可以根据Http不同的method，进行不同的资源操作 （5种方法：GET / POST / PUT / DELETE / PATCH）</p>
+<p>7、响应式应该设置状态码</p>
+<p>8、有返回值，而且格式为统一的json格式</p>
+<p>9、返回错误信息</p>
+<p>10、返回结果中要提供帮助链接，即API最好做到接口文档</p>
+
+      
+    </div>
+
+    
+    
+    
+    <div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://luckyle.top/2018/03/23/Docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +368,8 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Docker
+          
+            <a href="/2018/03/23/Docker/" class="post-title-link" itemprop="url">Docker</a>
         </h1>
 
         <div class="post-meta">
@@ -267,7 +411,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><ul>
+          <h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><ul>
 <li>什么是docker：小海腾<ul>
 <li>KVM、Xen、VMware、VirtualBox、Hyper-V</li>
 <li>VMM</li>
@@ -463,6 +607,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'Remote file_id'</span>].replace(<span class="string">'\\'</span>,<span class="string">'/'</span>)</span><br></pre></td></tr></table></figure>
 
 
+      
     </div>
 
     
@@ -470,59 +615,203 @@
     
     <div>
       
-        <div>
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2018/02/20/Jwt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/20/Jwt/" class="post-title-link" itemprop="url">'Jwt的应用'</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-02-20 16:23:28" itemprop="dateCreated datePublished" datetime="2018-02-20T16:23:28+08:00">2018-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-20 19:33:33" itemprop="dateModified" datetime="2019-12-20T19:33:33+08:00">2019-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
     
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
     
-</div>
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什么是JWT"><a href="#什么是JWT" class="headerlink" title="什么是JWT"></a>什么是JWT</h2><p>​     Json web token（JWT）是为了网络应用环境间传递声明而执行的一种基于JSON的开发标准（RFC 7519），该token被设计为紧凑且安全的，特别适用于分布式站点的单点登陆（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>   说起JWT，我们应该来谈一谈基于token的认证和传统的Session认证的区别。</p>
+<h2 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h2><p>​    我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发送的请求，所以为了让我们的应用能识别是哪个用户发出的，我们只能在服务器存储一份用户登陆的信息，这份登陆信息会在响应时传递给服务器，告诉其保存为cookie，以便下次请求时发送给我们的应用，这样我们的英哟个就能识别请求来自哪个用户了，这就是传统的基于sessino认证</p>
+<p>​       但是这种基于session的认证使应用本身很难得扩展，随着不用客户端的增加，独立的服务器已无法承载更多的用户，而这个时候基于session认证应用的问题就会暴露出来</p>
+<h2 id="基于session认证所显露的问题"><a href="#基于session认证所显露的问题" class="headerlink" title="基于session认证所显露的问题"></a>基于session认证所显露的问题</h2><p>​       Session：每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着认证用户的增多，服务端的开销会明显增大</p>
+<p>​        扩展性：用户认证之后，服务端做认证记录，如果认证的记录被保存在内存的话，这意味着用户下次请求还必须要请求在这台服务器上，这样才能拿到授权的资源，这样在分布式的应用上，响应的限制了负载均衡器的能力，也意味着限制了应用的扩展性</p>
+<p>​        CSRF：因为是基于cookie来进行用户识别的，cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。</p>
+<h2 id="基于token的鉴权机制"><a href="#基于token的鉴权机制" class="headerlink" title="基于token的鉴权机制"></a>基于token的鉴权机制</h2><p>​    基于token的鉴权机制类似于http协议也是无状态的，它不需要在服务端去保留用户的认证信息或会话信息。这也就意味着机遇tokent认证机制的应用不需要去考虑用户在哪一台服务器登陆了，这就为应用的扩展提供了便利</p>
+<p>​     流程是这样的</p>
+<ul>
+<li>用户使用用户名密码请求服务器</li>
+<li>服务器进行验证用户信息</li>
+<li>服务器通过验证发送给用户一个token</li>
+<li>客户端存储token，并在每次请求时附加这个token值</li>
+<li>服务器验证token，并返回数据</li>
+</ul>
+<p>​      这个token必须要在每次请求时发送给服务器，它应该保存在请求头中，另外，服务器要支持CORS（跨来源资源共享）策略，一般我们在服务端这么做就可以了 Access-Control-Allow-Origin：*</p>
+<h2 id="JWT的构成"><a href="#JWT的构成" class="headerlink" title="JWT的构成"></a>JWT的构成</h2><p>​      JWT是由三部分构成，将这三段信息文本用链接构成了JWT字符串。就像这样</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ<span class="number">0</span>eXAiOiJKV<span class="number">1</span>QiLCJhbGciOiJIUzI<span class="number">1</span><span class="symbol">NiJ9</span>.eyJ<span class="attr">Vc2</span>VySWQiOjEyMywiVX<span class="symbol">Nlck5</span>hbWUiOiJhZ<span class="name">G1</span>pbiJ<span class="number">9.</span>Qjw<span class="number">1</span>epD<span class="number">5</span>P<span class="number">6</span>p<span class="number">4</span>Yy<span class="number">2</span>yju<span class="number">3</span>-fkq<span class="number">28</span>Pddz<span class="symbol">nqRj3</span>ESfALQy_U</span><br></pre></td></tr></table></figure>
+
+<p>​    第一部分我们称它为头部（header）第二部分我们称其为载荷（payload，类似于飞机上承载的物品），第三部分是签证（signature）</p>
+<h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p>​      JWT的头部承载的两部分信息：</p>
+<ul>
+<li><p>声明类型，这里是jwt</p>
+</li>
+<li><p>声明加密的算法，通常直接使用HMAC SHA256</p>
+<p> 完整的头部就像下面这样的JSON</p>
+</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     'typ':'JWT',</span><br><span class="line">     'alg':'HS256'  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    然后将头部进行base64加密（该加密是可以对称解密的），构成了第一部分</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ<span class="number">0</span>eXAiOiJKV<span class="number">1</span>QiLCJhbGciOiJIUzI<span class="number">1</span><span class="symbol">NiJ9</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="plyload"><a href="#plyload" class="headerlink" title="plyload"></a>plyload</h2><p>​      载荷就是存放有效信息的地方。这个名字像是特指飞机上承载的货品，这些有效信息包含三个部分</p>
+<ul>
+<li>标准中注册的声明</li>
+<li>公共的声明</li>
+<li>私有的声明 </li>
+</ul>
+<p>​     标注中注册的声明（建议不强制使用）</p>
+<ul>
+<li>iss：jwt签发者</li>
+<li>sub：jwt所面向的用户</li>
+<li>aud：接收jwt的一方</li>
+<li>exp：jwt的过期时间，这个过期时间必须大于签发时间</li>
+<li>nbf：定义在什么时间之前，该jwt都是不可用的</li>
+<li>iat：jwt的签发时间</li>
+<li>jti：jwt的唯一身份标识，主要用来作为一次性token，从而回避重放攻击 </li>
+</ul>
+<p>​    <strong>公共的声明：</strong></p>
+<p>​       公共的声明可以添加任何的信息，一般添加用户的相关信息或其它业务需要的必要信息，但不建议添加敏感信息，因为该部分在客户端可解密；</p>
+<p>​     <strong>私有的声明</strong></p>
+<p>​         私有的声明是提供者和消费者功能定义的声明，一般不建议存放敏感信息，因为base64是对称解密的，意味着该部分信息可以归类为名文信息。</p>
+<p>​     定义一个payload</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"sub"</span>: <span class="string">"1234567890"</span>,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"John Doe"</span>,</span><br><span class="line">  <span class="attr">"admin"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    然后将其base64加密，得到jwt的一部分</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJzdWIiOiIxMj<span class="name">M0</span><span class="symbol">NTY3</span>ODkwIiwibmFtZSI<span class="number">6</span>Ikpva<span class="name">G4</span>gR<span class="name">G9</span>lIiwiYWRtaW<span class="number">4</span>iO<span class="symbol">nRydWV9</span></span><br></pre></td></tr></table></figure>
+
+<p>Signature</p>
+<p>​    jwt的第三部分是一个签证信息，这个签证信息由三部分组成：</p>
+<ul>
+<li>header(base64后的)</li>
+<li>payload(base64后的)</li>
+<li>secred     </li>
+</ul>
+<p>​       这个部分需要base64加密后的header和base64加密后的payload使用“.”连接组成的字符串，然后通过header中声明的加密方式进行加secret组合加密，然后就构成了jwt的第三部分</p>
+<p>​      </p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var encodedString = base64<span class="constructor">UrlEncode(<span class="params">header</span>)</span> + <span class="character">'.'</span> + base64<span class="constructor">UrlEncode(<span class="params">payload</span>)</span>;</span><br><span class="line">var signature = <span class="constructor">HMACSHA256(<span class="params">encodedString</span>, '<span class="params">secret</span>')</span>; <span class="comment">// TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span></span><br></pre></td></tr></table></figure>
+
+<p>​    将这三部分用“.”连接成一个完整的字符串，构成了最终的jwt：</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI<span class="number">1</span><span class="symbol">NiIsInR5</span>cCI<span class="number">6</span>IkpX<span class="attr">VCJ9</span>.eyJzdWIiOiIxMj<span class="name">M0</span><span class="symbol">NTY3</span>ODkwIiwibmFtZSI<span class="number">6</span>Ikpva<span class="name">G4</span>gR<span class="name">G9</span>lIiwiYWRtaW<span class="number">4</span>iO<span class="symbol">nRydWV9</span>.TJVA<span class="number">95</span><span class="keyword">Or</span><span class="name">M7</span>E<span class="number">2</span>cBab<span class="number">30</span>RMHrHDcEfxjoYZgeFO<span class="symbol">NFh7</span>HgQ</span><br></pre></td></tr></table></figure>
+
+<p>​     注意：secret是保存在服务器端的，jwt的签发也是在服务端的，secret就是用来进行jwt的签发和jwt的验证，所以它就是你服务端的私钥，在任何场景都不应该流露出去，一旦客户端得知这个secret，那就意味着客户端可以自我签发jwt了</p>
+<p> 应用 </p>
+<p>​      一般是在请求头里加入Authorization，并加上Bearer标注：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">fetch</span>(<span class="string">'api/user/1'</span>, &#123;</span><br><span class="line">  <span class="attribute">headers</span>: &#123;</span><br><span class="line">    <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + token</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​       服务端会验证token，如果验证通过就会返回相应的资源，整个流程就是这样</p>
+<p><img src="https://images2017.cnblogs.com/blog/1147658/201711/1147658-20171118202151718-1630139158.png" alt="img"></p>
+<p>   总结</p>
+<p>​      优点：</p>
+<ul>
+<li>因为json的通用性，所以JWT是可以跨语言支持的，像C#，JavaScript，NodeJS，PHP等许多语言都可以使用</li>
+<li>因为由了payload部分，所以JWT可以在自身存储一些其它业务逻辑所必要的非敏感信息</li>
+<li>便于传输，jwt的构成非常简单，字节占用很小，所以它是非常便于传输的</li>
+<li>它不需要在服务端保存会话信息，所以它易于应用的扩展</li>
+</ul>
+<p>​       安全相关</p>
+<ul>
+<li>不应该在jwt的payload部分存储敏感信息，因为该部分是客户端可解密的部分</li>
+<li>保护好secret私钥。该私钥非常重要</li>
+<li>如果可以，请使用https协议</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导包</span></span><br><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line"><span class="comment">#加密</span></span><br><span class="line"><span class="comment">#第一个参数 用户敏感信息  第二个参数 密钥  第三个参数 加密算法 hs256</span></span><br><span class="line">encode_jwt=jwt.encode(&#123;<span class="string">'uid'</span>:<span class="string">'1'</span>&#125;,<span class="string">'123'</span>,algorithm=<span class="string">'HS256'</span>)</span><br><span class="line"><span class="comment">#返回一个字节码  加密后两个点分割，分成三部分。第一部分token头部，声明它是token  第二部分 载荷 存用户敏感信息  第三部分 算法</span></span><br><span class="line"><span class="comment">#转码  字符串  进行解密</span></span><br><span class="line">encode_str=str(encode_jwt,<span class="string">'utf-8'</span>)  <span class="comment">#强转， 声明编码python3 utf-8</span></span><br><span class="line"><span class="comment">#变成可用字符串</span></span><br><span class="line">print(encode_str)</span><br><span class="line"><span class="comment">#解码</span></span><br><span class="line">de_Code=jwt.decode(<span class="string">'加密后的字符串'</span>,<span class="string">'密钥'</span>，<span class="string">'声明算法'</span>)   (<span class="string">'12dcs'</span>,<span class="string">'123'</span>,algorithms=[<span class="string">'HS256'</span>])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#声明载荷</span></span><br><span class="line">improt datetime</span><br><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line">过期时间  时间戳  敏感信息</span><br><span class="line">playlod=&#123;</span><br><span class="line">    <span class="string">'exp'</span>:int((datetime.datetime.now()) +datetime.timedelta(seconds=<span class="number">20</span>).timestap()),<span class="string">'data'</span>:&#123;<span class="string">'uid'</span>:<span class="number">1</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#加密token</span></span><br><span class="line">encode_jwt=jwt.encode(playload,<span class="string">'123'</span>,algorithm=<span class="string">'HS256'</span>)</span><br><span class="line"><span class="comment">#解码</span></span><br><span class="line">algorithms=[<span class="string">'HS256'</span>]</span><br><span class="line"><span class="comment">#判断token过期</span></span><br><span class="line">datetime.datetime.now()</span><br><span class="line">如果当前时间大于过期时间则token过期</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#装饰器就是一个封装的闭包</span></span><br><span class="line"><span class="comment">#自定义装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_de</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">decortor</span><span class="params">(view_func)</span>:</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">_wrapped_view</span><span class="params">(request,*args,**kwargs)</span>:</span></span><br><span class="line">				<span class="comment">#此处写判断逻辑</span></span><br><span class="line">				print(<span class="string">'请求开始'</span>)</span><br><span class="line">				<span class="keyword">return</span> view_func(request,*args,**kwargs)</span><br><span class="line">		<span class="keyword">return</span> _wrapped_viw</span><br><span class="line">	<span class="keyword">return</span> decoror</span><br><span class="line">	</span><br><span class="line"><span class="meta">@my_de()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">haha</span><span class="params">(name)</span>:</span></span><br><span class="line">	print(<span class="string">'谁是 %s'</span> name)</span><br><span class="line">haha(<span class="string">'张三'</span>)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
-        
 
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>杜家乐
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://luckyle.top/2018/03/23/Docker/" title="Docker">https://luckyle.top/2018/03/23/Docker/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Docker/" rel="tag"># Docker</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2018/02/20/Jwt/" rel="prev" title="'Jwt的应用'">
-      <i class="fa fa-chevron-left"></i> 'Jwt的应用'
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/07/15/Django/" rel="next" title="Django">
-      Django <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
     
+    
+    
+    <div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
   
   
   
 
   </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
@@ -575,7 +864,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker"><span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker特点"><span class="nav-text">docker特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker客户端和服务器"><span class="nav-text">Docker客户端和服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像"><span class="nav-text">Docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Registry镜像注册"><span class="nav-text">Registry镜像注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker容器"><span class="nav-text">Docker容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像-1"><span class="nav-text">Docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker容器操作"><span class="nav-text">Docker容器操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建容器"><span class="nav-text">创建容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#停止或启动容器"><span class="nav-text">停止或启动容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastDFS"><span class="nav-text">FastDFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos部署docker"><span class="nav-text">centos部署docker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fastdfs使用"><span class="nav-text">Fastdfs使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python客户端"><span class="nav-text">python客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django文件引擎"><span class="nav-text">Django文件引擎</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

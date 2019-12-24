@@ -23,7 +23,7 @@
   var CONFIG = {
     hostname: new URL('https://luckyle.top').hostname,
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -157,16 +157,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -434,10 +424,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-21 19:03:16 / 修改时间：19:07:06" itemprop="dateCreated datePublished" datetime="2019-12-21T19:03:16+08:00">2019-12-21</time>
+              <time title="创建时间：2019-12-21 19:03:16" itemprop="dateCreated datePublished" datetime="2019-12-21T19:03:16+08:00">2019-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-24 20:57:12" itemprop="dateModified" datetime="2019-12-24T20:57:12+08:00">2019-12-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -462,73 +458,15 @@
 
       
           <h2 id="Reids的特点"><a href="#Reids的特点" class="headerlink" title="Reids的特点"></a>Reids的特点</h2><p>Redis本质上是一个Key-Value类型的内存数据库，很像memcached，整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。</p>
-<p>因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。</p>
-<p>Redis的出色之处不仅仅是性能，Redis最大的魅力是支持保存多种数据结构，此外单个value的最大限制是1GB，不像 memcached只能保存1MB的数据，因此Redis可以用来实现很多有用的功能。</p>
-<p>比方说用他的List来做FIFO双向链表，实现一个轻量级的高性 能消息队列服务，用他的Set可以做高性能的tag系统等等。另外Redis也可以对存入的Key-Value设置expire时间，因此也可以被当作一 个功能加强版的memcached来用。</p>
-<p>Redis的主要缺点是数据库容量受到物理内存的限制，不能用作海量数据的高性能读写，因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上。</p>
-<h3 id="使用redis有哪些好处？"><a href="#使用redis有哪些好处？" class="headerlink" title="使用redis有哪些好处？"></a>使用redis有哪些好处？</h3><p>1.速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
-<p>2.支持丰富数据类型，支持string，list，set，sorted set，hash</p>
-<p>3.支持事务，操作都是原子性，所谓的原子性就是对数据的更改要么全部执行，要么全部不执行</p>
-<p>4.丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
-<h3 id="为什么redis需要把所有数据放到内存中"><a href="#为什么redis需要把所有数据放到内存中" class="headerlink" title="为什么redis需要把所有数据放到内存中?"></a>为什么redis需要把所有数据放到内存中?</h3><p>Redis为了达到最快的读写速度将数据都读到内存中，并通过异步的方式将数据写入磁盘。所以redis具有快速和数据持久化的特征。如果不将数据放在内存中，磁盘I/O速度为严重影响redis的性能。在内存越来越便宜的今天，redis将会越来越受欢迎。</p>
-<p>如果设置了最大使用的内存，则数据已有记录数达到内存限值后不能继续插入新值。</p>
-<h3 id="Redis是单进程单线程的"><a href="#Redis是单进程单线程的" class="headerlink" title="Redis是单进程单线程的"></a>Redis是单进程单线程的</h3><p>redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
-<h3 id="单线程的redis为什么这么快"><a href="#单线程的redis为什么这么快" class="headerlink" title="单线程的redis为什么这么快"></a>单线程的redis为什么这么快</h3><p>回答:主要是以下三点</p>
-<p>(一)纯内存操作</p>
-<p>(二)单线程操作，避免了频繁的上下文切换</p>
-<p>(三)采用了非阻塞I/O多路复用机制</p>
-<h3 id="redis持久化的几种方式"><a href="#redis持久化的几种方式" class="headerlink" title="redis持久化的几种方式"></a>redis持久化的几种方式</h3><p>1、快照（snapshots）</p>
-<p>缺省情况情况下，Redis把数据快照存放在磁盘上的二进制文件中，文件名为dump.rdb。你可以配置Redis的持久化策略，例如数据集中每N秒钟有超过M次更新，就将数据写入磁盘；或者你可以手工调用命令SAVE或BGSAVE。</p>
-<p>工作原理</p>
-<p>Redis forks.</p>
-<p>子进程开始将数据写到临时RDB文件中。</p>
-<p>当子进程完成写RDB文件，用新文件替换老文件。</p>
-<p>这种方式可以使Redis使用copy-on-write技术。</p>
-<p>2、AOF</p>
-<p>快照模式并不十分健壮，当系统停止，或者无意中Redis被kill掉，最后写入Redis的数据就会丢失。</p>
-<p>这对某些应用也许不是大问题，但对于要求高可靠性的应用来说，Redis就不是一个合适的选择。Append-only文件模式是另一种选择。你可以在配置文件中打开AOF模式</p>
-<p>3、虚拟内存方式</p>
-<p>当你的key很小而value很大时,使用VM的效果会比较好.因为这样节约的内存比较大.</p>
-<p>当你的key不小时,可以考虑使用一些非常方法将很大的key变成很大的value,比如你可以考虑将key,value组合成一个新的value.</p>
-<p>vm-max-threads这个参数,可以设置访问swap文件的线程数,设置最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的.可能会造成比较长时间的延迟,但是对数据完整性有很好的保证.</p>
-<p>自己测试的时候发现用虚拟内存性能也不错。如果数据量很大，可以考虑分布式或者其他数据库。</p>
-<h3 id="使用过Redis分布式锁么，"><a href="#使用过Redis分布式锁么，" class="headerlink" title="使用过Redis分布式锁么，"></a>使用过Redis分布式锁么，</h3><p>它是什么回事？先拿setnx来争抢锁，抢到之后，再用expire给锁加一个过期时间防止锁忘记了释放。这时候对方会告诉你说你回答得不错，然后接着问如果在setnx之后执行expire之前进程意外crash或者要重启维护了，那会怎么样？这时候你要给予惊讶的反馈：唉，是喔，这个锁就永远得不到释放了。紧接着你需要抓一抓自己得脑袋，故作思考片刻，好像接下来的结果是你主动思考出来的，然后回答：我记得set指令有非常复杂的参数，这个应该是可以同时把setnx和expire合成一条指令来用的！对方这时会显露笑容，心里开始默念：摁，这小子还不错。</p>
-<h3 id="假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？"><a href="#假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？" class="headerlink" title="假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？"></a>假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？</h3><p>使用keys指令可以扫出指定模式的key列表。对方接着追问：如果这个redis正在给线上的业务提供服务，那使用keys指令会有什么问题？这个时候你要回答redis关键的一个特性：redis的单线程的。keys指令会导致线程阻塞一段时间，线上服务会停顿，直到指令执行完毕，服务才能恢复。这个时候可以使用scan指令，scan指令可以无阻塞的提取出指定模式的key列表，但是会有一定的重复概率，在客户端做一次去重就可以了，但是整体所花费的时间会比直接用keys指令长。</p>
-<h3 id="使用过Redis做异步队列么，你是怎么用的？"><a href="#使用过Redis做异步队列么，你是怎么用的？" class="headerlink" title="使用过Redis做异步队列么，你是怎么用的？"></a>使用过Redis做异步队列么，你是怎么用的？</h3><p>一般使用list结构作为队列，rpush生产消息，lpop消费消息。当lpop没有消息的时候，要适当sleep一会再重试。如果对方追问可不可以不用sleep呢？list还有个指令叫blpop，在没有消息的时候，它会阻塞住直到消息到来。 如果对方追问能不能生产一次消费多次呢？使用pub/sub主题订阅者模式，可以实现1:N的消息队列。如果对方追问pub/sub有什么缺点？在消费者下线的情况下，生产的消息会丢失，得使用专业的消息队列如rabbitmq等。如果对方追问redis如何实现延时队列？我估计现在你很想把面试官一棒打死如果你手上有一根棒球棍的话，怎么问的这么详细。但是你很克制，然后神态自若的回答道：使用sortedset，拿时间戳作为score，消息内容作为key调用zadd来生产消息，消费者用zrangebyscore指令获取N秒之前的数据轮询进行处理。到这里，面试官暗地里已经对你竖起了大拇指。但是他不知道的是此刻你却竖起了中指，在椅子背后。</p>
-<h3 id="如果有大量的key需要设置同一时间过期，一般需要注意什么？"><a href="#如果有大量的key需要设置同一时间过期，一般需要注意什么？" class="headerlink" title="如果有大量的key需要设置同一时间过期，一般需要注意什么？"></a>如果有大量的key需要设置同一时间过期，一般需要注意什么？</h3><p>如果大量的key过期时间设置的过于集中，到过期的那个时间点，redis可能会出现短暂的卡顿现象。一般需要在时间上加一个随机值，使得过期时间分散一些。</p>
-<h3 id="Pipeline有什么好处，为什么要用pipeline？"><a href="#Pipeline有什么好处，为什么要用pipeline？" class="headerlink" title="Pipeline有什么好处，为什么要用pipeline？"></a>Pipeline有什么好处，为什么要用pipeline？</h3><p>可以将多次IO往返的时间缩减为一次，前提是pipeline执行的指令之间没有因果相关性。使用redis-benchmark进行压测的时候可以发现影响redis的QPS峰值的一个重要因素是pipeline批次指令的数目。</p>
-<h3 id="Redis的同步机制了解么？"><a href="#Redis的同步机制了解么？" class="headerlink" title="Redis的同步机制了解么？"></a>Redis的同步机制了解么？</h3><p>Redis可以使用主从同步，从从同步。第一次同步时，主节点做一次bgsave，并同时将后续修改操作记录到内存buffer，待完成后将rdb文件全量同步到复制节点，复制节点接受完成后将rdb镜像加载到内存。加载完成后，再通知主节点将期间修改的操作记录同步到复制节点进行重放就完成了同步过程。</p>
-<h3 id="是否使用过Redis集群，集群的原理是什么？"><a href="#是否使用过Redis集群，集群的原理是什么？" class="headerlink" title="是否使用过Redis集群，集群的原理是什么？"></a>是否使用过Redis集群，集群的原理是什么？</h3><p>Redis Sentinal着眼于高可用，在master宕机时会自动将slave提升为master，继续提供服务。Redis Cluster着眼于扩展性，在单个redis内存不足时，使用Cluster进行分片存储。</p>
-<h3 id="什么是Redis的并发竞争问题"><a href="#什么是Redis的并发竞争问题" class="headerlink" title="什么是Redis的并发竞争问题"></a>什么是Redis的并发竞争问题</h3><p>Redis的并发竞争问题，主要是发生在并发写竞争。</p>
-<p>考虑到redis没有像db中的sql语句，update val = val + 10 where …，无法使用这种方式进行对数据的更新。</p>
-<p>假如有某个key = “price”， value值为10，现在想把value值进行+10操作。正常逻辑下，就是先把数据key为price的值读回来，加上10，再把值给设置回去。如果只有一个连接的情况下，这种方式没有问题，可以工作得很好，但如果有两个连接时，两个连接同时想对还price进行+10操作，就可能会出现问题了。</p>
-<p>例如：两个连接同时对price进行写操作，同时加10，最终结果我们知道，应该为30才是正确。</p>
-<p>考虑到一种情况：</p>
-<p>T1时刻，连接1将price读出，目标设置的数据为10+10 = 20。</p>
-<p>T2时刻，连接2也将数据读出，也是为10，目标设置为20。</p>
-<p>T3时刻，连接1将price设置为20。</p>
-<p>T4时刻，连接2也将price设置为20，则最终结果是一个错误值20。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>使用乐观锁的方式进行解决（成本较低，非阻塞，性能较高）</p>
-<p>如何用乐观锁方式进行解决？</p>
-<p>本质上是假设不会进行冲突，使用redis的命令watch进行构造条件。伪代码如下：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">watch price</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">get</span> price <span class="variable">$price</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$price</span> = <span class="variable">$price</span> + 10</span><br><span class="line"></span><br><span class="line">multi</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">set</span> price <span class="variable">$price</span></span><br><span class="line"></span><br><span class="line">exec</span><br></pre></td></tr></table></figure>
-
-<p>watch这里表示监控该key值，后面的事务是有条件的执行，如果从watch的exec语句执行时，watch的key对应的value值被修改了，则事务不会执行。</p>
-<p>方案2 这个是针对客户端来的，在代码里要对redis操作的时候，针对同一key的资源，就先进行加锁（java里的synchronized或lock）。</p>
-<p>方案3 利用redis的setnx实现内置的锁。</p>
-<h3 id="redis和memcached的区别（总结）"><a href="#redis和memcached的区别（总结）" class="headerlink" title="redis和memcached的区别（总结）"></a>redis和memcached的区别（总结）</h3><p>1、Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等；</p>
-<p>2、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，hash等数据结构的存储；</p>
-<p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘；</p>
-<p>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。Redis可以通过例如expire 设定，例如expire name 10；</p>
-<p>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从；</p>
-<p>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）；</p>
-<p>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复；</p>
-<p>8、Redis支持数据的备份，即master-slave模式的数据备份；</p>
-<p>应用场景</p>
-<p>redis：数据量较小的更性能操作和运算上</p>
-<p>memcache：用于在动态系统中减少数据库负载，提升性能;做缓存，提高性能（适合读多写少，对于数据量比较大，可以采用sharding）</p>
-<p>MongoDB:主要解决海量数据的访问效率问题</p>
-
+<p>因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/Redis/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -712,506 +650,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/12/21/Mongodb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扼">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/21/Mongodb/" class="post-title-link" itemprop="url">CentOS下yum Mongodb安装</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-21 09:20:39 / 修改时间：09:22:48" itemprop="dateCreated datePublished" datetime="2019-12-21T09:20:39+08:00">2019-12-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">Mongodb</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>MongoDB的安装<br>CentOS 中使用yum安装：</p>
-<p>touch /etc/yum.repos.d/mongodb-org-4.2.repo<br>vim /etc/yum.repos.d/mongodb-org-4.2.repo<br>添加如下内容：<br>[mongodb-org-4.2]<br>name=MongoDB Repository<br>baseurl=<a href="https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/" target="_blank" rel="noopener">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/</a><br>gpgcheck=1<br>enabled=1<br>gpgkey=<a href="https://www.mongodb.org/static/pgp/server-4.2.asc" target="_blank" rel="noopener">https://www.mongodb.org/static/pgp/server-4.2.asc</a><br>使用yum安装：<br>yum install -y mongodb-org<br>启动时指定配置文件：</p>
-<p>mongod -f /etc/mongo/mongod.conf</p>
-<p>参考：</p>
-<p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/</a></p>
-<p>MongoDB如何导入数据？<br>wget <a href="http://labfile.oss.aliyuncs.com/courses/1196/monkey_source_docs_json.dat" target="_blank" rel="noopener">http://labfile.oss.aliyuncs.com/courses/1196/monkey_source_docs_json.dat</a><br>mongoimport -d monkey -c source_docs monkey_source_docs_json.dat<br>MongoDB如何导出数据？<br>Mongodb中的mongoexport工具可以把一个collection导出成JSON格式或CSV格式的文件。可以通过参数指定导出的数据项，也可以根据指定的条件导出数据。<br>MongoDB如何备份数据？<br>mongodump -h dbhost -d dbname -o dbdirectory<br>-h：MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017<br>-d：需要备份的数据库实例，例如：test<br>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。<br>MongoDB如何恢复数据<br>mongorestore -h <hostname>&lt;:port&gt; -d dbname <path><br>–host &lt;:port&gt;, -h &lt;:port&gt;：<br>MongoDB所在服务器地址，默认为： localhost:27017<br>–db , -d ：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2<br>–drop：恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！<br><path>：mongorestore 最后的一个参数，设置备份数据所在位置，例如：c:\data\dump\test。你不能同时指定 <path> 和 –dir 选项，–dir也可以设置备份目录。<br>–dir：指定备份的目录,你不能同时指定 <path> 和 –dir 选项。<br>结巴分词<br>参考资料：</p>
-<p><a href="https://www.cnblogs.com/clsn/p/8244206.html#auto_id_9" target="_blank" rel="noopener">https://www.cnblogs.com/clsn/p/8244206.html#auto_id_9</a></p>
-<p><a href="https://motor.readthedocs.io/en/stable/tutorial-asyncio.html" target="_blank" rel="noopener">https://motor.readthedocs.io/en/stable/tutorial-asyncio.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/12/20/%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扼">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/20/%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/" class="post-title-link" itemprop="url">随机验证码</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-20 19:24:52 / 修改时间：19:25:51" itemprop="dateCreated datePublished" datetime="2019-12-20T19:24:52+08:00">2019-12-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="验证码的书写"><a href="#验证码的书写" class="headerlink" title="验证码的书写"></a>验证码的书写</h1><p>​    验证码（CAPTCHA）是“Completely Automated Public Turing test to tell Computers and Humans Apart”（全自动区分<a href="https://baike.baidu.com/item/计算机" target="_blank" rel="noopener">计算机</a>和人类的<a href="https://baike.baidu.com/item/图灵测试" target="_blank" rel="noopener">图灵测试</a>）的缩写，是一种区分用户是计算机还是人的公共全自动<a href="https://baike.baidu.com/item/程序/71525" target="_blank" rel="noopener">程序</a>。可以防止：恶意破解密码、<a href="https://baike.baidu.com/item/刷票/6540942" target="_blank" rel="noopener">刷票</a>、论坛灌水，有效防止某个黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试，实际上用验证码是现在很多网站通行的方式，我们利用比较简易的方式实现了这个功能。这个问题可以由计算机生成并评判，但是必须只有人类才能解答。由于计算机无法解答CAPTCHA的问题，所以回答出问题的用户就可以被认为是人类。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Django</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render,HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.hashers <span class="keyword">import</span> make_password,check_password</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> memcache</span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL</span><br><span class="line"></span><br><span class="line"><span class="comment">#导入图片库</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#导入绘画库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageDraw</span><br><span class="line"><span class="comment">#字体库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFont</span><br><span class="line"><span class="comment">#随机库</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="comment">#图片库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="comment">#文件流</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#获取随机6位字符</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_str</span><span class="params">()</span>:</span></span><br><span class="line">    a_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">97</span>,<span class="number">123</span>)])  <span class="comment">#小写字母</span></span><br><span class="line">    A_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">65</span>,<span class="number">91</span>)])   <span class="comment">#大写字母</span></span><br><span class="line">    num_=[str(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">9</span>)]   <span class="comment">#数字 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(random.sample(a_+A_+num_,<span class="number">4</span>))  <span class="comment">#返回随机4位字符</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义验证码类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mycode</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="comment">#定义随机取色方法,混淆</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_random_color</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#三原色</span></span><br><span class="line">        R=random.randrange(<span class="number">255</span>)</span><br><span class="line">        G=random.randrange(<span class="number">255</span>)</span><br><span class="line">        B=random.randrange(<span class="number">255</span>)</span><br><span class="line">        <span class="keyword">return</span> (R,G,B)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request)</span>:</span></span><br><span class="line">        <span class="comment">#定义画布</span></span><br><span class="line">        image_size=(<span class="number">120</span>,<span class="number">60</span>)</span><br><span class="line">        <span class="comment">#定义图像 颜色种类  画布  背景颜色</span></span><br><span class="line">        image=Image.new(<span class="string">'RGB'</span>,image_size,<span class="string">'white'</span>)</span><br><span class="line">        <span class="comment">#定义画笔</span></span><br><span class="line">        draw=ImageDraw.Draw(image,<span class="string">'RGB'</span>)</span><br><span class="line">        <span class="comment">#随机字符串的组成</span></span><br><span class="line">        source=get_random_str()</span><br><span class="line">        <span class="comment">#定义一个容器，接收</span></span><br><span class="line">        code_str=<span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">            <span class="comment">#取色</span></span><br><span class="line">            text_color=self.get_random_color()</span><br><span class="line">            <span class="comment">#获取一个字符串</span></span><br><span class="line">            tmp_num=random.randrange(len(source))</span><br><span class="line">            <span class="comment">#获取字符集</span></span><br><span class="line">            random_str=source[tmp_num]</span><br><span class="line">            <span class="comment">#将随机生成的字符串放入定义好的容器</span></span><br><span class="line">            code_str+=random_str</span><br><span class="line">            <span class="comment">#将文字输入绘图</span></span><br><span class="line">            <span class="comment">#宽高，字符，颜色</span></span><br><span class="line">            draw.text((<span class="number">10</span>+<span class="number">30</span>*i,<span class="number">20</span>),random_str,text_color)</span><br><span class="line">        <span class="comment">#建立io文件流</span></span><br><span class="line">        buf=io.BytesIO()</span><br><span class="line">        <span class="comment">#将图片内容保存在内存中</span></span><br><span class="line">        image.save(buf,<span class="string">'png'</span>)</span><br><span class="line">        <span class="comment">#将验证码放入session</span></span><br><span class="line">        request.session[<span class="string">'code'</span>]=code_str</span><br><span class="line">        <span class="comment">#可以存入redis中   建立连接   存key  取key</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(buf.getvalue(),<span class="string">'image/png'</span>)   <span class="comment">#从内存中获取数据</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="点击图片且刷新"><a href="#点击图片且刷新" class="headerlink" title="点击图片且刷新"></a>点击图片且刷新</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">&lt;image <span class="string">":src=src"</span> <span class="meta">@click</span>=<span class="string">'changecode'</span>&gt;</span><br><span class="line">src=<span class="string">'http://127.0.0.1:8000/api/mycode/'</span></span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">	<span class="comment">//点击刷新验证码</span></span><br><span class="line">	<span class="comment">//每次给它传一个随机字符,只要传了参数，就不会缓存，直接刷新</span></span><br><span class="line">	<span class="comment">//在js中随机生成字符</span></span><br><span class="line">	<span class="keyword">let</span> num = <span class="built_in">Math</span>.ceil(<span class="built_in">Math</span>.random()*<span class="number">10</span>);</span><br><span class="line">	<span class="keyword">this</span>.src=<span class="keyword">this</span>.src+<span class="string">'?code='</span>+num;</span><br><span class="line">	</span><br><span class="line">	changecode()&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/12/20/hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扼">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/20/hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">'hexo快速搭建博客'</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-20 16:23:28 / 修改时间：16:24:29" itemprop="dateCreated datePublished" datetime="2019-12-20T16:23:28+08:00">2019-12-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用Hexo建立一个轻量、简易、高逼格的博客</p>
-<pre><code>在之前的一篇文章中，介绍了如何使用Hugo在三分钟之内建立一个简单的个人博客系统，它是基于go lang的，其实，市面上还有一款类似的静态页生成器，就是Hexo 读音/hækso/ ，它是基于node.js的，和Hugo一样，Hexo 正常来说，不需要部署到我们的服务器上，我们的服务器上保存的，其实是基于在hexo通过markdown编写的文章，然后hexo帮我们生成静态的html页面，然后，将生成的html上传到我们的服务器。简而言之：hexo是个静态页面生成、上传的工具。</code></pre><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">首先安装Hexo，在此之前，请确保电脑里已经安装好新版的<span class="keyword">node</span>.<span class="title">js</span></span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>npm install -g hexo-cli</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果感觉安装速度比较慢，可以为<span class="built_in">npm</span>指定国内的源</span><br></pre></td></tr></table></figure>
-
-<p>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装完成后，创建博客项目</span><br></pre></td></tr></table></figure>
-
-<p>hexo init blog</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这样，就建立起了一个<span class="keyword">blog文件夹，进入到blog目录下 </span>cd <span class="keyword">blog，建立第一篇文章</span></span><br></pre></td></tr></table></figure>
-
-<p>hexo new myfirst</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后运行hexo服务</span><br></pre></td></tr></table></figure>
-
-<p>hexo server</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">就可以在本地访问你的博客网站了，默认端口号是<span class="number">4000</span></span><br><span class="line"></span><br><span class="line">那么如何将博客网站打包呢？直接运行打包命令，这样就能使用 Hexo 引擎将 Markdown 格式的文件解析成可以使用浏览器查看的 HTML 文件，HTML 文件存储在 blog/<span class="keyword">public</span> 目录下</span><br></pre></td></tr></table></figure>
-
-<p>hexo generate</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下面我们可以配置一下hexo主题，Hexo 提供了默认主题 landscape，主题的位置在 blog -&gt;themes 文件夹下。主题根据自己喜好可以在网上找到<span class="symbol">:https</span><span class="symbol">://hexo</span>.io/themes/</span><br><span class="line"></span><br><span class="line">主题都放在blog/themes文件夹下面，这我们下载一个新的主题</span><br></pre></td></tr></table></figure>
-
-<p>mkdir themes/next<br>git clone –branch v5.1.2 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a> themes/next</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后在修改 <span class="regexp">/blog/</span>config.yml 文件，将其中的 theme 改成 <span class="keyword">next</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果没有自己的域名和服务器怎么办？没关系，可以申请 <span class="selector-tag">Github</span> 免费静态内容空间，在<span class="selector-tag">github</span><span class="selector-class">.com</span>注册一个账号，然后创建一个新的仓库</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">仓库名称一定要定义成 账号名<span class="selector-class">.github</span><span class="selector-class">.io</span>，这种形式，注意账号名一定要和你的<span class="selector-tag">github</span>当前登录的账号吻合</span><br></pre></td></tr></table></figure>
-
-<p>​      </p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样你的静态内容空间就已经创建好了，在浏览器输入你的 <span class="string">https:</span><span class="comment">//你的账号.github.io/ 就可以访问了。</span></span><br><span class="line"></span><br><span class="line">将之前打包好的<span class="keyword">public</span>中的文件push到刚刚创建好的github仓库中去</span><br><span class="line"></span><br><span class="line">访问静态空间网址<span class="string">https:</span><span class="comment">//仓库名.github.io</span></span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>没有问题，搞定收工</p>
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/12/20/send-verify/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扼">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/20/send-verify/" class="post-title-link" itemprop="url">send_verify</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-20 08:49:11 / 修改时间：14:10:42" itemprop="dateCreated datePublished" datetime="2019-12-20T08:49:11+08:00">2019-12-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Django-vue-验证码发送"><a href="#Django-vue-验证码发送" class="headerlink" title="Django +vue 验证码发送"></a>Django +vue 验证码发送</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导包</span></span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL   <span class="comment">#settings里的一些配置</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment">#settings配置具体如下:</span></span><br><span class="line">	EMAIL_USE_SSL = <span class="literal">True</span> <span class="comment"># Secure Sockets Layer 安全套接层, 取决于邮件服务器是否开启加密协议</span></span><br><span class="line">    EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment"># 邮件服务器地址</span></span><br><span class="line">    EMAIL_PORT = <span class="number">465</span> <span class="comment"># 邮件服务器端口</span></span><br><span class="line"> </span><br><span class="line">    EMAIL_HOST_USER = <span class="string">'1315532054@qq.com'</span> <span class="comment"># 登陆邮件服务器的账号</span></span><br><span class="line">    EMAIL_HOST_PASSWORD = <span class="string">'ownkpkdkumubhdjg'</span>  <span class="comment"># 登陆邮件服务器的密码</span></span><br><span class="line">    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER <span class="comment"># 邮件的发送者</span></span><br></pre></td></tr></table></figure>
-
-<!-- < !--more--> 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取随机6位字符</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_str</span><span class="params">()</span>:</span></span><br><span class="line">    a_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">97</span>,<span class="number">123</span>)])</span><br><span class="line">    A_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">65</span>,<span class="number">91</span>)])</span><br><span class="line">    num_=[str(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">9</span>)]</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(random.sample(a_+A_+num_,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#邮件发送</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">send_verify</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">           1. 先检查 对应邮件是否再memcache里已经存在了验证码</span></span><br><span class="line"><span class="string">           2. 发现没有存在,那么需要生成6位随机字符</span></span><br><span class="line"><span class="string">           3. 存储入到memcache里,并设置60s的过期时间</span></span><br><span class="line"><span class="string">               email: 6str :60s</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           遇到了同步发送邮件的问题,应该怎么办</span></span><br><span class="line"><span class="string">       '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self,request)</span>:</span></span><br><span class="line">        email=request.data[<span class="string">'email'</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># email=request.POST.get('email')</span></span><br><span class="line">        <span class="comment"># 1. 先检查 对应邮件是否再memcache里已经存在了验证码</span></span><br><span class="line">        token=men.get(email)</span><br><span class="line">        <span class="comment">#2.如果没有存在，那么需要生成随机字符</span></span><br><span class="line">        <span class="keyword">if</span> token:</span><br><span class="line">            <span class="keyword">return</span> Response(&#123;</span><br><span class="line">                <span class="string">'code'</span>:<span class="number">0</span>,</span><br><span class="line">                <span class="string">'message'</span>:<span class="string">'该邮箱已存在验证码'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment">#该邮箱没有，生成随机字符</span></span><br><span class="line">            token=get_random_str()  <span class="comment">#随机字符</span></span><br><span class="line">            subject=<span class="string">'实验楼。。。。。。。。。。。'</span></span><br><span class="line">            message=<span class="string">'你的验证码是:%s'</span>%token</span><br><span class="line">            men.set(email,token,<span class="number">100</span>)  <span class="comment">#存储到memcache</span></span><br><span class="line">            <span class="comment"># print(men.get(token))</span></span><br><span class="line">            send_mail(subject,message,DEFAULT_FROM_EMAIL,[email])</span><br><span class="line">            <span class="keyword">return</span> Response(&#123;</span><br><span class="line">                <span class="string">'code'</span>:<span class="number">1</span>,</span><br><span class="line">                <span class="string">'message'</span>:<span class="string">'验证码已发送'</span></span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">send_verify()&#123;</span><br><span class="line">        <span class="keyword">if</span>(!this.email)&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        let form_data=new FormData()</span><br><span class="line">        form_data.append(<span class="string">'email'</span>,this.email)</span><br><span class="line"></span><br><span class="line">        axios(&#123;</span><br><span class="line">            url:<span class="string">'http://127.0.0.1:8000/api/send_verify/'</span>,</span><br><span class="line">            method:<span class="string">'post'</span>,</span><br><span class="line">            data:form_data</span><br><span class="line">        &#125;).then(res=&gt;&#123;</span><br><span class="line">            <span class="keyword">if</span>(res.data.code==<span class="number">1</span>)&#123;</span><br><span class="line">                alert(res.data.message)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2019/09/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扼">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">数据结构</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-09-02 14:05:01" itemprop="dateCreated datePublished" datetime="2019-09-02T14:05:01+08:00">2019-09-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-23 14:06:43" itemprop="dateModified" datetime="2019-12-23T14:06:43+08:00">2019-12-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于数据结构"><a href="#关于数据结构" class="headerlink" title="关于数据结构"></a>关于数据结构</h1><h5 id="什么是数据结构？"><a href="#什么是数据结构？" class="headerlink" title="什么是数据结构？"></a>什么是数据结构？</h5><p>简单地说，数据结构是以某种特定的布局方式存储数据的容器。这种“布局方式”决定了数据结构对于某些操作是高效的，而对于其他操作则是低效的。首先我们需要理解各种数据结构，才能在处理实际问题时选取最合适的数据结构。</p>
-<h5 id="为什么我们需要数据结构？"><a href="#为什么我们需要数据结构？" class="headerlink" title="为什么我们需要数据结构？"></a>为什么我们需要数据结构？</h5><p>数据是计算机科学当中最关键的实体，而数据结构则可以将数据以某种组织形式存储，因此，数据结构的价值不言而喻。</p>
-<p>无论你以何种方式解决何种问题，你都需要处理数据——无论是涉及员工薪水、股票价格、购物清单，还是只是简单的电话簿问题。</p>
-<p>数据需要根据不同的场景，按照特定的格式进行存储。有很多数据结构能够满足以不同格式存储数据的需求。</p>
-<h5 id="常见的数据结构"><a href="#常见的数据结构" class="headerlink" title="常见的数据结构"></a>常见的数据结构</h5><p>首先列出一些最常见的数据结构，我们将逐一说明：</p>
-<p>数组 栈 队列 链表 树 字典树（这是一种高效的树形结构，但值得单独说明） 散列表（哈希表）</p>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组是最简单、也是使用最广泛的数据结构。栈、队列等其他数据结构均由数组演变而来。下图是一个包含元素（1，2，3和4）的简单数组，数组长度为4。</p>
-<p>每个数据元素都关联一个正数值，我们称之为索引，它表明数组中每个元素所在的位置。大部分语言将初始索引定义为零。</p>
-<p>以下是数组的两种类型：</p>
-<p>一维数组（如上所示） 多维数组（数组的数组）</p>
-<p>数组的基本操作</p>
-<p>Insert——在指定索引位置插入一个元素 Get——返回指定索引位置的元素 Delete——删除指定索引位置的元素 Size——得到数组所有元素的数量</p>
-<p>面试中关于数组的常见问题</p>
-<p>寻找数组中第二小的元素 找到数组中第一个不重复出现的整数 合并两个有序数组 重新排列数组中的正值和负值</p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>著名的撤销操作几乎遍布任意一个应用。但你有没有思考过它是如何工作的呢？这个问题的解决思路是按照将最后的状态排列在先的顺序，在内存中存储历史工作状态（当然，它会受限于一定的数量）。这没办法用数组实现。但有了栈，这就变得非常方便了。</p>
-<p>可以把栈想象成一列垂直堆放的书。为了拿到中间的书，你需要移除放置在这上面的所有书。这就是LIFO（后进先出）的工作原理。</p>
-<p>下图是包含三个数据元素（1，2和3）的栈，其中顶部的3将被最先移除：</p>
-<h5 id="栈的基本操作"><a href="#栈的基本操作" class="headerlink" title="栈的基本操作"></a>栈的基本操作</h5><p>Push——在顶部插入一个元素 Pop——返回并移除栈顶元素 isEmpty——如果栈为空，则返回true Top——返回顶部元素，但并不移除它</p>
-<h5 id="面试中关于栈的常见问题"><a href="#面试中关于栈的常见问题" class="headerlink" title="面试中关于栈的常见问题"></a>面试中关于栈的常见问题</h5><p>使用栈计算后缀表达式 对栈的元素进行排序 判断表达式是否括号平衡</p>
-<p>应用场景：逆序输出，语法检查，进制转换</p>
-<p>在我们日常编程中，括号都是成对出现的，比如“()”“[]”“{}”“&lt;&gt;”这些成对出现的符号</p>
-<p>那么具体处理的方法就是:凡是遇到括号的前半部分，即把这个元素入栈，凡是遇到括号的后半部分就比对栈顶元素是否该元素相匹配，如果匹配，则前半部分出栈，否则就是匹配出错</p>
-<p>将十进制的数转换为2-9的任意进制的数</p>
-<p>我们都知道，通过求余法，可以将十进制数转换为其他进制，比如要转为八进制，将十进制数除以8，记录余数，然后继续将商除以8，一直到商等于0为止，最后将余数倒着写数来就可以了。</p>
-<p>比如100的八进制，100首先除以8商12余4,4首先进栈，然后12除以8商1余4，第二个余数4进栈，接着1除以8，商0余1，第三个余数1进栈，最后将三个余数出栈，就得到了100的八进制数144,</p>
-<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>与栈相似，队列是另一种顺序存储元素的线性数据结构。栈与队列的最大差别在于栈是LIFO（后进先出），而队列是FIFO，即先进先出。</p>
-<p>一个完美的队列现实例子：售票亭排队队伍。如果有新人加入，他需要到队尾去排队，而非队首——排在前面的人会先拿到票，然后离开队伍。</p>
-<p>下图是包含四个元素（1，2，3和4）的队列，其中在顶部的1将被最先移除：</p>
-<p>移除先入队的元素、插入新元素</p>
-<h5 id="队列的基本操作"><a href="#队列的基本操作" class="headerlink" title="队列的基本操作"></a>队列的基本操作</h5><p>Enqueue()——在队列尾部插入元素 Dequeue()——移除队列头部的元素 isEmpty()——如果队列为空，则返回true Top()——返回队列的第一个元素</p>
-<p>面试中关于队列的常见问题</p>
-<p>使用队列表示栈 对队列的前k个元素倒序 使用队列生成从1到n的二进制数</p>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是另一个重要的线性数据结构，乍一看可能有点像数组，但在内存分配、内部结构以及数据插入和删除的基本操作方面均有所不同。</p>
-<p>链表就像一个节点链，其中每个节点包含着数据和指向后续节点的指针。 链表还包含一个头指针，它指向链表的第一个元素，但当列表为空时，它指向null或无具体内容。</p>
-<p>链表一般用于实现文件系统、哈希表和邻接表。</p>
-<p>这是链表内部结构的展示：</p>
-<p>链表包括以下类型：</p>
-<p>单链表（单向） 双向链表（双向）</p>
-<h5 id="链表的基本操作："><a href="#链表的基本操作：" class="headerlink" title="链表的基本操作："></a>链表的基本操作：</h5><p>InsertAtEnd - 在链表的末尾插入指定元素 InsertAtHead - 在链接列表的开头/头部插入指定元素 Delete - 从链接列表中删除指定元素 DeleteAtHead - 删除链接列表的第一个元素 Search - 从链表中返回指定元素 isEmpty - 如果链表为空，则返回true</p>
-<p>面试中关于链表的常见问题</p>
-<p>反转链表 检测链表中的循环 返回链表倒数第N个节点 删除链表中的重复项</p>
-<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>树形结构是一种层级式的数据结构，由顶点（节点）和连接它们的边组成。 树类似于图，但区分树和图的重要特征是树中不存在环路。</p>
-<p>树形结构被广泛应用于人工智能和复杂算法，它可以提供解决问题的有效存储机制。</p>
-<p>这是一个简单树的示意图，以及树数据结构中使用的基本术语：</p>
-<p>Root - 根节点</p>
-<p>Parent - 父节点</p>
-<p>Child - 子节点</p>
-<p>Leaf - 叶子节点</p>
-<p>Sibling - 兄弟节点</p>
-<p>以下是树形结构的主要类型：</p>
-<p>N元树 平衡树 二叉树 二叉搜索树 AVL树 红黑树 2-3树</p>
-<p>其中，二叉树和二叉搜索树是最常用的树。</p>
-<h5 id="面试中关于树结构的常见问题："><a href="#面试中关于树结构的常见问题：" class="headerlink" title="面试中关于树结构的常见问题："></a>面试中关于树结构的常见问题：</h5><p>求二叉树的高度 在二叉搜索树中查找第k个最大值 查找与根节点距离k的节点 在二叉树中查找给定节点的祖先节点</p>
-<p>字典树（Trie）</p>
-<p>字典树，也称为“前缀树”，是一种特殊的树状数据结构，对于解决字符串相关问题非常有效。它能够提供快速检索，主要用于搜索字典中的单词，在搜索引擎中自动提供建议，甚至被用于IP的路由。</p>
-<p>这些单词以顶部到底部的方式存储，其中绿色节点“p”，“s”和“r”分别表示“top”，“thus”和“theirs”的底部。</p>
-<p>面试中关于字典树的常见问题</p>
-<p>计算字典树中的总单词数 打印存储在字典树中的所有单词 使用字典树对数组的元素进行排序 使用字典树从字典中形成单词 构建T9字典（字典树+ DFS ）</p>
-<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>哈希法（Hashing）是一个用于唯一标识对象并将每个对象存储在一些预先计算的唯一索引（称为“键（key）”）中的过程。因此，对象以键值对的形式存储，这些键值对的集合被称为“字典”。可以使用键搜索每个对象。基于哈希法有很多不同的数据结构，但最常用的数据结构是哈希表。</p>
-<p>哈希表通常使用数组实现。</p>
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1380,7 +823,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script>
 
 

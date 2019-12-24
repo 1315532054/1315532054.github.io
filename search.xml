@@ -67,7 +67,7 @@
     <title>Redis简介</title>
     <url>/2019/12/21/Redis/</url>
     <content><![CDATA[<h2 id="Reids的特点"><a href="#Reids的特点" class="headerlink" title="Reids的特点"></a>Reids的特点</h2><p>Redis本质上是一个Key-Value类型的内存数据库，很像memcached，整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。</p>
-<p>因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。</p>
+<p>因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。<a id="more"></a></p>
 <p>Redis的出色之处不仅仅是性能，Redis最大的魅力是支持保存多种数据结构，此外单个value的最大限制是1GB，不像 memcached只能保存1MB的数据，因此Redis可以用来实现很多有用的功能。</p>
 <p>比方说用他的List来做FIFO双向链表，实现一个轻量级的高性 能消息队列服务，用他的Set可以做高性能的tag系统等等。另外Redis也可以对存入的Key-Value设置expire时间，因此也可以被当作一 个功能加强版的memcached来用。</p>
 <p>Redis的主要缺点是数据库容量受到物理内存的限制，不能用作海量数据的高性能读写，因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上。</p>
@@ -568,7 +568,7 @@
   <entry>
     <title>虚拟环境</title>
     <url>/2018/11/24/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h1 id="构建爬虫系统"><a href="#构建爬虫系统" class="headerlink" title="构建爬虫系统"></a>构建爬虫系统</h1><h2 id="一、实现目的"><a href="#一、实现目的" class="headerlink" title="一、实现目的"></a>一、实现目的</h2><p>爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成，如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。</p>
+    <content><![CDATA[<h1 id="构建爬虫系统"><a href="#构建爬虫系统" class="headerlink" title="构建爬虫系统"></a>构建爬虫系统</h1><h2 id="一、实现目的"><a href="#一、实现目的" class="headerlink" title="一、实现目的"></a>一、实现目的</h2><p>爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成，<a id="more"></a>如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。</p>
 <h4 id="1-1-实验知识点"><a href="#1-1-实验知识点" class="headerlink" title="1.1 实验知识点"></a>1.1 实验知识点</h4><ul>
 <li>爬虫的基本概念</li>
 <li>异步爬虫框架ruia的使用介绍</li>
