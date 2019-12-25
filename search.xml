@@ -3,7 +3,7 @@
   <entry>
     <title>cenos7下安装Python3.7</title>
     <url>/2019/12/22/cenos7%E4%B8%8B%E5%AE%89%E8%A3%85Python3-7/</url>
-    <content><![CDATA[<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>需要先sudo到root用户</p>
+    <content><![CDATA[<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>需要先sudo到root用户<a id="more"></a></p>
 <h4 id="安装相关编译工具"><a href="#安装相关编译工具" class="headerlink" title="安装相关编译工具"></a>安装相关编译工具</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</span><br><span class="line">yum install libffi-devel -y</span><br></pre></td></tr></table></figure>
 
 <h4 id="下载并解压安装包"><a href="#下载并解压安装包" class="headerlink" title="下载并解压安装包"></a>下载并解压安装包</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd 你自己的目录</span><br><span class="line">wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz</span><br><span class="line">tar -xvJf  Python-3.7.0.tar.xz</span><br></pre></td></tr></table></figure>
@@ -27,7 +27,7 @@
   <entry>
     <title>Firewalld未运行</title>
     <url>/2019/12/22/Firewalld%E6%9C%AA%E8%BF%90%E8%A1%8C/</url>
-    <content><![CDATA[<p>最近在阿里云服务器centos上安装了mysql数据库，默认是不开启远端访问功能，需要设置一下防火墙，在开放默认端口号 3306时提示FirewallD is not running，经过排查发现是防火墙就没打开造成的，出于安装考虑还是把防火墙开上吧，以下步骤仅供参考啦。</p>
+    <content><![CDATA[<p>最近在阿里云服务器centos上安装了mysql数据库，默认是不开启远端访问功能，需要设置一下防火墙，在开放默认端口号 3306时提示FirewallD is not running，经过排查发现是防火墙就没打开造成的，出于安装考虑还是把防火墙开上吧，以下步骤仅供参考啦。<a id="more"></a></p>
 <h2 id="工具-原料"><a href="#工具-原料" class="headerlink" title="工具/原料"></a>工具/原料</h2><ul>
 <li>阿里云服务器centos</li>
 </ul>
@@ -144,7 +144,7 @@
   <entry>
     <title>八大查找</title>
     <url>/2019/12/21/%E5%85%AB%E5%A4%A7%E6%9F%A5%E6%89%BE/</url>
-    <content><![CDATA[<h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>算法简介 顺序查找又称为线性查找，是一种最简单的查找方法。适用于线性表的顺序存储结构和链式存储结构。该算法的时间复杂度为O(n)。 基本思路 从第一个元素m开始逐个与需要查找的元素x进行比较，当比较到元素值相同(即m=x)时返回元素m的下标，如果比较到最后都没有找到，则返回-1。 优缺点 缺点：是当n 很大时，平均查找长度较大，效率低； 优点：是对表中数据元素的存储没有要求。另外，对于线性链表，只能进行顺序查找。 算法实现</p>
+    <content><![CDATA[<h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>算法简介 顺序查找又称为线性查找，是一种最简单的查找方法。适用于线性表的顺序存储结构和链式存储结构。该算法的时间复杂度为O(n)。 基本思路 从第一个元素m开始逐个与需要查找的元素x进行比较，当比较到元素值相同(即m=x)时返回元素m的下标，如果比较到最后都没有找到，则返回-1。 优缺点 缺点：是当n 很大时，平均查找长度较大，效率低； 优点：是对表中数据元素的存储没有要求。另外，对于线性链表，只能进行顺序查找。 算法实现 <a id="more"></a></p>
 <figure class="highlight sas"><table><tr><td class="code"><pre><span class="line">def sequential_search(lis, <span class="meta">key</span>):</span><br><span class="line">  <span class="meta">length</span> = l<span class="meta">en(</span>lis)</span><br><span class="line">  for i <span class="meta">in</span><span class="meta"> range(</span><span class="meta">length</span>):</span><br><span class="line">    <span class="meta">if</span> lis[i] == <span class="meta">key</span>:</span><br><span class="line">      <span class="meta">return</span> i</span><br><span class="line">    <span class="meta">else</span>:</span><br><span class="line">      <span class="meta">return</span> False</span><br></pre></td></tr></table></figure>
 
 <h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><p>二分查找（Binary Search），是一种在有序数组中查找某一特定元素的查找算法。查找过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则查找过程结束；如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。 这种查找算法每一次比较都使查找范围缩小一半。</p>
@@ -167,7 +167,7 @@
   <entry>
     <title>深拷贝与浅拷贝的区别</title>
     <url>/2019/12/21/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h1 id="深拷贝和浅拷贝之间的区别是什么？"><a href="#深拷贝和浅拷贝之间的区别是什么？" class="headerlink" title="深拷贝和浅拷贝之间的区别是什么？"></a>深拷贝和浅拷贝之间的区别是什么？</h1><p>对象的赋值就是简单的引用,a = [1,2,3], b=a, 在上述情况下,a和b是一样的,他们指向同一片内存,b不过是a的别名,是引用,我们可以使用b is a 去判断,返回True,表名他们地址相同内容也相同,也可以使用id()函数来查看.看两个列表地址是否相同.</p>
+    <content><![CDATA[<h1 id="深拷贝和浅拷贝之间的区别是什么？"><a href="#深拷贝和浅拷贝之间的区别是什么？" class="headerlink" title="深拷贝和浅拷贝之间的区别是什么？"></a>深拷贝和浅拷贝之间的区别是什么？</h1><p>对象的赋值就是简单的引用,a = [1,2,3], b=a, 在上述情况下,a和b是一样的,他们指向同一片内存,b不过是a的别名,是引用,我们可以使用b is a 去判断,返回True,表名他们地址相同内容也相同,也可以使用id()函数来查看.看两个列表地址是否相同.<a id="more"></a></p>
 <p>深拷贝就是将一个对象拷贝到另一个对象中，这意味着如果你对一个对象的拷贝做出改变时，不会影响原对象。在Python中，我们使用函数deepcopy()执行深拷贝</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">copy</span></span><br><span class="line">b=<span class="built_in">copy</span>.deepcopy(a)</span><br></pre></td></tr></table></figure>
 
@@ -188,7 +188,8 @@
   <entry>
     <title>CentOS下yum Mongodb安装</title>
     <url>/2019/12/21/Mongodb/</url>
-    <content><![CDATA[<p>MongoDB的安装<br>CentOS 中使用yum安装：</p>
+    <content><![CDATA[<h1 id="CentOS下yum-Mongodb安装？"><a href="#CentOS下yum-Mongodb安装？" class="headerlink" title="CentOS下yum Mongodb安装？"></a>CentOS下yum Mongodb安装？</h1><a id="more"></a>
+<p>MongoDB的安装<br>CentOS 中使用yum安装：</p>
 <p>touch /etc/yum.repos.d/mongodb-org-4.2.repo<br>vim /etc/yum.repos.d/mongodb-org-4.2.repo<br>添加如下内容：<br>[mongodb-org-4.2]<br>name=MongoDB Repository<br>baseurl=<a href="https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/" target="_blank" rel="noopener">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/</a><br>gpgcheck=1<br>enabled=1<br>gpgkey=<a href="https://www.mongodb.org/static/pgp/server-4.2.asc" target="_blank" rel="noopener">https://www.mongodb.org/static/pgp/server-4.2.asc</a><br>使用yum安装：<br>yum install -y mongodb-org<br>启动时指定配置文件：</p>
 <p>mongod -f /etc/mongo/mongod.conf</p>
 <p>参考：</p>
@@ -207,7 +208,7 @@
   <entry>
     <title>随机验证码</title>
     <url>/2019/12/20/%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
-    <content><![CDATA[<h1 id="验证码的书写"><a href="#验证码的书写" class="headerlink" title="验证码的书写"></a>验证码的书写</h1><p>​    验证码（CAPTCHA）是“Completely Automated Public Turing test to tell Computers and Humans Apart”（全自动区分<a href="https://baike.baidu.com/item/计算机" target="_blank" rel="noopener">计算机</a>和人类的<a href="https://baike.baidu.com/item/图灵测试" target="_blank" rel="noopener">图灵测试</a>）的缩写，是一种区分用户是计算机还是人的公共全自动<a href="https://baike.baidu.com/item/程序/71525" target="_blank" rel="noopener">程序</a>。可以防止：恶意破解密码、<a href="https://baike.baidu.com/item/刷票/6540942" target="_blank" rel="noopener">刷票</a>、论坛灌水，有效防止某个黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试，实际上用验证码是现在很多网站通行的方式，我们利用比较简易的方式实现了这个功能。这个问题可以由计算机生成并评判，但是必须只有人类才能解答。由于计算机无法解答CAPTCHA的问题，所以回答出问题的用户就可以被认为是人类。</p>
+    <content><![CDATA[<h1 id="验证码的书写"><a href="#验证码的书写" class="headerlink" title="验证码的书写"></a>验证码的书写</h1><p>​    验证码（CAPTCHA）是“Completely Automated Public Turing test to tell Computers and Humans Apart”（全自动区分<a href="https://baike.baidu.com/item/计算机" target="_blank" rel="noopener">计算机</a>和人类的<a href="https://baike.baidu.com/item/图灵测试" target="_blank" rel="noopener">图灵测试</a>）的缩写，是一种区分用户是计算机还是人的公共全自动<a href="https://baike.baidu.com/item/程序/71525" target="_blank" rel="noopener">程序</a>。可以防止：恶意破解密码、<a href="https://baike.baidu.com/item/刷票/6540942" target="_blank" rel="noopener">刷票</a>、论坛灌水，有效防止某个黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试，实际上用验证码是现在很多网站通行的方式，我们利用比较简易的方式实现了这个功能。这个问题可以由计算机生成并评判，但是必须只有人类才能解答。由于计算机无法解答CAPTCHA的问题，所以回答出问题的用户就可以被认为是人类。<a id="more"></a></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Django</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render,HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.hashers <span class="keyword">import</span> make_password,check_password</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> memcache</span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL</span><br><span class="line"></span><br><span class="line"><span class="comment">#导入图片库</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#导入绘画库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageDraw</span><br><span class="line"><span class="comment">#字体库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFont</span><br><span class="line"><span class="comment">#随机库</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="comment">#图片库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="comment">#文件流</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#获取随机6位字符</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_str</span><span class="params">()</span>:</span></span><br><span class="line">    a_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">97</span>,<span class="number">123</span>)])  <span class="comment">#小写字母</span></span><br><span class="line">    A_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">65</span>,<span class="number">91</span>)])   <span class="comment">#大写字母</span></span><br><span class="line">    num_=[str(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">9</span>)]   <span class="comment">#数字 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(random.sample(a_+A_+num_,<span class="number">4</span>))  <span class="comment">#返回随机4位字符</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义验证码类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mycode</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="comment">#定义随机取色方法,混淆</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_random_color</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#三原色</span></span><br><span class="line">        R=random.randrange(<span class="number">255</span>)</span><br><span class="line">        G=random.randrange(<span class="number">255</span>)</span><br><span class="line">        B=random.randrange(<span class="number">255</span>)</span><br><span class="line">        <span class="keyword">return</span> (R,G,B)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request)</span>:</span></span><br><span class="line">        <span class="comment">#定义画布</span></span><br><span class="line">        image_size=(<span class="number">120</span>,<span class="number">60</span>)</span><br><span class="line">        <span class="comment">#定义图像 颜色种类  画布  背景颜色</span></span><br><span class="line">        image=Image.new(<span class="string">'RGB'</span>,image_size,<span class="string">'white'</span>)</span><br><span class="line">        <span class="comment">#定义画笔</span></span><br><span class="line">        draw=ImageDraw.Draw(image,<span class="string">'RGB'</span>)</span><br><span class="line">        <span class="comment">#随机字符串的组成</span></span><br><span class="line">        source=get_random_str()</span><br><span class="line">        <span class="comment">#定义一个容器，接收</span></span><br><span class="line">        code_str=<span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">            <span class="comment">#取色</span></span><br><span class="line">            text_color=self.get_random_color()</span><br><span class="line">            <span class="comment">#获取一个字符串</span></span><br><span class="line">            tmp_num=random.randrange(len(source))</span><br><span class="line">            <span class="comment">#获取字符集</span></span><br><span class="line">            random_str=source[tmp_num]</span><br><span class="line">            <span class="comment">#将随机生成的字符串放入定义好的容器</span></span><br><span class="line">            code_str+=random_str</span><br><span class="line">            <span class="comment">#将文字输入绘图</span></span><br><span class="line">            <span class="comment">#宽高，字符，颜色</span></span><br><span class="line">            draw.text((<span class="number">10</span>+<span class="number">30</span>*i,<span class="number">20</span>),random_str,text_color)</span><br><span class="line">        <span class="comment">#建立io文件流</span></span><br><span class="line">        buf=io.BytesIO()</span><br><span class="line">        <span class="comment">#将图片内容保存在内存中</span></span><br><span class="line">        image.save(buf,<span class="string">'png'</span>)</span><br><span class="line">        <span class="comment">#将验证码放入session</span></span><br><span class="line">        request.session[<span class="string">'code'</span>]=code_str</span><br><span class="line">        <span class="comment">#可以存入redis中   建立连接   存key  取key</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(buf.getvalue(),<span class="string">'image/png'</span>)   <span class="comment">#从内存中获取数据</span></span><br></pre></td></tr></table></figure>
 
 
@@ -274,7 +275,7 @@
   <entry>
     <title>send_verify</title>
     <url>/2019/12/20/send-verify/</url>
-    <content><![CDATA[<h1 id="Django-vue-验证码发送"><a href="#Django-vue-验证码发送" class="headerlink" title="Django +vue 验证码发送"></a>Django +vue 验证码发送</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导包</span></span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL   <span class="comment">#settings里的一些配置</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment">#settings配置具体如下:</span></span><br><span class="line">	EMAIL_USE_SSL = <span class="literal">True</span> <span class="comment"># Secure Sockets Layer 安全套接层, 取决于邮件服务器是否开启加密协议</span></span><br><span class="line">    EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment"># 邮件服务器地址</span></span><br><span class="line">    EMAIL_PORT = <span class="number">465</span> <span class="comment"># 邮件服务器端口</span></span><br><span class="line"> </span><br><span class="line">    EMAIL_HOST_USER = <span class="string">'1315532054@qq.com'</span> <span class="comment"># 登陆邮件服务器的账号</span></span><br><span class="line">    EMAIL_HOST_PASSWORD = <span class="string">'ownkpkdkumubhdjg'</span>  <span class="comment"># 登陆邮件服务器的密码</span></span><br><span class="line">    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER <span class="comment"># 邮件的发送者</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="Django-vue-验证码发送"><a href="#Django-vue-验证码发送" class="headerlink" title="Django +vue 验证码发送"></a>Django +vue 验证码发送</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导包</span></span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL   <span class="comment">#settings里的一些配置</span></span><br><span class="line"><span class="keyword">import</span> random </span><br><span class="line"></span><br><span class="line"><span class="comment">#settings配置具体如下:</span></span><br><span class="line">	EMAIL_USE_SSL = <span class="literal">True</span> <span class="comment"># Secure Sockets Layer 安全套接层, 取决于邮件服务器是否开启加密协议</span></span><br><span class="line">    EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment"># 邮件服务器地址</span></span><br><span class="line">    EMAIL_PORT = <span class="number">465</span> <span class="comment"># 邮件服务器端口</span></span><br><span class="line"> </span><br><span class="line">    EMAIL_HOST_USER = <span class="string">'1315532054@qq.com'</span> <span class="comment"># 登陆邮件服务器的账号</span></span><br><span class="line">    EMAIL_HOST_PASSWORD = <span class="string">'ownkpkdkumubhdjg'</span>  <span class="comment"># 登陆邮件服务器的密码</span></span><br><span class="line">    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER <span class="comment"># 邮件的发送者</span></span><br></pre></td></tr></table></figure>
 
 <!-- < !--more--> 
 
@@ -301,7 +302,7 @@
   <entry>
     <title>数据结构</title>
     <url>/2019/09/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="关于数据结构"><a href="#关于数据结构" class="headerlink" title="关于数据结构"></a>关于数据结构</h1><h5 id="什么是数据结构？"><a href="#什么是数据结构？" class="headerlink" title="什么是数据结构？"></a>什么是数据结构？</h5><p>简单地说，数据结构是以某种特定的布局方式存储数据的容器。这种“布局方式”决定了数据结构对于某些操作是高效的，而对于其他操作则是低效的。首先我们需要理解各种数据结构，才能在处理实际问题时选取最合适的数据结构。</p>
+    <content><![CDATA[<h1 id="关于数据结构"><a href="#关于数据结构" class="headerlink" title="关于数据结构"></a>关于数据结构</h1><h5 id="什么是数据结构？"><a href="#什么是数据结构？" class="headerlink" title="什么是数据结构？"></a>什么是数据结构？</h5><p>简单地说，数据结构是以某种特定的布局方式存储数据的容器。这种“布局方式”决定了数据结构对于某些操作是高效的，而对于其他操作则是低效的。首先我们需要理解各种数据结构，才能在处理实际问题时选取最合适的数据结构。<a id="more"></a></p>
 <h5 id="为什么我们需要数据结构？"><a href="#为什么我们需要数据结构？" class="headerlink" title="为什么我们需要数据结构？"></a>为什么我们需要数据结构？</h5><p>数据是计算机科学当中最关键的实体，而数据结构则可以将数据以某种组织形式存储，因此，数据结构的价值不言而喻。</p>
 <p>无论你以何种方式解决何种问题，你都需要处理数据——无论是涉及员工薪水、股票价格、购物清单，还是只是简单的电话簿问题。</p>
 <p>数据需要根据不同的场景，按照特定的格式进行存储。有很多数据结构能够满足以不同格式存储数据的需求。</p>
@@ -380,7 +381,7 @@
 <p>a,b=2,3</p>
 <p>min=a if a&lt;b else b</p>
 <p>min</p>
-<h5 id="GIl全局解释器锁"><a href="#GIl全局解释器锁" class="headerlink" title="GIl全局解释器锁"></a>GIl全局解释器锁</h5><p>GIL: 全局解释器锁（英语：Global Interpreter Lock，缩写GIL），是计算机程序设计语言解释器用于同步线程的一种机制，它使得任何时刻仅有一个线程在执行。[1]即便在多核心处理器上，使用 GIL 的解释器也只允许同一时间执行一个线程。</p>
+<h5 id="GIl全局解释器锁"><a href="#GIl全局解释器锁" class="headerlink" title="GIl全局解释器锁"></a>GIl全局解释器锁</h5><p>GIL: 全局解释器锁（英语：Global Interpreter Lock，缩写GIL），是计算机程序设计语言解释器用于同步线程的一种机制，它使得任何时刻仅有一个线程在执行。[1]即便在多核心处理器上，使用 GIL 的解释器也只允许同一时间执行一个线程。<a id="more"></a></p>
 <p>解释一下Python中的继承</p>
 <p>当一个类继承自另一个类，它就被称为一个子类/派生类，继承自父类/基类/超类。它会继承/获取所有类成员（属性和方法）。</p>
 <p>继承能让我们重新使用代码，也能更容易的创建和维护应用。Python支持如下种类的继承：</p>
@@ -476,7 +477,7 @@
   <entry>
     <title>Mysql事务</title>
     <url>/2019/06/09/Mysql%E4%BA%8B%E5%8A%A1/</url>
-    <content><![CDATA[<h1 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL 事务"></a>MySQL 事务</h1><p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</p>
+    <content><![CDATA[<h1 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL 事务"></a>MySQL 事务</h1><p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！<a id="more"></a></p>
 <ul>
 <li>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</li>
 <li>事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。</li>
@@ -529,7 +530,7 @@
   <entry>
     <title>八大排序</title>
     <url>/2018/12/11/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>插入排序：插入排序的基本操作就是将一个数据插入到已经排好序的有序数据中，从而得到一个新的、个数加一的有序数据，算法适用于少量数据的排序；首先将第一个作为已经排好序的，然后每次从后的取出插入到前面并排序；</p>
+    <content><![CDATA[<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>插入排序：插入排序的基本操作就是将一个数据插入到已经排好序的有序数据中，从而得到一个新的、个数加一的有序数据，算法适用于少量数据的排序；首先将第一个作为已经排好序的，然后每次从后的取出插入到前面并排序；<a id="more"></a></p>
 <p>时间复杂度：O(n²)</p>
 <p>空间复杂度：O(1)</p>
 <p>稳定性：稳定</p>
@@ -568,7 +569,7 @@
   <entry>
     <title>虚拟环境</title>
     <url>/2018/11/24/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h1 id="构建爬虫系统"><a href="#构建爬虫系统" class="headerlink" title="构建爬虫系统"></a>构建爬虫系统</h1><h2 id="一、实现目的"><a href="#一、实现目的" class="headerlink" title="一、实现目的"></a>一、实现目的</h2><p>爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成，<a id="more"></a>如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。</p>
+    <content><![CDATA[<h1 id="构建爬虫系统"><a href="#构建爬虫系统" class="headerlink" title="构建爬虫系统"></a>构建爬虫系统</h1><h2 id="一、实现目的"><a href="#一、实现目的" class="headerlink" title="一、实现目的"></a>一、实现目的</h2><p>爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。<a id="more"></a></p>
 <h4 id="1-1-实验知识点"><a href="#1-1-实验知识点" class="headerlink" title="1.1 实验知识点"></a>1.1 实验知识点</h4><ul>
 <li>爬虫的基本概念</li>
 <li>异步爬虫框架ruia的使用介绍</li>
@@ -606,8 +607,7 @@
   <entry>
     <title>四十岁的吃鸡玩家</title>
     <url>/2018/09/21/%E5%9B%9B%E5%8D%81%E5%B2%81%E7%9A%84%E5%90%83%E9%B8%A1%E7%8E%A9%E5%AE%B6/</url>
-    <content><![CDATA[<p>四十岁的吃鸡玩家<br>我从家里出来，在马路边四处张望，寻找我叫的那辆滴滴快车。<br>司机已经来过电话，我拜托他多等一会儿，但现在已经过去了十多分钟，不知道他会不会已经取消订单。<br>情况并没有那么糟，我最终找到了那辆车。我上车之后才发现，司机居然在玩“刺激战场”。我看了一眼，三级包三级头，还挺肥。</p>
-<p>司机没有埋怨我的姗姗来迟，反而问我急不急着赶路。我连忙摆手，说道：“不急不急，你好好玩吧，这把有望吃鸡啊。”<br>司机一听，兴奋的说：“你也玩这个啊？”<br>“我就没事儿瞎玩玩。”<br>“你们年轻人玩这个应该挺厉害，我连前十都没进过几次。”<br>“哪有，你这把就很稳啊，这不马上就进前十了嘛。”<br>“哈哈，这把运气好…”<br>他话还没说完，就听见了一声枪响。他立刻集中精神，趴在草里，转动视角观察周围。<br>我也不再说话，静静的看他冲进决赛圈。</p>
+    <content><![CDATA[<p>四十岁的吃鸡玩家<br>我从家里出来，在马路边四处张望，寻找我叫的那辆滴滴快车。<br>司机已经来过电话，我拜托他多等一会儿，但现在已经过去了十多分钟，不知道他会不会已经取消订单。<br>情况并没有那么糟，我最终找到了那辆车。我上车之后才发现，司机居然在玩“刺激战场”。我看了一眼，三级包三级头，还挺肥。<br> <a id="more"></a><br>司机没有埋怨我的姗姗来迟，反而问我急不急着赶路。我连忙摆手，说道：“不急不急，你好好玩吧，这把有望吃鸡啊。”<br>司机一听，兴奋的说：“你也玩这个啊？”<br>“我就没事儿瞎玩玩。”<br>“你们年轻人玩这个应该挺厉害，我连前十都没进过几次。”<br>“哪有，你这把就很稳啊，这不马上就进前十了嘛。”<br>“哈哈，这把运气好…”<br>他话还没说完，就听见了一声枪响。他立刻集中精神，趴在草里，转动视角观察周围。<br>我也不再说话，静静的看他冲进决赛圈。</p>
 <p>这时我才注意到，这位吃鸡玩家已经长了不少白发，脸上也有了皱纹。没想到这个年纪的大叔，也会热衷于吃鸡。</p>
 <p>最后他止步于第二名，被一个穿着吉利服的“伏地魔”给淘汰了，只差一步就能吃鸡。我还觉得有些遗憾，他却十分满足。我忽然很好奇，他是因为什么开始玩这个游戏，他笑容一滞，随后说道：“因为我儿子喜欢玩这个，我就想着，要是我也玩的话，就能和他多说上几句话。”</p>
 <p>我一时语塞，愣了片刻才缓缓开口：“你儿子真幸运，有你这样贴心的父亲。”<br>司机笑了笑：“嗐，天下哪个父母不是为了儿女操碎了心。”<br>“也是。你儿子多大了啊？”<br>“刚中考完，马上就高一了。”<br>他顿了顿，继续说道：“小时候还挺爱说话，上初中之后就不怎么和我聊天了。”<br>我安慰着：“叛逆期嘛，过了这段时间就好了。平时多陪陪他吧，比如一起吃鸡什么的。”<br>“现在每天晚上我都拉着他一起玩游戏，”他有些无奈，“但他嫌我技术差，不爱和我玩。每次都是我去睡的时候，他才能真正的和他的朋友玩。”</p>
@@ -627,7 +627,7 @@
     <content><![CDATA[<h1 id="Django-、Flask、Tornado的对比"><a href="#Django-、Flask、Tornado的对比" class="headerlink" title="Django 、Flask、Tornado的对比"></a>Django 、Flask、Tornado的对比</h1><p>1.Django走的是大而全的方向,开发效率高。它的MTV框架,自带的ORM,admin后台管理,自带的sqlite数据库和开发测试用的服务器 给开发者提高了超高的开发效率</p>
 <p>2.Flask是轻量级的框架,自由,灵活,可扩展性很强,核心基于Werkzeug WSGI工具和jinja2模板引擎</p>
 <p>3.Tornado走的是少而精的方向,性能优越。它最出名的是异步非阻塞的设计方式</p>
-<p>Tornado的两大核心模块： 1.iostraem：对非阻塞式的socket进行简单的封装 2.ioloop：对I/O多路复用的封装，它实现了一个单例</p>
+<p>Tornado的两大核心模块： 1.iostraem：对非阻塞式的socket进行简单的封装 2.ioloop：对I/O多路复用的封装，它实现了一个单例<a id="more"></a></p>
 <h2 id="什么是wsgi？"><a href="#什么是wsgi？" class="headerlink" title="什么是wsgi？"></a>什么是wsgi？</h2><p>WSGI，描述web server如何与web application通信的一种规范</p>
 <p>WSGI协议主要包括server和application两部分：</p>
 <p>WSGI server负责从客户端接收请求，将request转发给application，将application返回的response返回给客户端； WSGI application接收由server转发的request，处理请求，并将处理结果返回给server。</p>
@@ -710,7 +710,7 @@
 </li>
 <li>容器技术：在计算机的世界中, 容器拥有一段漫长且传奇的历史。容器与管理程序虚拟化 (hypervisor virtualization，HV)有所不同，管理程序虚拟化通过中间层将一台或者多台独立 的机器虚拟运行与物理硬件之上，而容器则是直接运行在操作系统内核之上的用户空间。因 此，容器虚拟化也被称为“操作系统级虚拟化”，容器技术可以让多个独立的用户空间运行 在同一台宿主机上。</li>
 <li>docker-ee：收费的</li>
-<li>docker-ce：免费的</li>
+<li>docker-ce：免费的<a id="more"></a></li>
 </ul>
 <h3 id="docker特点"><a href="#docker特点" class="headerlink" title="docker特点"></a>docker特点</h3><ul>
 <li><p>上手快：用户只需要几分钟，就可以把自己的程序“Docker 化”。Docker 依赖于“写时复制” (copy-on-write)模型，使修改应用程序也非常迅速，可以说达到“随心所致，代码即改” 的境界；随后，就可以创建容器来运行应用程序了。大多数 Docker 容器只需要不到 1 秒中即可 启动。由于去除了管理程序的开销，Docker 容器拥有很高的性能，同时同一台宿主机中也 可以运行更多的容器，使用户尽可能的充分利用系统资源</p>
@@ -908,7 +908,7 @@
   <entry>
     <title>&#39;Jwt的应用&#39;</title>
     <url>/2018/02/20/Jwt/</url>
-    <content><![CDATA[<h2 id="什么是JWT"><a href="#什么是JWT" class="headerlink" title="什么是JWT"></a>什么是JWT</h2><p>​     Json web token（JWT）是为了网络应用环境间传递声明而执行的一种基于JSON的开发标准（RFC 7519），该token被设计为紧凑且安全的，特别适用于分布式站点的单点登陆（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
+    <content><![CDATA[<h2 id="什么是JWT"><a href="#什么是JWT" class="headerlink" title="什么是JWT"></a>什么是JWT</h2><p>​     Json web token（JWT）是为了网络应用环境间传递声明而执行的一种基于JSON的开发标准（RFC 7519），该token被设计为紧凑且安全的，特别适用于分布式站点的单点登陆（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。<a id="more"></a></p>
 <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>   说起JWT，我们应该来谈一谈基于token的认证和传统的Session认证的区别。</p>
 <h2 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h2><p>​    我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发送的请求，所以为了让我们的应用能识别是哪个用户发出的，我们只能在服务器存储一份用户登陆的信息，这份登陆信息会在响应时传递给服务器，告诉其保存为cookie，以便下次请求时发送给我们的应用，这样我们的英哟个就能识别请求来自哪个用户了，这就是传统的基于sessino认证</p>
 <p>​       但是这种基于session的认证使应用本身很难得扩展，随着不用客户端的增加，独立的服务器已无法承载更多的用户，而这个时候基于session认证应用的问题就会暴露出来</p>

@@ -233,10 +233,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-22 19:51:59 / 修改时间：19:53:41" itemprop="dateCreated datePublished" datetime="2019-12-22T19:51:59+08:00">2019-12-22</time>
+              <time title="创建时间：2019-12-22 19:51:59" itemprop="dateCreated datePublished" datetime="2019-12-22T19:51:59+08:00">2019-12-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-25 16:23:33" itemprop="dateModified" datetime="2019-12-25T16:23:33+08:00">2019-12-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -260,20 +266,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>需要先sudo到root用户</p>
-<h4 id="安装相关编译工具"><a href="#安装相关编译工具" class="headerlink" title="安装相关编译工具"></a>安装相关编译工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</span><br><span class="line">yum install libffi-devel -y</span><br></pre></td></tr></table></figure>
-
-<h4 id="下载并解压安装包"><a href="#下载并解压安装包" class="headerlink" title="下载并解压安装包"></a>下载并解压安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd 你自己的目录</span><br><span class="line">wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz</span><br><span class="line">tar -xvJf  Python-3.7.0.tar.xz</span><br></pre></td></tr></table></figure>
-
-<h4 id="编译及安装"><a href="#编译及安装" class="headerlink" title="编译及安装"></a>编译及安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/<span class="built_in">local</span>/python3 <span class="comment">#创建编译安装目录</span></span><br><span class="line"><span class="built_in">cd</span> Python-3.7.0</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/python3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<h4 id="创建软连接"><a href="#创建软连接" class="headerlink" title="创建软连接"></a>创建软连接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/<span class="built_in">local</span>/python3/bin/python3 /usr/<span class="built_in">local</span>/bin/python3</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/python3/bin/pip3 /usr/<span class="built_in">local</span>/bin/pip3</span><br></pre></td></tr></table></figure>
-
-<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -V</span><br><span class="line">pip3 -V</span><br></pre></td></tr></table></figure>
-
-
-
-
+          <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>需要先sudo到root用户
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/22/cenos7%E4%B8%8B%E5%AE%89%E8%A3%85Python3-7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -326,7 +327,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-23 20:58:30" itemprop="dateModified" datetime="2019-12-23T20:58:30+08:00">2019-12-23</time>
+                <time title="修改时间：2019-12-25 16:23:53" itemprop="dateModified" datetime="2019-12-25T16:23:53+08:00">2019-12-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -351,35 +352,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近在阿里云服务器centos上安装了mysql数据库，默认是不开启远端访问功能，需要设置一下防火墙，在开放默认端口号 3306时提示FirewallD is not running，经过排查发现是防火墙就没打开造成的，出于安装考虑还是把防火墙开上吧，以下步骤仅供参考啦。</p>
-<h2 id="工具-原料"><a href="#工具-原料" class="headerlink" title="工具/原料"></a>工具/原料</h2><ul>
-<li>阿里云服务器centos</li>
-</ul>
-<h2 id="方法-步骤"><a href="#方法-步骤" class="headerlink" title="方法/步骤"></a>方法/步骤</h2><ol>
-<li><p>执行firewall-cmd –permanent –zone=public –add-port=3306/tcp，提示FirewallD is not running</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>通过systemctl status firewalld查看firewalld状态，发现当前是dead状态，即防火墙未开启。</p>
-</li>
-</ol>
-<ol start="3">
-<li><p>通过systemctl start firewalld开启防火墙，没有任何提示即开启成功。</p>
-</li>
-</ol>
-<ol start="4">
-<li><p>再次通过systemctl status firewalld查看firewalld状态，显示running即已开启了。</p>
-</li>
-</ol>
-<ol start="5">
-<li><p>如果要关闭防火墙设置，可能通过systemctl stop firewalld这条指令来关闭该功能。</p>
-</li>
-</ol>
-<ol start="6">
-<li><p>再次执行执行firewall-cmd –permanent –zone=public –add-port=3306/tcp，提示success，表示设置成功，这样就可以继续后面的设置了。</p>
-</li>
-</ol>
-
+          <p>最近在阿里云服务器centos上安装了mysql数据库，默认是不开启远端访问功能，需要设置一下防火墙，在开放默认端口号 3306时提示FirewallD is not running，经过排查发现是防火墙就没打开造成的，出于安装考虑还是把防火墙开上吧，以下步骤仅供参考啦。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/22/Firewalld%E6%9C%AA%E8%BF%90%E8%A1%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -511,10 +492,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-21 19:01:14 / 修改时间：19:02:21" itemprop="dateCreated datePublished" datetime="2019-12-21T19:01:14+08:00">2019-12-21</time>
+              <time title="创建时间：2019-12-21 19:01:14" itemprop="dateCreated datePublished" datetime="2019-12-21T19:01:14+08:00">2019-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-25 16:23:09" itemprop="dateModified" datetime="2019-12-25T16:23:09+08:00">2019-12-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -538,19 +525,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>算法简介 顺序查找又称为线性查找，是一种最简单的查找方法。适用于线性表的顺序存储结构和链式存储结构。该算法的时间复杂度为O(n)。 基本思路 从第一个元素m开始逐个与需要查找的元素x进行比较，当比较到元素值相同(即m=x)时返回元素m的下标，如果比较到最后都没有找到，则返回-1。 优缺点 缺点：是当n 很大时，平均查找长度较大，效率低； 优点：是对表中数据元素的存储没有要求。另外，对于线性链表，只能进行顺序查找。 算法实现</p>
-<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def sequential_search(lis, <span class="meta">key</span>):</span><br><span class="line">  <span class="meta">length</span> = l<span class="meta">en(</span>lis)</span><br><span class="line">  for i <span class="meta">in</span><span class="meta"> range(</span><span class="meta">length</span>):</span><br><span class="line">    <span class="meta">if</span> lis[i] == <span class="meta">key</span>:</span><br><span class="line">      <span class="meta">return</span> i</span><br><span class="line">    <span class="meta">else</span>:</span><br><span class="line">      <span class="meta">return</span> False</span><br></pre></td></tr></table></figure>
-
-<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><p>二分查找（Binary Search），是一种在有序数组中查找某一特定元素的查找算法。查找过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则查找过程结束；如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。 这种查找算法每一次比较都使查找范围缩小一半。</p>
-<p>算法描述 给予一个包含 个带值元素的数组A 1、 令 L为0 ， R为 n-1 2、 如果L&gt;R，则搜索以失败告终 3、 令 m (中间值元素)为 ⌊(L+R)/2⌋ 4、 如果 AmT，令 R为 m - 1 并回到步骤二 复杂度分析 时间复杂度：折半搜索每次把搜索区域减少一半，时间复杂度为 O(logn) 空间复杂度：O(1)</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def binary_search(lis, key):</span><br><span class="line">  low = <span class="number">0</span></span><br><span class="line">  high = <span class="built_in">len</span>(lis) - <span class="number">1</span></span><br><span class="line">  <span class="built_in">time</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span> low &lt; high:</span><br><span class="line">    <span class="built_in">time</span> += <span class="number">1</span></span><br><span class="line">    <span class="keyword">mid</span> = int((low + high) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> key &lt; lis[<span class="keyword">mid</span>]:</span><br><span class="line">      high = <span class="keyword">mid</span> - <span class="number">1</span></span><br><span class="line">    elif key &gt; lis[<span class="keyword">mid</span>]:</span><br><span class="line">      low = <span class="keyword">mid</span> + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="comment"># 打印折半的次数</span></span><br><span class="line">      print(<span class="string">"times: %s"</span> % <span class="built_in">time</span>)</span><br><span class="line">      <span class="literal">return</span> <span class="keyword">mid</span></span><br><span class="line">  print(<span class="string">"times: %s"</span> % <span class="built_in">time</span>)</span><br><span class="line">  <span class="literal">return</span> False</span><br></pre></td></tr></table></figure>
-
-<h1 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h1><p>算法简介</p>
-<p>插值查找是根据要查找的关键字key与查找表中最大最小记录的关键字比较后的 查找方法，其核心就在于插值的计算公式 (key-a[low])/(a[high]-a[low])*(high-low)。 时间复杂度o(logn)但对于表长较大而关键字分布比较均匀的查找表来说，效率较高。</p>
-<p>算法思想 基于二分查找算法，将查找点的选择改进为自适应选择，可以提高查找效率。当然，差值查找也属于有序查找。 注：对于表长较大，而关键字分布又比较均匀的查找表来说，插值查找算法的平均性能比折半查找要好的多。反之，数组中如果分布非常不均匀，那么插值查找未必是很合适的选择。</p>
-<p>复杂度分析 时间复杂性：如果元素均匀分布，则O（log log n）），在最坏的情况下可能需要O（n）。 空间复杂度：O（1）。</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def binary_search(lis, key):</span><br><span class="line">  low = <span class="number">0</span></span><br><span class="line">  high = <span class="built_in">len</span>(lis) - <span class="number">1</span></span><br><span class="line">  <span class="built_in">time</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span> low &lt; high:</span><br><span class="line">    <span class="built_in">time</span> += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 计算mid值是插值算法的核心代码</span></span><br><span class="line">    <span class="keyword">mid</span> = low + int((high - low) * (key - lis[low])/(lis[high] - lis[low]))</span><br><span class="line">    print(<span class="string">"mid=%s, low=%s, high=%s"</span> % (<span class="keyword">mid</span>, low, high))</span><br><span class="line">    <span class="keyword">if</span> key &lt; lis[<span class="keyword">mid</span>]:</span><br><span class="line">      high = <span class="keyword">mid</span> - <span class="number">1</span></span><br><span class="line">    elif key &gt; lis[<span class="keyword">mid</span>]:</span><br><span class="line">      low = <span class="keyword">mid</span> + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="comment"># 打印查找的次数</span></span><br><span class="line">      print(<span class="string">"times: %s"</span> % <span class="built_in">time</span>)</span><br><span class="line">      <span class="literal">return</span> <span class="keyword">mid</span></span><br><span class="line">  print(<span class="string">"times: %s"</span> % <span class="built_in">time</span>)</span><br><span class="line">  <span class="literal">return</span> False</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">  LIST = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">22</span>, <span class="number">54</span>, <span class="number">99</span>, <span class="number">123</span>, <span class="number">200</span>, <span class="number">222</span>, <span class="number">444</span>]</span><br><span class="line">  <span class="built_in">result</span> = binary_search(LIST, <span class="number">444</span>)</span><br><span class="line">  print(<span class="built_in">result</span>)</span><br></pre></td></tr></table></figure>
-
+          <h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>算法简介 顺序查找又称为线性查找，是一种最简单的查找方法。适用于线性表的顺序存储结构和链式存储结构。该算法的时间复杂度为O(n)。 基本思路 从第一个元素m开始逐个与需要查找的元素x进行比较，当比较到元素值相同(即m=x)时返回元素m的下标，如果比较到最后都没有找到，则返回-1。 优缺点 缺点：是当n 很大时，平均查找长度较大，效率低； 优点：是对表中数据元素的存储没有要求。另外，对于线性链表，只能进行顺序查找。 算法实现
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/%E5%85%AB%E5%A4%A7%E6%9F%A5%E6%89%BE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -595,10 +578,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-21 18:48:01 / 修改时间：18:49:46" itemprop="dateCreated datePublished" datetime="2019-12-21T18:48:01+08:00">2019-12-21</time>
+              <time title="创建时间：2019-12-21 18:48:01" itemprop="dateCreated datePublished" datetime="2019-12-21T18:48:01+08:00">2019-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-25 16:24:06" itemprop="dateModified" datetime="2019-12-25T16:24:06+08:00">2019-12-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -622,17 +611,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="深拷贝和浅拷贝之间的区别是什么？"><a href="#深拷贝和浅拷贝之间的区别是什么？" class="headerlink" title="深拷贝和浅拷贝之间的区别是什么？"></a>深拷贝和浅拷贝之间的区别是什么？</h1><p>对象的赋值就是简单的引用,a = [1,2,3], b=a, 在上述情况下,a和b是一样的,他们指向同一片内存,b不过是a的别名,是引用,我们可以使用b is a 去判断,返回True,表名他们地址相同内容也相同,也可以使用id()函数来查看.看两个列表地址是否相同.</p>
-<p>深拷贝就是将一个对象拷贝到另一个对象中，这意味着如果你对一个对象的拷贝做出改变时，不会影响原对象。在Python中，我们使用函数deepcopy()执行深拷贝</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">copy</span></span><br><span class="line">b=<span class="built_in">copy</span>.deepcopy(a)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://v3u.cn/book/img/deepcopy.jpg" alt="avatar"></p>
-<p>而浅拷贝则是将一个对象的引用拷贝到另一个对象上，所以如果我们在拷贝中改动，会影响到原对象。我们使用函数function()执行浅拷贝</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b=<span class="keyword">copy</span>.<span class="keyword">copy</span>(a)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://v3u.cn/book/img/copy.jpg" alt="img"></p>
-<p>切片操作是浅拷贝</p>
-
+          <h1 id="深拷贝和浅拷贝之间的区别是什么？"><a href="#深拷贝和浅拷贝之间的区别是什么？" class="headerlink" title="深拷贝和浅拷贝之间的区别是什么？"></a>深拷贝和浅拷贝之间的区别是什么？</h1><p>对象的赋值就是简单的引用,a = [1,2,3], b=a, 在上述情况下,a和b是一样的,他们指向同一片内存,b不过是a的别名,是引用,我们可以使用b is a 去判断,返回True,表名他们地址相同内容也相同,也可以使用id()函数来查看.看两个列表地址是否相同.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

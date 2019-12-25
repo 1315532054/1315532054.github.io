@@ -48,15 +48,15 @@
   };
 </script>
 
-  <meta name="description" content="MongoDB的安装CentOS 中使用yum安装： touch &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repovim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repo添加如下内容：[mongodb-org-4.2]name=MongoDB Repositorybaseurl=https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;redha">
+  <meta name="description" content="CentOS下yum Mongodb安装？">
 <meta name="keywords" content="Mongdb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS下yum Mongodb安装">
 <meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;2019&#x2F;12&#x2F;21&#x2F;Mongodb&#x2F;index.html">
 <meta property="og:site_name" content="扼">
-<meta property="og:description" content="MongoDB的安装CentOS 中使用yum安装： touch &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repovim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repo添加如下内容：[mongodb-org-4.2]name=MongoDB Repositorybaseurl=https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;redha">
+<meta property="og:description" content="CentOS下yum Mongodb安装？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-21T01:22:48.311Z">
+<meta property="og:updated_time" content="2019-12-25T08:27:48.538Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://luckyle.top/2019/12/21/Mongodb/">
@@ -234,10 +234,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-21 09:20:39 / 修改时间：09:22:48" itemprop="dateCreated datePublished" datetime="2019-12-21T09:20:39+08:00">2019-12-21</time>
+              <time title="创建时间：2019-12-21 09:20:39" itemprop="dateCreated datePublished" datetime="2019-12-21T09:20:39+08:00">2019-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-25 16:27:48" itemprop="dateModified" datetime="2019-12-25T16:27:48+08:00">2019-12-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -261,7 +267,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>MongoDB的安装<br>CentOS 中使用yum安装：</p>
+        <h1 id="CentOS下yum-Mongodb安装？"><a href="#CentOS下yum-Mongodb安装？" class="headerlink" title="CentOS下yum Mongodb安装？"></a>CentOS下yum Mongodb安装？</h1><a id="more"></a>
+<p>MongoDB的安装<br>CentOS 中使用yum安装：</p>
 <p>touch /etc/yum.repos.d/mongodb-org-4.2.repo<br>vim /etc/yum.repos.d/mongodb-org-4.2.repo<br>添加如下内容：<br>[mongodb-org-4.2]<br>name=MongoDB Repository<br>baseurl=<a href="https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/" target="_blank" rel="noopener">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/</a><br>gpgcheck=1<br>enabled=1<br>gpgkey=<a href="https://www.mongodb.org/static/pgp/server-4.2.asc" target="_blank" rel="noopener">https://www.mongodb.org/static/pgp/server-4.2.asc</a><br>使用yum安装：<br>yum install -y mongodb-org<br>启动时指定配置文件：</p>
 <p>mongod -f /etc/mongo/mongod.conf</p>
 <p>参考：</p>
@@ -382,6 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CentOS下yum-Mongodb安装？"><span class="nav-text">CentOS下yum Mongodb安装？</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
