@@ -1109,4 +1109,34 @@
         <tag>Django</tag>
       </tags>
   </entry>
+  <entry>
+    <title>添加萌萌的宠物live2d</title>
+    <url>/2015/12/13/%E6%B7%BB%E5%8A%A0%E8%90%8C%E8%90%8C%E7%9A%84%E5%AE%A0%E7%89%A9live2d/</url>
+    <content><![CDATA[<h1 id="Hexo-Next-添加萌萌的宠物live2d"><a href="#Hexo-Next-添加萌萌的宠物live2d" class="headerlink" title="Hexo Next 添加萌萌的宠物live2d"></a>Hexo Next 添加萌萌的宠物live2d</h1><h5 id="添加萌宠来装饰Hexo站点-使用到的插件hexo-helper-live2d"><a href="#添加萌宠来装饰Hexo站点-使用到的插件hexo-helper-live2d" class="headerlink" title="添加萌宠来装饰Hexo站点, 使用到的插件hexo-helper-live2d"></a>添加萌宠来装饰Hexo站点, 使用到的插件hexo-helper-live2d</h5><p>添加萌宠</p>
+<h6 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1.安装插件"></a>1.安装插件</h6><p>命令行cmd进入站点文件夹</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd .\TestBlog\</span><br><span class="line"></span><br><span class="line">npm install hexo-helper-live2d --save</span><br></pre></td></tr></table></figure>
+
+
+
+<p>下载完插件后, 使用hexo s启动服务器发现左下角已经有live2d模型了</p>
+<h6 id="2-在站点配置文件-config-yml中添加配置"><a href="#2-在站点配置文件-config-yml中添加配置" class="headerlink" title="2.在站点配置文件_config.yml中添加配置"></a>2.在站点配置文件_config.yml中添加配置</h6><p>配置信息可以设置live2d的位置、大小、透明度等</p>
+<p>更多配置信息可看Github hexo-helper-live2d上的介绍</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  scriptFrom: local</span><br><span class="line">  pluginRootPath: live2dw/</span><br><span class="line">  pluginJsPath: lib/</span><br><span class="line">  pluginModelPath: assets/</span><br><span class="line">  model:</span><br><span class="line">    # 这是白猫的模型</span><br><span class="line">    use: live2d-widget-model-tororo</span><br><span class="line">  display:</span><br><span class="line">    # 设置模型的位置</span><br><span class="line">    position: right</span><br><span class="line">    width: 120</span><br><span class="line">    height: 240</span><br><span class="line">  mobile:</span><br><span class="line">    show: false</span><br><span class="line">  react:</span><br><span class="line">    opacityDefault: 1</span><br><span class="line">    opacityOnHover: 1</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="3-下载你喜欢的模型"><a href="#3-下载你喜欢的模型" class="headerlink" title="3.下载你喜欢的模型"></a>3.下载你喜欢的模型</h6><p>命令行cmd进入站点文件夹, 使用npm install {your model’s package name}下载你喜欢的模型</p>
+<p>模型列表<a href="https://huaji8.top/post/live2d-plugin-2.0/" target="_blank" rel="noopener">模型预览</a></p>
+<p>效果如图</p>
+<figure class="highlight pascal"><table><tr><td class="code"><pre><span class="line">比如下载  这是猫的</span><br><span class="line">tororo npm install live2d-widget-model-tororo</span><br></pre></td></tr></table></figure>
+
+<p>完成上述，你会发现有一个可爱的小老虎</p>
+]]></content>
+      <categories>
+        <category>Happy</category>
+      </categories>
+      <tags>
+        <tag>Happy</tag>
+      </tags>
+  </entry>
 </search>
