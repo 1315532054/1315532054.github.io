@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>vue拦截器</title>
+    <url>/2019/12/26/vue%E6%8B%A6%E6%88%AA%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="Vue-router的beforeEach"><a href="#Vue-router的beforeEach" class="headerlink" title="Vue:router的beforeEach"></a>Vue:router的beforeEach</h1><h6 id="在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。"><a href="#在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。" class="headerlink" title="在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。"></a>在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。</h6><h6 id="定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。"><a href="#定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。" class="headerlink" title="定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。"></a>定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。</h6><p>两种函数：</p>
+<p>​            1.Vue.beforeEach(function(to,form,next){}) /<em>在跳转之前执行</em>/</p>
+<p>​            2.Vue.afterEach(function(to,form))/<em>在跳转之后判断</em>/</p>
+<h3 id="beforeEach函数有三个参数："><a href="#beforeEach函数有三个参数：" class="headerlink" title="beforeEach函数有三个参数："></a>beforeEach函数有三个参数：</h3><ul>
+<li>to:router即将进入的路由对象</li>
+<li>from:当前导航即将离开的路由</li>
+<li>next:Function,进行管道中的一个钩子，如果执行完了，则导航的状态就是 confirmed （确认的）；否则为false，终止导航。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//我们可以在main.js中定义一个白名单</span><br><span class="line">var witelist=[<span class="string">'Detail'</span>,<span class="string">'Order'</span>]  //定义白名单 需要登陆后访问页面</span><br><span class="line">//  router.beforEach  访问路由前</span><br><span class="line">// to:Route :即将要进入的路由对象</span><br><span class="line">// <span class="keyword">from</span> :Route:  当前导航正要离开的路由</span><br><span class="line">// next : Funcation  进行管道中的下一个钩子</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">router.beforeEach((to,from,next)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">	//我们取出存取的token</span><br><span class="line">  let token = sessionStorage.getItem(<span class="string">'token'</span>);</span><br><span class="line">	//判断它是否存在并且白名单定义的路由存在</span><br><span class="line">  <span class="keyword">if</span>(token|| whitelist.indexOf(to.name) == <span class="number">-1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    console.log(<span class="string">'下一页！'</span>);</span><br><span class="line">    next();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    alert(<span class="string">'请登陆后访问详情页'</span>)</span><br><span class="line">   </span><br><span class="line">    router.push(&#123;name:<span class="string">'Login'</span>&#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+  </entry>
+  <entry>
     <title>一万快的火腿</title>
     <url>/2019/12/26/%E4%B8%80%E4%B8%87%E5%BF%AB%E7%9A%84%E7%81%AB%E8%85%BF/</url>
     <content><![CDATA[<h1 id="订单支付页面-支付方式-结账，优惠劵"><a href="#订单支付页面-支付方式-结账，优惠劵" class="headerlink" title="订单支付页面  支付方式(结账，优惠劵)"></a>订单支付页面  支付方式(结账，优惠劵)</h1><p>前言：支付宝沙箱环境(Beta)是协助开发者进行接口功能开发及主要功能联调的辅助环境。沙箱环境模拟了开放平台部分产品的主要功能和主要逻辑。在开发者应用上线审核前，开发者可以根据自身需求，先在沙箱环境中了解、组合和调试各种开放接口，进行开发调通工作，从而帮助开发者在应用上线审核完成后，能更快速、更顺利的进行线上调试和验收工作。<br>一、开通支付宝沙箱环境<br>沙箱环境地址：<a href="https://openhome.alipay.com/platform/appDaily.htm?tab=info" target="_blank" rel="noopener">https://openhome.alipay.com/platform/appDaily.htm?tab=info</a><br>访问上面url，支付宝扫码登录，实名认证，根据提示创建应用，生成相应的沙箱应用环境。生成并上传RSA2(SHA256)的应用公钥，详见生成RSA密钥； <a id="more"></a></p>

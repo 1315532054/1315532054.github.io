@@ -1201,7 +1201,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff1754;
+  background: #ebb6ee;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2004,7 +2004,12 @@ pre .javascript .function {
 #qr p {
   text-align: center;
 }
-#QR > div:hover p {
+#wechat:hover p {
+  animation: roll 0.1s infinite linear;
+  -webkit-animation: roll 0.1s infinite linear;
+  -moz-animation: roll 0.1s infinite linear;
+}
+#alipay:hover p {
   animation: roll 0.1s infinite linear;
   -webkit-animation: roll 0.1s infinite linear;
   -moz-animation: roll 0.1s infinite linear;
