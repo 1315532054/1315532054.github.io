@@ -48,28 +48,29 @@
   };
 </script>
 
-  <meta name="description" content="Progress is not created by contented people..">
-<meta property="og:type" content="website">
-<meta property="og:title" content="可乐">
-<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;page&#x2F;5&#x2F;index.html">
+  <meta name="description" content="TCP的三次握手123第一次握手：建立连接时，客户端发送syn包到服务器，并进入syn_sent状态，等待服务器确认；syn:同步序列编号第二次握手:服务器收到syn包，必须确认客户的syn,同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态 第三次握手:客户端收到服务器的syn+ack包，向服务器发送确认包，次包发送完毕。完成三次握手  Tcp的四次挥手12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web基础">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;1988&#x2F;01&#x2F;30&#x2F;web%E5%9F%BA%E7%A1%80&#x2F;index.html">
 <meta property="og:site_name" content="可乐">
-<meta property="og:description" content="Progress is not created by contented people..">
+<meta property="og:description" content="TCP的三次握手123第一次握手：建立连接时，客户端发送syn包到服务器，并进入syn_sent状态，等待服务器确认；syn:同步序列编号第二次握手:服务器收到syn包，必须确认客户的syn,同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态 第三次握手:客户端收到服务器的syn+ack包，向服务器发送确认包，次包发送完毕。完成三次握手  Tcp的四次挥手12345">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-30T15:18:10.853Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://luckyle.top/page/5/">
+<link rel="canonical" href="https://luckyle.top/1988/01/30/web%E5%9F%BA%E7%A1%80/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>可乐</title>
+  <title>web基础 | 可乐</title>
   
 
 
@@ -211,329 +212,10 @@
             
 
   <div class="posts-expand">
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2018/03/23/Docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="可乐">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/23/Docker/" class="post-title-link" itemprop="url">Docker</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-03-23 14:59:59" itemprop="dateCreated datePublished" datetime="2018-03-23T14:59:59+08:00">2018-03-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-25 16:24:59" itemprop="dateModified" datetime="2019-12-25T16:24:59+08:00">2019-12-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
-          <h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><ul>
-<li>什么是docker：小海腾<ul>
-<li>KVM、Xen、VMware、VirtualBox、Hyper-V</li>
-<li>VMM</li>
-</ul>
-</li>
-<li>容器技术：在计算机的世界中, 容器拥有一段漫长且传奇的历史。容器与管理程序虚拟化 (hypervisor virtualization，HV)有所不同，管理程序虚拟化通过中间层将一台或者多台独立 的机器虚拟运行与物理硬件之上，而容器则是直接运行在操作系统内核之上的用户空间。因 此，容器虚拟化也被称为“操作系统级虚拟化”，容器技术可以让多个独立的用户空间运行 在同一台宿主机上。</li>
-<li>docker-ee：收费的</li>
-<li>docker-ce：免费的
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/03/23/Docker/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
   
   
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2018/02/20/Jwt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="可乐">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/20/Jwt/" class="post-title-link" itemprop="url">'Jwt的应用'</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-02-20 16:23:28" itemprop="dateCreated datePublished" datetime="2018-02-20T16:23:28+08:00">2018-02-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-25 16:25:22" itemprop="dateModified" datetime="2019-12-25T16:25:22+08:00">2019-12-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是JWT"><a href="#什么是JWT" class="headerlink" title="什么是JWT"></a>什么是JWT</h2><p>​     Json web token（JWT）是为了网络应用环境间传递声明而执行的一种基于JSON的开发标准（RFC 7519），该token被设计为紧凑且安全的，特别适用于分布式站点的单点登陆（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/02/20/Jwt/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/2015/12/13/%E6%B7%BB%E5%8A%A0%E8%90%8C%E8%90%8C%E7%9A%84%E5%AE%A0%E7%89%A9live2d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="可乐">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2015/12/13/%E6%B7%BB%E5%8A%A0%E8%90%8C%E8%90%8C%E7%9A%84%E5%AE%A0%E7%89%A9live2d/" class="post-title-link" itemprop="url">添加萌萌的宠物live2d</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2015-12-13 20:04:36" itemprop="dateCreated datePublished" datetime="2015-12-13T20:04:36+08:00">2015-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-26 20:11:45" itemprop="dateModified" datetime="2019-12-26T20:11:45+08:00">2019-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Happy/" itemprop="url" rel="index">
-                    <span itemprop="name">Happy</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>678</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Hexo-Next-添加萌萌的宠物live2d"><a href="#Hexo-Next-添加萌萌的宠物live2d" class="headerlink" title="Hexo Next 添加萌萌的宠物live2d"></a>Hexo Next 添加萌萌的宠物live2d</h1><h5 id="添加萌宠来装饰Hexo站点-使用到的插件hexo-helper-live2d"><a href="#添加萌宠来装饰Hexo站点-使用到的插件hexo-helper-live2d" class="headerlink" title="添加萌宠来装饰Hexo站点, 使用到的插件hexo-helper-live2d"></a>添加萌宠来装饰Hexo站点, 使用到的插件hexo-helper-live2d</h5><p>添加萌宠</p>
-<h6 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1.安装插件"></a>1.安装插件</h6><p>命令行cmd进入站点文件夹</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd .\TestBlog\</span><br><span class="line"></span><br><span class="line">npm install hexo-helper-live2d --save</span><br></pre></td></tr></table></figure>
-
-
-
-<p>下载完插件后, 使用hexo s启动服务器发现左下角已经有live2d模型了</p>
-<h6 id="2-在站点配置文件-config-yml中添加配置"><a href="#2-在站点配置文件-config-yml中添加配置" class="headerlink" title="2.在站点配置文件_config.yml中添加配置"></a>2.在站点配置文件_config.yml中添加配置</h6><p>配置信息可以设置live2d的位置、大小、透明度等</p>
-<p>更多配置信息可看Github hexo-helper-live2d上的介绍</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  scriptFrom: local</span><br><span class="line">  pluginRootPath: live2dw/</span><br><span class="line">  pluginJsPath: lib/</span><br><span class="line">  pluginModelPath: assets/</span><br><span class="line">  model:</span><br><span class="line">    # 这是白猫的模型</span><br><span class="line">    use: live2d-widget-model-tororo</span><br><span class="line">  display:</span><br><span class="line">    # 设置模型的位置</span><br><span class="line">    position: right</span><br><span class="line">    width: 120</span><br><span class="line">    height: 240</span><br><span class="line">  mobile:</span><br><span class="line">    show: false</span><br><span class="line">  react:</span><br><span class="line">    opacityDefault: 1</span><br><span class="line">    opacityOnHover: 1</span><br></pre></td></tr></table></figure>
-
-
-
-<h6 id="3-下载你喜欢的模型"><a href="#3-下载你喜欢的模型" class="headerlink" title="3.下载你喜欢的模型"></a>3.下载你喜欢的模型</h6><p>命令行cmd进入站点文件夹, 使用npm install {your model’s package name}下载你喜欢的模型</p>
-<p>模型列表<a href="https://huaji8.top/post/live2d-plugin-2.0/" target="_blank" rel="noopener">模型预览</a></p>
-<p>效果如图</p>
-<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">比如下载  这是猫的</span><br><span class="line">tororo npm install live2d-widget-model-tororo</span><br></pre></td></tr></table></figure>
-
-<p>完成上述，你会发现有一个可爱的小老虎</p>
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://luckyle.top/1988/01/30/web%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -547,8 +229,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/1988/01/30/web%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">web基础</a>
+          web基础
         </h1>
 
         <div class="post-meta">
@@ -593,7 +274,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h6 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一次握手：建立连接时，客户端发送syn包到服务器，并进入syn_sent状态，等待服务器确认；syn:同步序列编号</span><br><span class="line">第二次握手:服务器收到syn包，必须确认客户的syn,同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态</span><br><span class="line"> 第三次握手:客户端收到服务器的syn+ack包，向服务器发送确认包，次包发送完毕。完成三次握手</span><br></pre></td></tr></table></figure>
+        <h6 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一次握手：建立连接时，客户端发送syn包到服务器，并进入syn_sent状态，等待服务器确认；syn:同步序列编号</span><br><span class="line">第二次握手:服务器收到syn包，必须确认客户的syn,同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态</span><br><span class="line"> 第三次握手:客户端收到服务器的syn+ack包，向服务器发送确认包，次包发送完毕。完成三次握手</span><br></pre></td></tr></table></figure>
 
 <h6 id="Tcp的四次挥手"><a href="#Tcp的四次挥手" class="headerlink" title="Tcp的四次挥手"></a>Tcp的四次挥手</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">当客户端和服务器通过三次握手建立了TCP连接以后，当数据传送完毕，肯定是要断开TCP连接</span><br><span class="line"></span><br><span class="line">那对于TCP的断开连接，这里就有了“四次挥手”</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>）客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=<span class="number">1</span>，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加<span class="number">1</span>），此时，客户端进入FIN-WAIT<span class="number">-1</span>（终止等待<span class="number">1</span>）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）服务器收到连接释放报文，发出确认报文，ACK=<span class="number">1</span>，ack=u+<span class="number">1</span>，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>）客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT<span class="number">-2</span>（终止等待<span class="number">2</span>）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>）服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=<span class="number">1</span>，ack=u+<span class="number">1</span>，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>）客户端收到服务器的连接释放报文后，必须发出确认，ACK=<span class="number">1</span>，ack=w+<span class="number">1</span>，而自己的序列号是seq=u+<span class="number">1</span>，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过<span class="number">2</span>∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>）服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。</span><br></pre></td></tr></table></figure>
 
@@ -634,7 +315,6 @@
 <h6 id="列举django-orm中所有的方法"><a href="#列举django-orm中所有的方法" class="headerlink" title="列举django orm中所有的方法"></a>列举django orm中所有的方法</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">从数据库中查询出来的结果一般是一个集合。Queryset</span><br><span class="line">filter过滤     all放回所有结果</span><br><span class="line">exclude排除    distince 去除查询结果中重复的行</span><br><span class="line">order_by排序</span><br><span class="line">reverse反向排序</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -642,22 +322,53 @@
     
     <div>
       
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
     </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>杜家乐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://luckyle.top/1988/01/30/web%E5%9F%BA%E7%A1%80/" title="web基础">https://luckyle.top/1988/01/30/web基础/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2015/12/13/%E6%B7%BB%E5%8A%A0%E8%90%8C%E8%90%8C%E7%9A%84%E5%AE%A0%E7%89%A9live2d/" rel="next" title="添加萌萌的宠物live2d">
+      添加萌萌的宠物live2d <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
-
 
 
           </div>
@@ -710,6 +421,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP的三次握手"><span class="nav-text">TCP的三次握手</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Tcp的四次挥手"><span class="nav-text">Tcp的四次挥手</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#同步，异步编程差异是"><span class="nav-text">同步，异步编程差异是</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#阻塞于非阻塞的差异是啥"><span class="nav-text">阻塞于非阻塞的差异是啥</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#get和post的区别"><span class="nav-text">get和post的区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#MVC模式MVT模式"><span class="nav-text">MVC模式MVT模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#HTTP与HTTPS的区别"><span class="nav-text">HTTP与HTTPS的区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是websocket"><span class="nav-text">什么是websocket</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#websocket心跳及重连机制"><span class="nav-text">websocket心跳及重连机制</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#websocket心跳包"><span class="nav-text">websocket心跳包</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#JSON-Web-Token"><span class="nav-text">JSON Web Token</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是csrf"><span class="nav-text">什么是csrf</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是sql注入"><span class="nav-text">什么是sql注入</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#xss"><span class="nav-text">xss</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是celery"><span class="nav-text">什么是celery?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#跨域"><span class="nav-text">跨域</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#http状态码"><span class="nav-text">http状态码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#列举django-orm中所有的方法"><span class="nav-text">列举django orm中所有的方法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
