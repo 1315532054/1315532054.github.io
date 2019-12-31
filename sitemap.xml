@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luckyle.top/2018/07/15/Django/</loc>
+    
+    <lastmod>2019-12-31T07:41:53.025Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://luckyle.top/1988/01/30/web%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2019-12-30T15:18:10.853Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>https://luckyle.top/2018/03/23/Docker/</loc>
     
     <lastmod>2019-12-25T08:24:59.445Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luckyle.top/2018/07/15/Django/</loc>
-    
-    <lastmod>2019-12-25T08:24:49.051Z</lastmod>
     
   </url>
   
