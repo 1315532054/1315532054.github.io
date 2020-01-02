@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>进程间任何通信？</title>
-    <url>/2020/09/09/%E8%BF%9B%E7%A8%8B%E9%97%B4%E4%BB%BB%E4%BD%95%E9%80%9A%E4%BF%A1%EF%BC%9F/</url>
+    <url>/uncategorized/%E8%BF%9B%E7%A8%8B%E9%97%B4%E4%BB%BB%E4%BD%95%E9%80%9A%E4%BF%A1%EF%BC%9F/</url>
     <content><![CDATA[<h3 id="进程之间究竟有哪些通信方式？如何通信？"><a href="#进程之间究竟有哪些通信方式？如何通信？" class="headerlink" title="进程之间究竟有哪些通信方式？如何通信？"></a>进程之间究竟有哪些通信方式？如何通信？</h3><h6 id="1、管道"><a href="#1、管道" class="headerlink" title="1、管道"></a>1、管道</h6><p>我们来看一条 Linux 的语句</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">netstat -tulnp | grep <span class="number">8080</span></span><br></pre></td></tr></table></figure>
 
@@ -45,7 +45,7 @@
   </entry>
   <entry>
     <title>vue拦截器</title>
-    <url>/2019/12/26/vue%E6%8B%A6%E6%88%AA%E5%99%A8/</url>
+    <url>/Vue/vue%E6%8B%A6%E6%88%AA%E5%99%A8/</url>
     <content><![CDATA[<h1 id="Vue-router的beforeEach"><a href="#Vue-router的beforeEach" class="headerlink" title="Vue:router的beforeEach"></a>Vue:router的beforeEach</h1><h6 id="在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。"><a href="#在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。" class="headerlink" title="在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。"></a>在路由跳转的时候，我们需要一些权限判断或者其他操作。这个时候就需要使用路由的钩子函数。</h6><h6 id="定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。"><a href="#定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。" class="headerlink" title="定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。"></a>定义：路由钩子主要是给使用者在路由发生变化时进行一些特殊的处理而定义的函数。</h6><p>两种函数：</p>
 <p>​            1.Vue.beforeEach(function(to,form,next){}) /<em>在跳转之前执行</em>/</p>
 <p>​            2.Vue.afterEach(function(to,form))/<em>在跳转之后判断</em>/</p>
@@ -63,7 +63,7 @@
   </entry>
   <entry>
     <title>一万快的火腿</title>
-    <url>/2019/12/26/%E4%B8%80%E4%B8%87%E5%BF%AB%E7%9A%84%E7%81%AB%E8%85%BF/</url>
+    <url>/Django/%E4%B8%80%E4%B8%87%E5%BF%AB%E7%9A%84%E7%81%AB%E8%85%BF/</url>
     <content><![CDATA[<h1 id="订单支付页面-支付方式-结账，优惠劵"><a href="#订单支付页面-支付方式-结账，优惠劵" class="headerlink" title="订单支付页面  支付方式(结账，优惠劵)"></a>订单支付页面  支付方式(结账，优惠劵)</h1><p>前言：支付宝沙箱环境(Beta)是协助开发者进行接口功能开发及主要功能联调的辅助环境。沙箱环境模拟了开放平台部分产品的主要功能和主要逻辑。在开发者应用上线审核前，开发者可以根据自身需求，先在沙箱环境中了解、组合和调试各种开放接口，进行开发调通工作，从而帮助开发者在应用上线审核完成后，能更快速、更顺利的进行线上调试和验收工作。<br>一、开通支付宝沙箱环境<br>沙箱环境地址：<a href="https://openhome.alipay.com/platform/appDaily.htm?tab=info" target="_blank" rel="noopener">https://openhome.alipay.com/platform/appDaily.htm?tab=info</a><br>访问上面url，支付宝扫码登录，实名认证，根据提示创建应用，生成相应的沙箱应用环境。生成并上传RSA2(SHA256)的应用公钥，详见生成RSA密钥； <a id="more"></a></p>
 <h3 id="生成优惠码脚本"><a href="#生成优惠码脚本" class="headerlink" title="生成优惠码脚本"></a>生成优惠码脚本</h3><h6 id="生成一个随机的串，用户输入到输入框中，使用优惠卷，价格打折！与库里对比，打折"><a href="#生成一个随机的串，用户输入到输入框中，使用优惠卷，价格打折！与库里对比，打折" class="headerlink" title="生成一个随机的串，用户输入到输入框中，使用优惠卷，价格打折！与库里对比，打折"></a>生成一个随机的串，用户输入到输入框中，使用优惠卷，价格打折！与库里对比，打折</h6><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line">code = string.ascii_letters + string.digits</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> Code():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.<span class="keyword">join</span>(random.sample(code, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span>(Code())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> Mycode(<span class="keyword">group</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'-'</span>.<span class="keyword">join</span>(Code() <span class="keyword">for</span> i in range(<span class="keyword">group</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Mycode = Mycode(<span class="number">4</span>)</span><br><span class="line"><span class="keyword">print</span>(Mycode)</span><br></pre></td></tr></table></figure>
 
@@ -155,7 +155,7 @@
   </entry>
   <entry>
     <title>cenos7下安装Python3.7</title>
-    <url>/2019/12/22/cenos7%E4%B8%8B%E5%AE%89%E8%A3%85Python3-7/</url>
+    <url>/Installs/cenos7%E4%B8%8B%E5%AE%89%E8%A3%85Python3-7/</url>
     <content><![CDATA[<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>需要先sudo到root用户<a id="more"></a></p>
 <h4 id="安装相关编译工具"><a href="#安装相关编译工具" class="headerlink" title="安装相关编译工具"></a>安装相关编译工具</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</span><br><span class="line">yum install libffi-devel -y</span><br></pre></td></tr></table></figure>
 
@@ -179,7 +179,7 @@
   </entry>
   <entry>
     <title>Firewalld未运行</title>
-    <url>/2019/12/22/Firewalld%E6%9C%AA%E8%BF%90%E8%A1%8C/</url>
+    <url>/Linux/Firewalld%E6%9C%AA%E8%BF%90%E8%A1%8C/</url>
     <content><![CDATA[<p>最近在阿里云服务器centos上安装了mysql数据库，默认是不开启远端访问功能，需要设置一下防火墙，在开放默认端口号 3306时提示FirewallD is not running，经过排查发现是防火墙就没打开造成的，出于安装考虑还是把防火墙开上吧，以下步骤仅供参考啦。<a id="more"></a></p>
 <h2 id="工具-原料"><a href="#工具-原料" class="headerlink" title="工具/原料"></a>工具/原料</h2><ul>
 <li>阿里云服务器centos</li>
@@ -218,7 +218,7 @@
   </entry>
   <entry>
     <title>Redis简介</title>
-    <url>/2019/12/21/Redis/</url>
+    <url>/Redis/Redis/</url>
     <content><![CDATA[<h2 id="Reids的特点"><a href="#Reids的特点" class="headerlink" title="Reids的特点"></a>Reids的特点</h2><p>Redis本质上是一个Key-Value类型的内存数据库，很像memcached，整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。</p>
 <p>因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。<a id="more"></a></p>
 <p>Redis的出色之处不仅仅是性能，Redis最大的魅力是支持保存多种数据结构，此外单个value的最大限制是1GB，不像 memcached只能保存1MB的数据，因此Redis可以用来实现很多有用的功能。</p>
@@ -296,7 +296,7 @@
   </entry>
   <entry>
     <title>八大查找</title>
-    <url>/2019/12/21/%E5%85%AB%E5%A4%A7%E6%9F%A5%E6%89%BE/</url>
+    <url>/Python/%E5%85%AB%E5%A4%A7%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[<h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>算法简介 顺序查找又称为线性查找，是一种最简单的查找方法。适用于线性表的顺序存储结构和链式存储结构。该算法的时间复杂度为O(n)。 基本思路 从第一个元素m开始逐个与需要查找的元素x进行比较，当比较到元素值相同(即m=x)时返回元素m的下标，如果比较到最后都没有找到，则返回-1。 优缺点 缺点：是当n 很大时，平均查找长度较大，效率低； 优点：是对表中数据元素的存储没有要求。另外，对于线性链表，只能进行顺序查找。 算法实现 <a id="more"></a></p>
 <figure class="highlight sas"><table><tr><td class="code"><pre><span class="line">def sequential_search(lis, <span class="meta">key</span>):</span><br><span class="line">  <span class="meta">length</span> = l<span class="meta">en(</span>lis)</span><br><span class="line">  for i <span class="meta">in</span><span class="meta"> range(</span><span class="meta">length</span>):</span><br><span class="line">    <span class="meta">if</span> lis[i] == <span class="meta">key</span>:</span><br><span class="line">      <span class="meta">return</span> i</span><br><span class="line">    <span class="meta">else</span>:</span><br><span class="line">      <span class="meta">return</span> False</span><br></pre></td></tr></table></figure>
 
@@ -319,7 +319,7 @@
   </entry>
   <entry>
     <title>深拷贝与浅拷贝的区别</title>
-    <url>/2019/12/21/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <url>/Python/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h1 id="深拷贝和浅拷贝之间的区别是什么？"><a href="#深拷贝和浅拷贝之间的区别是什么？" class="headerlink" title="深拷贝和浅拷贝之间的区别是什么？"></a>深拷贝和浅拷贝之间的区别是什么？</h1><p>对象的赋值就是简单的引用,a = [1,2,3], b=a, 在上述情况下,a和b是一样的,他们指向同一片内存,b不过是a的别名,是引用,我们可以使用b is a 去判断,返回True,表名他们地址相同内容也相同,也可以使用id()函数来查看.看两个列表地址是否相同.<a id="more"></a></p>
 <p>深拷贝就是将一个对象拷贝到另一个对象中，这意味着如果你对一个对象的拷贝做出改变时，不会影响原对象。在Python中，我们使用函数deepcopy()执行深拷贝</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">copy</span></span><br><span class="line">b=<span class="built_in">copy</span>.deepcopy(a)</span><br></pre></td></tr></table></figure>
@@ -340,7 +340,7 @@
   </entry>
   <entry>
     <title>CentOS下yum Mongodb安装</title>
-    <url>/2019/12/21/Mongodb/</url>
+    <url>/Mongodb/Mongodb/</url>
     <content><![CDATA[<h1 id="CentOS下yum-Mongodb安装？"><a href="#CentOS下yum-Mongodb安装？" class="headerlink" title="CentOS下yum Mongodb安装？"></a>CentOS下yum Mongodb安装？</h1><a id="more"></a>
 <p>MongoDB的安装<br>CentOS 中使用yum安装：</p>
 <p>touch /etc/yum.repos.d/mongodb-org-4.2.repo<br>vim /etc/yum.repos.d/mongodb-org-4.2.repo<br>添加如下内容：<br>[mongodb-org-4.2]<br>name=MongoDB Repository<br>baseurl=<a href="https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/" target="_blank" rel="noopener">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/</a><br>gpgcheck=1<br>enabled=1<br>gpgkey=<a href="https://www.mongodb.org/static/pgp/server-4.2.asc" target="_blank" rel="noopener">https://www.mongodb.org/static/pgp/server-4.2.asc</a><br>使用yum安装：<br>yum install -y mongodb-org<br>启动时指定配置文件：</p>
@@ -360,7 +360,7 @@
   </entry>
   <entry>
     <title>随机验证码</title>
-    <url>/2019/12/20/%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
+    <url>/Python/%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
     <content><![CDATA[<h1 id="验证码的书写"><a href="#验证码的书写" class="headerlink" title="验证码的书写"></a>验证码的书写</h1><p>​    验证码（CAPTCHA）是“Completely Automated Public Turing test to tell Computers and Humans Apart”（全自动区分<a href="https://baike.baidu.com/item/计算机" target="_blank" rel="noopener">计算机</a>和人类的<a href="https://baike.baidu.com/item/图灵测试" target="_blank" rel="noopener">图灵测试</a>）的缩写，是一种区分用户是计算机还是人的公共全自动<a href="https://baike.baidu.com/item/程序/71525" target="_blank" rel="noopener">程序</a>。可以防止：恶意破解密码、<a href="https://baike.baidu.com/item/刷票/6540942" target="_blank" rel="noopener">刷票</a>、论坛灌水，有效防止某个黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试，实际上用验证码是现在很多网站通行的方式，我们利用比较简易的方式实现了这个功能。这个问题可以由计算机生成并评判，但是必须只有人类才能解答。由于计算机无法解答CAPTCHA的问题，所以回答出问题的用户就可以被认为是人类。<a id="more"></a></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Django</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render,HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.hashers <span class="keyword">import</span> make_password,check_password</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> memcache</span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL</span><br><span class="line"></span><br><span class="line"><span class="comment">#导入图片库</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#导入绘画库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageDraw</span><br><span class="line"><span class="comment">#字体库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFont</span><br><span class="line"><span class="comment">#随机库</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="comment">#图片库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="comment">#文件流</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#获取随机6位字符</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_str</span><span class="params">()</span>:</span></span><br><span class="line">    a_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">97</span>,<span class="number">123</span>)])  <span class="comment">#小写字母</span></span><br><span class="line">    A_=list([chr(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">65</span>,<span class="number">91</span>)])   <span class="comment">#大写字母</span></span><br><span class="line">    num_=[str(var) <span class="keyword">for</span> var <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">9</span>)]   <span class="comment">#数字 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(random.sample(a_+A_+num_,<span class="number">4</span>))  <span class="comment">#返回随机4位字符</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义验证码类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mycode</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="comment">#定义随机取色方法,混淆</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_random_color</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#三原色</span></span><br><span class="line">        R=random.randrange(<span class="number">255</span>)</span><br><span class="line">        G=random.randrange(<span class="number">255</span>)</span><br><span class="line">        B=random.randrange(<span class="number">255</span>)</span><br><span class="line">        <span class="keyword">return</span> (R,G,B)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request)</span>:</span></span><br><span class="line">        <span class="comment">#定义画布</span></span><br><span class="line">        image_size=(<span class="number">120</span>,<span class="number">60</span>)</span><br><span class="line">        <span class="comment">#定义图像 颜色种类  画布  背景颜色</span></span><br><span class="line">        image=Image.new(<span class="string">'RGB'</span>,image_size,<span class="string">'white'</span>)</span><br><span class="line">        <span class="comment">#定义画笔</span></span><br><span class="line">        draw=ImageDraw.Draw(image,<span class="string">'RGB'</span>)</span><br><span class="line">        <span class="comment">#随机字符串的组成</span></span><br><span class="line">        source=get_random_str()</span><br><span class="line">        <span class="comment">#定义一个容器，接收</span></span><br><span class="line">        code_str=<span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">            <span class="comment">#取色</span></span><br><span class="line">            text_color=self.get_random_color()</span><br><span class="line">            <span class="comment">#获取一个字符串</span></span><br><span class="line">            tmp_num=random.randrange(len(source))</span><br><span class="line">            <span class="comment">#获取字符集</span></span><br><span class="line">            random_str=source[tmp_num]</span><br><span class="line">            <span class="comment">#将随机生成的字符串放入定义好的容器</span></span><br><span class="line">            code_str+=random_str</span><br><span class="line">            <span class="comment">#将文字输入绘图</span></span><br><span class="line">            <span class="comment">#宽高，字符，颜色</span></span><br><span class="line">            draw.text((<span class="number">10</span>+<span class="number">30</span>*i,<span class="number">20</span>),random_str,text_color)</span><br><span class="line">        <span class="comment">#建立io文件流</span></span><br><span class="line">        buf=io.BytesIO()</span><br><span class="line">        <span class="comment">#将图片内容保存在内存中</span></span><br><span class="line">        image.save(buf,<span class="string">'png'</span>)</span><br><span class="line">        <span class="comment">#将验证码放入session</span></span><br><span class="line">        request.session[<span class="string">'code'</span>]=code_str</span><br><span class="line">        <span class="comment">#可以存入redis中   建立连接   存key  取key</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(buf.getvalue(),<span class="string">'image/png'</span>)   <span class="comment">#从内存中获取数据</span></span><br></pre></td></tr></table></figure>
 
@@ -381,7 +381,7 @@
   </entry>
   <entry>
     <title>&#39;hexo快速搭建博客&#39;</title>
-    <url>/2019/12/20/hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <url>/Python/hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>使用Hexo建立一个轻量、简易、高逼格的博客</p>
 <pre><code>在之前的一篇文章中，介绍了如何使用Hugo在三分钟之内建立一个简单的个人博客系统，它是基于go lang的，其实，市面上还有一款类似的静态页生成器，就是Hexo 读音/hækso/ ，它是基于node.js的，和Hugo一样，Hexo 正常来说，不需要部署到我们的服务器上，我们的服务器上保存的，其实是基于在hexo通过markdown编写的文章，然后hexo帮我们生成静态的html页面，然后，将生成的html上传到我们的服务器。简而言之：hexo是个静态页面生成、上传的工具。</code></pre><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">首先安装Hexo，在此之前，请确保电脑里已经安装好新版的<span class="keyword">node</span>.<span class="title">js</span></span><br></pre></td></tr></table></figure>
 
@@ -427,7 +427,7 @@
   </entry>
   <entry>
     <title>send_verify</title>
-    <url>/2019/12/20/send-verify/</url>
+    <url>/Python/send-verify/</url>
     <content><![CDATA[<h1 id="Django-vue-验证码发送"><a href="#Django-vue-验证码发送" class="headerlink" title="Django +vue 验证码发送"></a>Django +vue 验证码发送</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导包</span></span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> web.settings <span class="keyword">import</span> DEFAULT_FROM_EMAIL   <span class="comment">#settings里的一些配置</span></span><br><span class="line"><span class="keyword">import</span> random </span><br><span class="line"></span><br><span class="line"><span class="comment">#settings配置具体如下:</span></span><br><span class="line">	EMAIL_USE_SSL = <span class="literal">True</span> <span class="comment"># Secure Sockets Layer 安全套接层, 取决于邮件服务器是否开启加密协议</span></span><br><span class="line">    EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment"># 邮件服务器地址</span></span><br><span class="line">    EMAIL_PORT = <span class="number">465</span> <span class="comment"># 邮件服务器端口</span></span><br><span class="line"> </span><br><span class="line">    EMAIL_HOST_USER = <span class="string">'1315532054@qq.com'</span> <span class="comment"># 登陆邮件服务器的账号</span></span><br><span class="line">    EMAIL_HOST_PASSWORD = <span class="string">'ownkpkdkumubhdjg'</span>  <span class="comment"># 登陆邮件服务器的密码</span></span><br><span class="line">    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER <span class="comment"># 邮件的发送者</span></span><br></pre></td></tr></table></figure>
 
 <!-- < !--more--> 
@@ -454,7 +454,7 @@
   </entry>
   <entry>
     <title>数据结构</title>
-    <url>/2019/09/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <url>/Python/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h1 id="关于数据结构"><a href="#关于数据结构" class="headerlink" title="关于数据结构"></a>关于数据结构</h1><h5 id="什么是数据结构？"><a href="#什么是数据结构？" class="headerlink" title="什么是数据结构？"></a>什么是数据结构？</h5><p>简单地说，数据结构是以某种特定的布局方式存储数据的容器。这种“布局方式”决定了数据结构对于某些操作是高效的，而对于其他操作则是低效的。首先我们需要理解各种数据结构，才能在处理实际问题时选取最合适的数据结构。<a id="more"></a></p>
 <h5 id="为什么我们需要数据结构？"><a href="#为什么我们需要数据结构？" class="headerlink" title="为什么我们需要数据结构？"></a>为什么我们需要数据结构？</h5><p>数据是计算机科学当中最关键的实体，而数据结构则可以将数据以某种组织形式存储，因此，数据结构的价值不言而喻。</p>
 <p>无论你以何种方式解决何种问题，你都需要处理数据——无论是涉及员工薪水、股票价格、购物清单，还是只是简单的电话簿问题。</p>
@@ -525,7 +525,7 @@
   </entry>
   <entry>
     <title>Mysql事务</title>
-    <url>/2019/06/09/Mysql%E4%BA%8B%E5%8A%A1/</url>
+    <url>/Mysql/Mysql%E4%BA%8B%E5%8A%A1/</url>
     <content><![CDATA[<h1 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL 事务"></a>MySQL 事务</h1><p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！<a id="more"></a></p>
 <ul>
 <li>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</li>
@@ -578,7 +578,7 @@
   </entry>
   <entry>
     <title>装饰器</title>
-    <url>/2018/12/29/%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
+    <url>/uncategorized/%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
     <content><![CDATA[<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><p>装饰器本质上是一个Python函数，它可以让其它哈桑农户在不作任何变动的情况下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景。比如：插入日志，性能测试，事务处理，缓存，权限校验等。有了装饰器我们就可以抽离处大量的与函数功能无关的雷同代码进行重用。装饰器其实就是一个闭包，把一个函数当做参数返回一个替代版函数。 <a id="more"></a> </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wrr</span><span class="params">(func)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">		print(<span class="string">'111'</span>)</span><br><span class="line">		func()</span><br><span class="line">	<span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"><span class="meta">@wrr</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my</span><span class="params">()</span>:</span></span><br><span class="line">	print(<span class="string">'222'</span>)</span><br><span class="line">my()</span><br></pre></td></tr></table></figure>
 
@@ -588,11 +588,15 @@
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#带参装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_code</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wraper</span><span class="params">(func)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">(request, *args, **kwargs)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> func(request, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wraper</span><br><span class="line"></span><br><span class="line"><span class="meta">@my_code()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sing</span><span class="params">(name)</span>:</span></span><br><span class="line">    print(<span class="string">'%s是歌手'</span> % name)</span><br><span class="line">sing(<span class="string">'张三'</span>)</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment">#定义反扒装饰器,定义形参，一秒允许请求一次</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">limit</span><span class="params">(seconds=<span class="number">1</span>)</span>:</span></span><br><span class="line">    <span class="comment">#定义内部方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rate_limit</span><span class="params">(func)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">func_limit</span><span class="params">(request)</span>:</span></span><br><span class="line">            <span class="comment">#获取当前时间</span></span><br><span class="line">            now = time.time()</span><br><span class="line">            <span class="comment">#获取首次来访时间</span></span><br><span class="line">            request_time = request.session.get(<span class="string">'req_time'</span>,<span class="number">0</span>)</span><br><span class="line">            <span class="comment">#做减法</span></span><br><span class="line">            in_time = int(now) - request_time</span><br><span class="line">            <span class="comment">#判断访问者在一秒内来了不止一次</span></span><br><span class="line">            <span class="keyword">if</span> in_time &lt; seconds:</span><br><span class="line">                <span class="comment">#抛出异常 ,使用第二个参数来指定异常</span></span><br><span class="line">                <span class="keyword">return</span> HttpResponse(<span class="string">'你是爬虫，不要来了'</span>,status=<span class="number">403</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment">#来的时间点存储</span></span><br><span class="line">                request.session[<span class="string">'req_time'</span>] = time.time()</span><br><span class="line">                <span class="comment">#让访问者继续访问</span></span><br><span class="line">                ret = func(request)</span><br><span class="line">                <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> func_limit</span><br><span class="line">    <span class="keyword">return</span> rate_limit</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#定义一个验证登录的装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_login</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">warpper</span><span class="params">(request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="comment">#is_login = request.session.get("username",False)</span></span><br><span class="line">        is_login = request.COOKIES.get(<span class="string">"username"</span>,<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> is_login:</span><br><span class="line">            ret = func(request,*args,**kwargs)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> HttpResponseRedirect(<span class="string">"/supermarket"</span>)</span><br><span class="line">    <span class="keyword">return</span> warpper</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>八大排序</title>
-    <url>/2018/12/11/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F/</url>
+    <url>/Python/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>插入排序：插入排序的基本操作就是将一个数据插入到已经排好序的有序数据中，从而得到一个新的、个数加一的有序数据，算法适用于少量数据的排序；首先将第一个作为已经排好序的，然后每次从后的取出插入到前面并排序；<a id="more"></a></p>
 <p>时间复杂度：O(n²)</p>
 <p>空间复杂度：O(1)</p>
@@ -631,7 +635,7 @@
   </entry>
   <entry>
     <title>虚拟环境</title>
-    <url>/2018/11/24/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
+    <url>/Linux/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h1 id="构建爬虫系统"><a href="#构建爬虫系统" class="headerlink" title="构建爬虫系统"></a>构建爬虫系统</h1><h2 id="一、实现目的"><a href="#一、实现目的" class="headerlink" title="一、实现目的"></a>一、实现目的</h2><p>爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。<a id="more"></a></p>
 <h4 id="1-1-实验知识点"><a href="#1-1-实验知识点" class="headerlink" title="1.1 实验知识点"></a>1.1 实验知识点</h4><ul>
 <li>爬虫的基本概念</li>
@@ -669,7 +673,7 @@
   </entry>
   <entry>
     <title>四十岁的吃鸡玩家</title>
-    <url>/2018/09/21/%E5%9B%9B%E5%8D%81%E5%B2%81%E7%9A%84%E5%90%83%E9%B8%A1%E7%8E%A9%E5%AE%B6/</url>
+    <url>/Live/%E5%9B%9B%E5%8D%81%E5%B2%81%E7%9A%84%E5%90%83%E9%B8%A1%E7%8E%A9%E5%AE%B6/</url>
     <content><![CDATA[<p>四十岁的吃鸡玩家<br>我从家里出来，在马路边四处张望，寻找我叫的那辆滴滴快车。<br>司机已经来过电话，我拜托他多等一会儿，但现在已经过去了十多分钟，不知道他会不会已经取消订单。<br>情况并没有那么糟，我最终找到了那辆车。我上车之后才发现，司机居然在玩“刺激战场”。我看了一眼，三级包三级头，还挺肥。<br> <a id="more"></a><br>司机没有埋怨我的姗姗来迟，反而问我急不急着赶路。我连忙摆手，说道：“不急不急，你好好玩吧，这把有望吃鸡啊。”<br>司机一听，兴奋的说：“你也玩这个啊？”<br>“我就没事儿瞎玩玩。”<br>“你们年轻人玩这个应该挺厉害，我连前十都没进过几次。”<br>“哪有，你这把就很稳啊，这不马上就进前十了嘛。”<br>“哈哈，这把运气好…”<br>他话还没说完，就听见了一声枪响。他立刻集中精神，趴在草里，转动视角观察周围。<br>我也不再说话，静静的看他冲进决赛圈。</p>
 <p>这时我才注意到，这位吃鸡玩家已经长了不少白发，脸上也有了皱纹。没想到这个年纪的大叔，也会热衷于吃鸡。</p>
 <p>最后他止步于第二名，被一个穿着吉利服的“伏地魔”给淘汰了，只差一步就能吃鸡。我还觉得有些遗憾，他却十分满足。我忽然很好奇，他是因为什么开始玩这个游戏，他笑容一滞，随后说道：“因为我儿子喜欢玩这个，我就想着，要是我也玩的话，就能和他多说上几句话。”</p>
@@ -686,7 +690,7 @@
   </entry>
   <entry>
     <title>python基础</title>
-    <url>/2018/08/11/python%E5%9F%BA%E7%A1%80/</url>
+    <url>/Python/python%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h6 id="解释下Python中的三元运算？"><a href="#解释下Python中的三元运算？" class="headerlink" title="解释下Python中的三元运算？"></a>解释下Python中的三元运算？</h6><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[on true <span class="keyword">if</span> [expression] <span class="keyword">else</span> [on false]]</span><br><span class="line"><span class="comment">#如果表达式为True,就执行[on true]中的语句。否则，就执行[on false]中的语句</span></span><br><span class="line">a,b=<span class="number">2</span>,<span class="number">3</span></span><br><span class="line">min=a <span class="keyword">if</span> a&lt;b <span class="keyword">else</span> b</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
 
 <h6 id="Python中的继承"><a href="#Python中的继承" class="headerlink" title="Python中的继承?"></a>Python中的继承?</h6><figure class="highlight pascal"><table><tr><td class="code"><pre><span class="line">#当一个类继承自另一个类，它就被称为一个子类/派生类，继承自父类/基类/超类。它会继承/获取所有类成员(属性和方法)。继承能让我们重新使用代码，也能更容易的创建个维护使用。</span><br><span class="line">Python支持如下种类的继承：</span><br><span class="line">	<span class="number">1</span>.单继承：一个类继承自单个基类</span><br><span class="line">	<span class="number">2</span>.多继承:一个类继承自多个基类</span><br><span class="line">	<span class="number">3</span>.多级继承:一个类继承自单个基类，后者则继承自另一个基类</span><br><span class="line">	<span class="number">4</span>.分层继承:多个类继承自单个基类</span><br><span class="line">	<span class="number">5</span>.混合继承:俩种或多种类型继承的混合</span><br></pre></td></tr></table></figure>
@@ -749,7 +753,7 @@
   </entry>
   <entry>
     <title>Django相关</title>
-    <url>/2018/07/15/Django/</url>
+    <url>/Django/Django/</url>
     <content><![CDATA[<h1 id="Django-、Flask、Tornado的对比"><a href="#Django-、Flask、Tornado的对比" class="headerlink" title="Django 、Flask、Tornado的对比"></a>Django 、Flask、Tornado的对比</h1><p>1.Django走的是大而全的方向,开发效率高。它的MTV框架,自带的ORM,admin后台管理,自带的sqlite数据库和开发测试用的服务器 给开发者提高了超高的开发效率</p>
 <p>2.Flask是轻量级的框架,自由,灵活,可扩展性很强,核心基于Werkzeug WSGI工具和jinja2模板引擎</p>
 <p>3.Tornado走的是少而精的方向,性能优越。它最出名的是异步非阻塞的设计方式</p>
@@ -809,7 +813,7 @@
 
 <h6 id="restful规范的认识"><a href="#restful规范的认识" class="headerlink" title="restful规范的认识"></a>restful规范的认识</h6><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">首先restful是一种软件架构风格或者说是一种设计风格，并不是标准，它只是提供了一组设计原则和约束条件，主要用于客户端和服务器交互类的软件。</span><br><span class="line">每一个url代表一种资源</span><br><span class="line">客户端使用get,post,delete,put4个表示操作方式的动词对服务端资源进行操作；get用来获取资源，post用来新建资源(也可以用于更新资源),put用来更新资源，delete用来删除资源。</span><br><span class="line">客户端与服务端之间的交互在请求之间是无状态的。</span><br><span class="line">状态码必须精确(客户端的每一次请求，服务器都必须给出回应。回应包括http状态码和数据俩部分)</span><br><span class="line">http 状态码就是一个三位数，分成五个类别</span><br><span class="line">	<span class="number">1</span>** ：相关信息</span><br><span class="line">    <span class="number">2</span>** ：操作成功</span><br><span class="line">    <span class="number">3</span>** ：重定向</span><br><span class="line">    <span class="number">4</span>** ：客户端错误</span><br><span class="line">    <span class="number">5</span>** ：服务器错误</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导包</span></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse,HttpResponseRedirect,HttpResponseForbidden</span><br><span class="line"><span class="comment">#导入自定义的数据库模型</span></span><br><span class="line"><span class="keyword">from</span> mysite.models <span class="keyword">import</span> User</span><br><span class="line"><span class="comment">#导内置模板方法</span></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义视图方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_ip</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment">#打印头部信息</span></span><br><span class="line">    <span class="comment">#print(request.META)</span></span><br><span class="line">    <span class="comment">#获取ip信息</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'HTTP_X_FORWARDED_FOR'</span> <span class="keyword">in</span> request.META:</span><br><span class="line">        ip = request.META.get(<span class="string">'HTTP_X_FORWARDED_FOR'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ip = request.META.get(<span class="string">'REMOTE_ADDR'</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"来访者的ip是"</span>+str(ip))</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"您的ip是"</span>+str(ip))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义首页视图方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment">#入库操作（增）</span></span><br><span class="line">    <span class="comment">#建立实例</span></span><br><span class="line">    <span class="comment">#user = User(username='新用户',password='你好')</span></span><br><span class="line">    <span class="comment">#入库操作</span></span><br><span class="line">    <span class="comment">#user.save()</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#删除数据（删）</span></span><br><span class="line">    <span class="comment">#User.objects.filter(username='新用户').delete()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">#修改数据(改) 第一种方式</span></span><br><span class="line">    <span class="comment">#user = User.objects.get(id=9)</span></span><br><span class="line">    <span class="comment">#修改字段</span></span><br><span class="line">    <span class="comment">#user.username = '1234'</span></span><br><span class="line">    <span class="comment">#保存修改</span></span><br><span class="line">    <span class="comment">#user.save()</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#修改数据（改） 第二种方式</span></span><br><span class="line">    <span class="comment">#return HttpResponse('',status=403)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#User.objects.filter(id=9).update(password='新密码')</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">#查询全部数据 翻译为 select * from user; all()返回值是list</span></span><br><span class="line">    res = User.objects.all()</span><br><span class="line">    <span class="comment">#print(res)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#查询限定条件的数据 翻译为 select * from user where username = '新用户123' and逻辑使用多个参数传递</span></span><br><span class="line">    res = User.objects.filter(username=<span class="string">'新用户'</span>,password=<span class="string">'你好'</span>)</span><br><span class="line">    <span class="comment">#print(res)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#只取一条 翻译 select * from user where id = 1</span></span><br><span class="line">    res_one = User.objects.get(id=<span class="number">1</span>)</span><br><span class="line">    <span class="comment">#print(res_one)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#排除条件  翻译为 select * from user where username != '新用户123'   &lt;&gt;</span></span><br><span class="line">    res = User.objects.exclude(username=<span class="string">'新用户'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#定制字段显示 翻译为 select password from user where name = '新用户'</span></span><br><span class="line">    res_s = User.objects.filter(username=<span class="string">'新用户'</span>).values(<span class="string">'password'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#排序 翻译为 select * from user order by id asc  倒序使用 reverse()</span></span><br><span class="line">    res = User.objects.filter(username=<span class="string">'新用户'</span>).order_by(<span class="string">"password"</span>).reverse()</span><br><span class="line"></span><br><span class="line">    <span class="comment">#去重 翻译为 select distinct(username) from user where username = '新用户'</span></span><br><span class="line">    res_dis = User.objects.filter(username=<span class="string">'新用户'</span>).values(<span class="string">'username'</span>).distinct()</span><br><span class="line">    <span class="comment">#print(res_dis)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#取数量 翻译为 select count(*) from user</span></span><br><span class="line">    res_count = User.objects.filter(username=<span class="string">'新用户'</span>).count()</span><br><span class="line">    print(res_count)</span><br><span class="line"></span><br><span class="line">    res_list = [&#123;<span class="string">'name'</span>:<span class="string">'小王'</span>,<span class="string">'score'</span>:<span class="number">100</span>,<span class="string">'gender'</span>:<span class="string">'男'</span>&#125;,&#123;<span class="string">'name'</span>:<span class="string">'小宏'</span>,<span class="string">'score'</span>:<span class="number">50</span>,<span class="string">'gender'</span>:<span class="string">'女'</span>&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'d4_index.html'</span>,locals())</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义捕获500的异常</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_error</span><span class="params">(request,**kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"捕获500异常"</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Django</category>
       </categories>
@@ -819,7 +823,7 @@
   </entry>
   <entry>
     <title>Docker</title>
-    <url>/2018/03/23/Docker/</url>
+    <url>/Docker/Docker/</url>
     <content><![CDATA[<h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><ul>
 <li>什么是docker：小海腾<ul>
 <li>KVM、Xen、VMware、VirtualBox、Hyper-V</li>
@@ -1025,7 +1029,7 @@
   </entry>
   <entry>
     <title>&#39;Jwt的应用&#39;</title>
-    <url>/2018/02/20/Jwt/</url>
+    <url>/Python/Jwt/</url>
     <content><![CDATA[<h2 id="什么是JWT"><a href="#什么是JWT" class="headerlink" title="什么是JWT"></a>什么是JWT</h2><p>​     Json web token（JWT）是为了网络应用环境间传递声明而执行的一种基于JSON的开发标准（RFC 7519），该token被设计为紧凑且安全的，特别适用于分布式站点的单点登陆（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。<a id="more"></a></p>
 <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>   说起JWT，我们应该来谈一谈基于token的认证和传统的Session认证的区别。</p>
 <h2 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h2><p>​    我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发送的请求，所以为了让我们的应用能识别是哪个用户发出的，我们只能在服务器存储一份用户登陆的信息，这份登陆信息会在响应时传递给服务器，告诉其保存为cookie，以便下次请求时发送给我们的应用，这样我们的英哟个就能识别请求来自哪个用户了，这就是传统的基于sessino认证</p>
@@ -1139,7 +1143,7 @@
   </entry>
   <entry>
     <title>添加萌萌的宠物live2d</title>
-    <url>/2015/12/13/%E6%B7%BB%E5%8A%A0%E8%90%8C%E8%90%8C%E7%9A%84%E5%AE%A0%E7%89%A9live2d/</url>
+    <url>/Happy/%E6%B7%BB%E5%8A%A0%E8%90%8C%E8%90%8C%E7%9A%84%E5%AE%A0%E7%89%A9live2d/</url>
     <content><![CDATA[<h1 id="Hexo-Next-添加萌萌的宠物live2d"><a href="#Hexo-Next-添加萌萌的宠物live2d" class="headerlink" title="Hexo Next 添加萌萌的宠物live2d"></a>Hexo Next 添加萌萌的宠物live2d</h1><h5 id="添加萌宠来装饰Hexo站点-使用到的插件hexo-helper-live2d"><a href="#添加萌宠来装饰Hexo站点-使用到的插件hexo-helper-live2d" class="headerlink" title="添加萌宠来装饰Hexo站点, 使用到的插件hexo-helper-live2d"></a>添加萌宠来装饰Hexo站点, 使用到的插件hexo-helper-live2d</h5><p>添加萌宠</p>
 <h6 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1.安装插件"></a>1.安装插件</h6><p>命令行cmd进入站点文件夹</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd .\TestBlog\</span><br><span class="line"></span><br><span class="line">npm install hexo-helper-live2d --save</span><br></pre></td></tr></table></figure>
@@ -1169,7 +1173,7 @@
   </entry>
   <entry>
     <title>web基础</title>
-    <url>/1988/01/30/web%E5%9F%BA%E7%A1%80/</url>
+    <url>/uncategorized/web%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h6 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h6><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">第一次握手：建立连接时，客户端发送syn包到服务器，并进入syn_sent状态，等待服务器确认；syn:同步序列编号</span><br><span class="line">第二次握手:服务器收到syn包，必须确认客户的syn,同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态</span><br><span class="line"> 第三次握手:客户端收到服务器的syn+ack包，向服务器发送确认包，次包发送完毕。完成三次握手</span><br></pre></td></tr></table></figure>
 
 <h6 id="Tcp的四次挥手"><a href="#Tcp的四次挥手" class="headerlink" title="Tcp的四次挥手"></a>Tcp的四次挥手</h6><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">当客户端和服务器通过三次握手建立了TCP连接以后，当数据传送完毕，肯定是要断开TCP连接</span><br><span class="line"></span><br><span class="line">那对于TCP的断开连接，这里就有了“四次挥手”</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>）客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=<span class="number">1</span>，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加<span class="number">1</span>），此时，客户端进入FIN-WAIT<span class="number">-1</span>（终止等待<span class="number">1</span>）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）服务器收到连接释放报文，发出确认报文，ACK=<span class="number">1</span>，ack=u+<span class="number">1</span>，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>）客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT<span class="number">-2</span>（终止等待<span class="number">2</span>）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>）服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=<span class="number">1</span>，ack=u+<span class="number">1</span>，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>）客户端收到服务器的连接释放报文后，必须发出确认，ACK=<span class="number">1</span>，ack=w+<span class="number">1</span>，而自己的序列号是seq=u+<span class="number">1</span>，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过<span class="number">2</span>∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>）服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。</span><br></pre></td></tr></table></figure>
