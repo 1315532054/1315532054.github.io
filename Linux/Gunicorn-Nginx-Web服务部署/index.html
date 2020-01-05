@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://luckyle.top').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Nginx  + Gunicorn 部署 web服务Gunicorn是什么？Gunicorn是一个用于UNIX的Python WSGI HTTP服务器。它是一个前叉工作者模型，从Ruby的Unicorn项目移植而来。Gunicorn服务器与许多Web服务器框架广泛 兼容，轻松服务器资源并且速度相当快。  功能 自动化工作流程管理 简单的 Python 配置 多个工人配置 各种服务器挂钩，可扩展性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gunicorn+Nginx+Web服务部署">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;Linux&#x2F;Gunicorn-Nginx-Web%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2&#x2F;index.html">
+<meta property="og:site_name" content="可乐">
+<meta property="og:description" content="Nginx  + Gunicorn 部署 web服务Gunicorn是什么？Gunicorn是一个用于UNIX的Python WSGI HTTP服务器。它是一个前叉工作者模型，从Ruby的Unicorn项目移植而来。Gunicorn服务器与许多Web服务器框架广泛 兼容，轻松服务器资源并且速度相当快。  功能 自动化工作流程管理 简单的 Python 配置 多个工人配置 各种服务器挂钩，可扩展性">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-05T12:56:18.117Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://luckyle.top/Linux/Gunicorn-Nginx-Web%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Gunicorn+Nginx+Web服务部署 | 可乐</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="可乐" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">可乐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">“我在寻找丢失的记忆”“说人话!”“我在复习”</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/Linux/Gunicorn-Nginx-Web%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Gunicorn+Nginx+Web服务部署
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：1953-01-05 20:53:35" itemprop="dateCreated datePublished" datetime="1953-01-05T20:53:35+08:00">1953-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-05 20:56:18" itemprop="dateModified" datetime="2020-01-05T20:56:18+08:00">2020-01-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Nginx-Gunicorn-部署-web服务"><a href="#Nginx-Gunicorn-部署-web服务" class="headerlink" title="Nginx  + Gunicorn 部署 web服务"></a>Nginx  + Gunicorn 部署 web服务</h1><h6 id="Gunicorn是什么？"><a href="#Gunicorn是什么？" class="headerlink" title="Gunicorn是什么？"></a>Gunicorn是什么？</h6><p>Gunicorn是一个用于UNIX的Python WSGI HTTP服务器。它是一个前叉工作者模型，从Ruby的Unicorn项目移植而来。Gunicorn服务器与许多Web服务器框架广泛 兼容，轻松服务器资源并且速度相当快。</p>
+<ul>
+<li><h6 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h6><ul>
+<li>自动化工作流程管理</li>
+<li>简单的 Python 配置</li>
+<li>多个工人配置</li>
+<li>各种服务器挂钩，可扩展性</li>
+<li>兼容 Python 2.6+和 Python 3.2+</li>
+</ul>
+<p>Gunicorn 是一个 unix 上被广泛使用的高性能的 Python WSGI UNIX HTTP Server。和大多数的 web 框架兼容，并具有实现简单，轻量级，高性能等特点。</p>
+<p>Gunicorn 服务器作为 wsgi app 的容器，能够与各种 Web 框架兼容（flask，django 等）,得益于 gevent 等技术，使用 Gunicorn 能够在基本不改变 wsgi app 代码的前提下，大幅度提高 wsgi app 的性能。 <a id="more"></a> </p>
+<h6 id="服务模型-Server-Model"><a href="#服务模型-Server-Model" class="headerlink" title="服务模型(Server Model)"></a>服务模型(Server Model)</h6><p>Gunicorn 是基于 pre-fork 模型的。也就意味着有一个中心管理进程( master process )用来管理 worker 进程集合。Master 从不知道任何关于客户端的信息。所有的请求和响应处理都是由 worker 进程来处理的。</p>
+<h6 id="Master-管理者"><a href="#Master-管理者" class="headerlink" title="Master(管理者)"></a>Master(管理者)</h6><p>主程序是一个简单的循环,监听各种信号以及相应的响应进程。master 管理着正在运行的 worker 集合,通过监听各种信号比如 TTIN, TTOU, and CHLD. TTIN and TTOU 响应的增加和减少 worker 的数目。CHLD 信号表明一个子进程已经结束了,在这种情况下 master 会自动的重启失败的 worker。</p>
+<h6 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h6><p>woker 有很多种，包括：ggevent、geventlet、gtornado 等等。</p>
+<p>这里主要分析 ggevent。每个 ggevent worker 启动的时候会启动多个 server 对象：worker 首先为每个 listener 创建一个 server 对象（注：为什么是一组 listener,因为 gunicorn 可以绑定一组地址,每个地址对于一个 listener），每个 server 对象都有运行在一个单独的 gevent pool 对象中。真正等待链接和处理链接的操作是在 server 对象中进行的。</p>
+</li>
+</ul>
+<h5 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h5><p>在一个Django项目中，下载gunicorn</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install gunicorn</span><br></pre></td></tr></table></figure>
+
+<p>加入Gunicorn的配置文件gunicorn.conf.py具体如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> logging.handlers</span><br><span class="line"><span class="keyword">from</span> logging.handlers <span class="keyword">import</span> WatchedFileHandler</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line">bind = <span class="string">"127.0.0.1:8080"</span>   <span class="comment">#绑定的ip与端口             &lt;&lt;&lt;————————————</span></span><br><span class="line">backlog = <span class="number">512</span>                <span class="comment">#监听队列数量，64-2048</span></span><br><span class="line">chdir = <span class="string">'/root/sites/DjangoBlog'</span>  <span class="comment">#gunicorn要切换到的目的工作目录    &lt;&lt;&lt;————————————</span></span><br><span class="line">worker_class = <span class="string">'sync'</span> <span class="comment">#使用gevent模式，还可以使用sync 模式，默认的是sync模式</span></span><br><span class="line">workers = multiprocessing.cpu_count()</span><br><span class="line"><span class="comment">#workers = 4 # multiprocessing.cpu_count()    #进程数</span></span><br><span class="line">threads = <span class="number">16</span> <span class="comment">#multiprocessing.cpu_count()*4 #指定每个进程开启的线程数</span></span><br><span class="line">loglevel = <span class="string">'info'</span> <span class="comment">#日志级别，这个日志级别指的是错误日志的级别，而访问日志的级别无法设置</span></span><br><span class="line">access_log_format = <span class="string">'%(t)s %(p)s %(h)s "%(r)s" %(s)s %(L)s %(b)s %(f)s" "%(a)s"'</span> <span class="comment"># 日志格式</span></span><br><span class="line"></span><br><span class="line">accesslog = <span class="string">"/root/sites/DjangoBlog/log/gunicorn_access.log"</span>  <span class="comment">#访问日志文件  &lt;&lt;&lt;———————————</span></span><br><span class="line">errorlog = <span class="string">"/root/sites/DjangoBlog/log/gunicorn_error.log"</span>    <span class="comment">#错误日志文件  &lt;&lt;&lt;———————————</span></span><br><span class="line"><span class="comment"># accesslog = "-"  #访问日志文件，"-" 表示标准输出</span></span><br><span class="line"><span class="comment"># errorlog = "-"   #错误日志文件，"-" 表示标准输出</span></span><br><span class="line"></span><br><span class="line">proc_name = <span class="string">'fof_api'</span>   <span class="comment">#进程名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面有箭头的地方都要修改</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>启动命令</p>
+<p>Gunicorn常见参数</p>
+<p>-c 指定一个配置文件(py文件)</p>
+<p>-b 与指定的socket进行绑定</p>
+<p>-D 以守护进程形式来运行Gunicorn进程，就是将这个服务放到后台运行</p>
+<p>-w 工作的进程数量</p>
+<p>根据Gunicorn配置文件和Django自带wsgi启动</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunicorn -c gunicorn.conf.py djangodemo.wsgi -D <span class="comment"># djangodemo 是djangodemo项目的名字</span></span><br></pre></td></tr></table></figure>
+
+<p>指定端口和工作的进程运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunicorn -w <span class="number">3</span> djangodemo.wsgi -b <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8100</span></span><br></pre></td></tr></table></figure>
+
+<p>这里使用的djangodemo.wsgi是Django自带的wsgi</p>
+<p>wsgi(Web Server Gateway interface),翻译为Python web服务器网关接口，即Python的Web应用程序(如flask)和web服务器(如nginx)之间的一种通信协议。也就是说，如果让你的web应用在任何服务器上运行，就必须遵守这个协议。</p>
+<p>那么实现WSGI协议的web服务器有哪些呢？就比如uWSGI与gunicorn。两者都可以作为Web服务器。可能你在许多地方看到的都是采用Nginx + uWSGI（或gunicorn）的部署方式。</p>
+<p>实际上，直接通过uWSGI或gunicorn直接部署也是可以让外网访问的，那你可能会说，我用Gunicorn直接部署也能够做到外网访问，那么在Gunicorn上再套一层Nginx是为了什么呢？</p>
+<p>首先，我们先了解下Nginx.</p>
+<h6 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h6><p><em>Nginx</em> (engine x) 是一个高性能的<a href="https://baike.baidu.com/item/HTTP" target="_blank" rel="noopener">HTTP</a>和<a href="https://baike.baidu.com/item/反向代理/7793488" target="_blank" rel="noopener">反向代理</a>web服务器，同时也提供了IMAP/POP3/SMTP<a href="https://baike.baidu.com/item/服务/100571" target="_blank" rel="noopener">服务</a>。Nginx是由伊戈尔·赛索耶夫为<a href="https://baike.baidu.com/item/俄罗斯/125568" target="_blank" rel="noopener">俄罗斯</a>访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。</p>
+<p>其将<a href="https://baike.baidu.com/item/源代码" target="_blank" rel="noopener">源代码</a>以类BSD许可证的形式发布，因它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而<a href="https://baike.baidu.com/item/闻名/2303308" target="_blank" rel="noopener">闻名</a>。2011年6月1日，nginx 1.0.4发布。</p>
+<p>Nginx是一款<a href="https://baike.baidu.com/item/轻量级/10002835" target="_blank" rel="noopener">轻量级</a>的<a href="https://baike.baidu.com/item/Web/150564" target="_blank" rel="noopener">Web</a> 服务器/<a href="https://baike.baidu.com/item/反向代理/7793488" target="_blank" rel="noopener">反向代理</a>服务器及<a href="https://baike.baidu.com/item/电子邮件/111106" target="_blank" rel="noopener">电子邮件</a>（IMAP/POP3）代理服务器，在BSD-like 协议下发行。其特点是占有内存少，<a href="https://baike.baidu.com/item/并发/11024806" target="_blank" rel="noopener">并发</a>能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、<a href="https://baike.baidu.com/item/京东/210931" target="_blank" rel="noopener">京东</a>、<a href="https://baike.baidu.com/item/新浪/125692" target="_blank" rel="noopener">新浪</a>、<a href="https://baike.baidu.com/item/网易/185754" target="_blank" rel="noopener">网易</a>、<a href="https://baike.baidu.com/item/腾讯/112204" target="_blank" rel="noopener">腾讯</a>、<a href="https://baike.baidu.com/item/淘宝/145661" target="_blank" rel="noopener">淘宝</a>等。</p>
+<p>Nginx 是一个很强大的高性能<a href="https://baike.baidu.com/item/Web/150564" target="_blank" rel="noopener">Web</a>和<a href="https://baike.baidu.com/item/反向代理" target="_blank" rel="noopener">反向代理</a>服务，它具有很多非常优越的特性：</p>
+<p>在连接高并发的情况下，Nginx是<a href="https://baike.baidu.com/item/Apache/6265" target="_blank" rel="noopener">Apache</a>服务不错的替代品：Nginx在美国是做虚拟主机生意的老板们经常选择的软件平台之一。能够支持高达 50,000 个并发连接数的响应，感谢Nginx为我们选择了 epoll and kqueue作为开发模型。</p>
+<h6 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h6><p>Nginx作为负载均衡服务：Nginx 既可以在内部直接支持 Rails 和 PHP 程序对外进行服务，也可以支持作为 HTTP<a href="https://baike.baidu.com/item/代理服务" target="_blank" rel="noopener">代理服务</a>对外进行服务。Nginx采用C进行编写，不论是系统资源开销还是CPU使用效率都比 Perlbal 要好很多。</p>
+<p>处理静态文件，索引文件以及自动索引;打开文件描述符缓冲。</p>
+<p>无缓存的反向代理加速，简单的负载均衡和容错。</p>
+<p>FastCGI，简单的负载均衡和容错。</p>
+<p>模块化的结构。包括 gzipping, byte ranges, chunked responses,以及 SSI-filter 等 filter。如果由 FastCG或其它代理服务器处理单页中存在的多个 SSI，则这项处理可以并行运行，而不需要相互等待。</p>
+<p>支持 SSL 和 TLSSNI。 [1] </p>
+<h6 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h6><p>Nginx代码完全用<a href="https://baike.baidu.com/item/C语言" target="_blank" rel="noopener">C语言</a>从头写成，已经移植到许多体系结构和<a href="https://baike.baidu.com/item/操作系统/192" target="_blank" rel="noopener">操作系统</a>，包括：<a href="https://baike.baidu.com/item/Linux" target="_blank" rel="noopener">Linux</a>、<a href="https://baike.baidu.com/item/FreeBSD" target="_blank" rel="noopener">FreeBSD</a>、<a href="https://baike.baidu.com/item/Solaris/3517" target="_blank" rel="noopener">Solaris</a>、[Mac OS X](<a href="https://baike.baidu.com/item/Mac" target="_blank" rel="noopener">https://baike.baidu.com/item/Mac</a> OS X)、<a href="https://baike.baidu.com/item/AIX" target="_blank" rel="noopener">AIX</a>以及[Microsoft Windows](<a href="https://baike.baidu.com/item/Microsoft" target="_blank" rel="noopener">https://baike.baidu.com/item/Microsoft</a> Windows)。Nginx有自己的函数库，并且除了<a href="https://baike.baidu.com/item/zlib" target="_blank" rel="noopener">zlib</a>、<a href="https://baike.baidu.com/item/PCRE" target="_blank" rel="noopener">PCRE</a>和<a href="https://baike.baidu.com/item/OpenSSL" target="_blank" rel="noopener">OpenSSL</a>之外，标准模块只使用系统C<a href="https://baike.baidu.com/item/库函数" target="_blank" rel="noopener">库函数</a>。而且，如果不需要或者考虑到潜在的授权冲突，可以不使用这些第三方库。</p>
+<h6 id="代理服务器"><a href="#代理服务器" class="headerlink" title="代理服务器"></a>代理服务器</h6><p>作为邮件<a href="https://baike.baidu.com/item/代理服务" target="_blank" rel="noopener">代理服务</a>：Nginx 同时也是一个非常优秀的邮件<a href="https://baike.baidu.com/item/代理服务" target="_blank" rel="noopener">代理服务</a>（最早开发这个产品的目的之一也是作为邮件代理服务器），Last.fm 描述了成功并且美妙的使用经验。</p>
+<p>Nginx 是一个安装非常的简单、配置文件非常简洁（还能够支持perl语法）、<a href="https://baike.baidu.com/item/Bug" target="_blank" rel="noopener">Bug</a>非常少的服务。Nginx 启动特别容易，并且几乎可以做到7*24不间断运行，即使运行数个月也不需要重新启动。你还能够不间断服务的情况下进行软件版本的<a href="https://baike.baidu.com/item/升级/8358284" target="_blank" rel="noopener">升级</a>。</p>
+<p>gunicorn自己是WSGI服务器。pre-fork是第一个进程启动监听的socket，然后开始fork，fork出去的进程会继承这个socket，于是所有的子进程都可以监听这个socket，有请求进来大家都可以accept（当然每个连接只会有一个进程accept到），这样就实现了负载均衡。worker数量一般不会变吧，变它作甚……只会挂了之后重新fork一个出去。工作都在子进程里面做，父进程保持这个状态，随时准备fork新的子进程出去。Nginx：负载均衡，静态文件支持，抗并发压力</p>
+<hr>
+<p>修改Nginx文件目录中的nginx.conf，将Server片段注释或者删掉(建议备份)，修改如下</p>
+<p>我们可以给它专门一个配置文件，尽量不要去触碰原有配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name  <span class="number">47.97</span><span class="number">.210</span><span class="number">.11</span>; <span class="comment">#此处写你的域名或者ip</span></span><br><span class="line">    charset utf<span class="number">-8</span>;</span><br><span class="line">    client_max_body_size <span class="number">200</span>m;</span><br><span class="line">    access_log  /var/log/nginx/build-access.log;</span><br><span class="line">    error_log  /var/log/nginx/build-err.log;</span><br><span class="line">    location = /favicon.ico &#123; access_log off; log_not_found off; &#125;</span><br><span class="line">    location /static/ &#123;</span><br><span class="line">        <span class="comment">#静态文件如js，css的存放目录  静态文件配置</span></span><br><span class="line">        alias /root/Code/monkey/bogs/DjangoBlog-master/collectedstatic/;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8080</span>; <span class="comment"># 这里要配合启动文件使用 跑的端口</span></span><br><span class="line">        proxy_redirect     off;</span><br><span class="line">        proxy_set_header   Host                 $http_host;</span><br><span class="line">        proxy_set_header   X-Real-IP            $remote_addr;</span><br><span class="line">        proxy_set_header   X-Forwarded-For      $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header   X-Forwarded-Proto    $scheme;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用Django项目的一个特性，将Django项目 生成静态文件,命令如下</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> collectstatic</span><br></pre></td></tr></table></figure>
+
+<p>然后将Nginx的配置文件进行修改</p>
+<p>重启Nginx</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nginx -s reload</span></span><br></pre></td></tr></table></figure>
+
+<p>运行Nginx就可以了</p>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>杜家乐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://luckyle.top/Linux/Gunicorn-Nginx-Web%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" title="Gunicorn+Nginx+Web服务部署">https://luckyle.top/Linux/Gunicorn-Nginx-Web服务部署/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/uncategorized/web%E5%9F%BA%E7%A1%80/" rel="next" title="web基础">
+      web基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  
+  </div>
+  
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx-Gunicorn-部署-web服务"><span class="nav-text">Nginx  + Gunicorn 部署 web服务</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Gunicorn是什么？"><span class="nav-text">Gunicorn是什么？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#功能"><span class="nav-text">功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#服务模型-Server-Model"><span class="nav-text">服务模型(Server Model)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Master-管理者"><span class="nav-text">Master(管理者)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#worker"><span class="nav-text">worker</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Nginx"><span class="nav-text">Nginx</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#服务器"><span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#代理服务器"><span class="nav-text">代理服务器</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="杜家乐"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">杜家乐</p>
+  <div class="site-description" itemprop="description">Progress is not created by contented people..</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1315532054" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1315532054" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://47.97.210.11/" title="http:&#x2F;&#x2F;47.97.210.11&#x2F;" rel="noopener" target="_blank">基于Django搭建博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://changpengfei0.github.io/" title="https:&#x2F;&#x2F;changpengfei0.github.io&#x2F;" rel="noopener" target="_blank">飞弟</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 在很久很久以前 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+
+
+
+  <span class="author" itemprop="copyrightHolder">杜家乐</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:08</span>
+</div>
+
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共38.2k字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script type ="text/javascript" src ="/js/love-click.js"></script> 
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":300,"height":440},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+</html>
