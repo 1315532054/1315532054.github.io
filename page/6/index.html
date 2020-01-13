@@ -156,7 +156,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -215,6 +215,127 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/uncategorized/web%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/uncategorized/web%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">web基础</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：1988-01-30 23:16:52" itemprop="dateCreated datePublished" datetime="1988-01-30T23:16:52+08:00">1988-01-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-30 23:18:10" itemprop="dateModified" datetime="2019-12-30T23:18:10+08:00">2019-12-30</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h6 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一次握手：建立连接时，客户端发送syn包到服务器，并进入syn_sent状态，等待服务器确认；syn:同步序列编号</span><br><span class="line">第二次握手:服务器收到syn包，必须确认客户的syn,同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态</span><br><span class="line"> 第三次握手:客户端收到服务器的syn+ack包，向服务器发送确认包，次包发送完毕。完成三次握手</span><br></pre></td></tr></table></figure>
+
+<h6 id="Tcp的四次挥手"><a href="#Tcp的四次挥手" class="headerlink" title="Tcp的四次挥手"></a>Tcp的四次挥手</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">当客户端和服务器通过三次握手建立了TCP连接以后，当数据传送完毕，肯定是要断开TCP连接</span><br><span class="line"></span><br><span class="line">那对于TCP的断开连接，这里就有了“四次挥手”</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>）客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=<span class="number">1</span>，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加<span class="number">1</span>），此时，客户端进入FIN-WAIT<span class="number">-1</span>（终止等待<span class="number">1</span>）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）服务器收到连接释放报文，发出确认报文，ACK=<span class="number">1</span>，ack=u+<span class="number">1</span>，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>）客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT<span class="number">-2</span>（终止等待<span class="number">2</span>）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>）服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=<span class="number">1</span>，ack=u+<span class="number">1</span>，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>）客户端收到服务器的连接释放报文后，必须发出确认，ACK=<span class="number">1</span>，ack=w+<span class="number">1</span>，而自己的序列号是seq=u+<span class="number">1</span>，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过<span class="number">2</span>∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>）服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。</span><br></pre></td></tr></table></figure>
+
+<h6 id="同步，异步编程差异是"><a href="#同步，异步编程差异是" class="headerlink" title="同步，异步编程差异是"></a>同步，异步编程差异是</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">你打电话问书店老板有没有《python开发》这本书，如果是同步通信机制，书店老板会说，你稍等，”我查一下<span class="string">"，然后开始查啊查，等查好了（可能是5秒，也可能是一天）告诉你结果（返回结果）。</span></span><br><span class="line"><span class="string">而异步通信机制，书店老板直接告诉你我查一下啊，查好了打电话给你，然后直接挂电话了（不返回结果）。然后查好了，他会主动打电话给你。在这里老板通过“回电”这种方式来回调。</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="阻塞于非阻塞的差异是啥"><a href="#阻塞于非阻塞的差异是啥" class="headerlink" title="阻塞于非阻塞的差异是啥"></a>阻塞于非阻塞的差异是啥</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">还是你打电话问书店老板有没有《python开发》这本书，你如果是阻塞式调用，你会一直把自己“挂起”，直到得到这本书有没有的结果</span><br><span class="line">如果是非阻塞式调用，你不管老板有没有告诉你，你自己先一边去干别的了， 当然你也要偶尔过几分钟check一下老板有没有返回结果。</span><br><span class="line">大部分Web应用都是阻塞性质的，也就是说当一个请求被处理时，这个进程就会被挂起直至请求完成，比如Django,而Tornado的思想是当我们在等待结果的时候不阻塞，转而我们给框架一个回调函数作为参数，让框架在收到结果的时候通过回调函数继续操作。这样，服务器就可以被解放去接受其他客户端的请求了。</span><br></pre></td></tr></table></figure>
+
+<h6 id="get和post的区别"><a href="#get和post的区别" class="headerlink" title="get和post的区别"></a>get和post的区别</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">get在浏览器回退时是无害的，而post会再次提交请求</span><br><span class="line">get产生的url地址可以被Bookmark(书签),而post不可以</span><br><span class="line">get请求会被浏览器主动cache(缓存),而post不会除非手动设置</span><br><span class="line">get请求只能进行url编码，而post支持多种编码方式</span><br><span class="line">get请求在url中传送的参数是有长度限制的，而post没有</span><br><span class="line">get比post更不安全，因为参数直接暴露在url上，所以不能用来传递铭感信息</span><br><span class="line">get参数通过url传参，post放在request body中</span><br></pre></td></tr></table></figure>
+
+<h6 id="MVC模式MVT模式"><a href="#MVC模式MVT模式" class="headerlink" title="MVC模式MVT模式"></a>MVC模式MVT模式</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Django的mvt模式本质上和mvc是一样的，也是为了各组件件保持松耦合关系</span><br><span class="line">MTV</span><br><span class="line">M代表模型(model)负责业务对象和数据库的关系映射</span><br><span class="line">T代表模板(template) 负责如何把页面展示给用户</span><br><span class="line">V代表视图(view):负责业务逻辑，并在适当时候调用model和template</span><br><span class="line">除了以上三层之外，还需要一个url分发器，它的作用是将一个url的页面请求分发给不同的view处理，view再调用相应的model和template</span><br><span class="line"></span><br><span class="line">MVC</span><br><span class="line">所谓mvc就是把web应用分为模型(m),控制器(c)和视图(v)三层，他们之间以一种插件式的，松耦合的方式连接在一起，模型负责业务对象与数据库的映射，视图负责与用户的交互(页面)，控制器接收用户的输入调用模型和视图完成用户的请求。</span><br></pre></td></tr></table></figure>
+
+<h6 id="HTTP与HTTPS的区别"><a href="#HTTP与HTTPS的区别" class="headerlink" title="HTTP与HTTPS的区别"></a>HTTP与HTTPS的区别</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">http 超文本传输协议 是一种用于分布式，协作式和超媒体信息系统的应用层协议。 端口<span class="number">80</span></span><br><span class="line">简单来说就是一种发布和接收HTML页面的方法，被用于在web浏览器和网站服务器之间传递信息。http协议以明文方式发送内容，不提供任何方式的数据加密，因此http协议不适合传输一些敏感信息，比如：信用卡号，密码支付等信息。</span><br><span class="line"></span><br><span class="line">https 超文本传输安全协议 https经由http进行通信，但利用ssl/tls来加密数据包。</span><br><span class="line">https开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。https默认工作在tcp协议<span class="number">443</span>端口</span><br><span class="line"></span><br><span class="line">区别：</span><br><span class="line">http明文传输，数据都是未加密的，安全性较差，https(ssl+http)数据传输过程都是加密的，安全性较好。</span><br><span class="line">使用https协议需要到CA(数字证书认证机构)申请证书，一般免费证书较少，因而需要一定费用。</span><br><span class="line">http页面响应速度比https快，主要业务http使用tcp三次握手建立连接，客户端和服务器需要交换三个包，而https除了tcp的三个包，还要加上ssl握手需要的<span class="number">9</span>个包，所以一共是<span class="number">12</span>个包</span><br><span class="line">http和https使用的是完全不同的连接方式，用的端口也不一样，前者是<span class="number">80</span>，后者是<span class="number">443.</span></span><br><span class="line">https其实就是建构在ssl/tls之上的http协议，所以，https比http更耗费服务器资源</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="什么是websocket"><a href="#什么是websocket" class="headerlink" title="什么是websocket"></a>什么是websocket</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">websocket是html5下一种新的协议。它实现了浏览器与服务器全双工通信，能更好的节省服务器资源和带宽并达到实时通讯的目的。它与http一样通过已建立的tcp连接来传输数据，但是它和http最大不同是:websocket是一种双向通信协议。在建立连接后，websocket服务器端和客户端都能主动向对方发送或接收数据。</span><br><span class="line"> Websocket有以下特点：是真正的全双共方式，建立连接后客户端与服务端是完全平等的，可以互相主动请求。扩展了浏览器与服务器的通信功能，是服务端也可以主动向客户端发送数据。</span><br></pre></td></tr></table></figure>
+
+<h6 id="websocket心跳及重连机制"><a href="#websocket心跳及重连机制" class="headerlink" title="websocket心跳及重连机制"></a>websocket心跳及重连机制</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在使用websocket的过程中，有时候会遇到网络断开的情况，但是在网络断开的时候服务器并没有触发oneclose的事件。这样会有：服务器会继续向客户端发送多余的连接，并且这些数据还会丢失。所以就需要一种机制来检测客户端和服务端是否处于正常的连接状态。因此就有了websocket的心跳。</span><br></pre></td></tr></table></figure>
+
+<h6 id="websocket心跳包"><a href="#websocket心跳包" class="headerlink" title="websocket心跳包"></a>websocket心跳包</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">所谓的心跳包就是服务器每隔固定的一段时间向客户端发送一个包，如果客户端收到这个包证明它还活着，同时它也会给服务端也返回一个包，证明它也还活着。</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="JSON-Web-Token"><a href="#JSON-Web-Token" class="headerlink" title="JSON Web Token"></a>JSON Web Token</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">jwt</span><br><span class="line">基于jwt的token身份认证方案</span><br><span class="line">	Browser                                  Server</span><br><span class="line">    		<span class="number">1.</span>发送带有用户名密码的post请求</span><br><span class="line">        							<span class="number">2.</span>验证通过后生成jwt并将用户信息放入jwt</span><br><span class="line">            		<span class="number">3.</span>将jwt存入cookie中</span><br><span class="line">                	<span class="number">4.</span>发送带有jwt cookie的请求</span><br><span class="line">                    		<span class="number">5.</span>验证签名后从jwt中获取用户信息</span><br><span class="line">                        <span class="number">6.</span>放回响应信息</span><br><span class="line">                        </span><br><span class="line">jwt 特点 体积小，因而传输速度快</span><br><span class="line">传输方式多样，可以通过url/post参数/http头部等方式传输</span><br><span class="line">严格的结构化。它自身(在payload中)就包含了所有与用户有关的验证信息，如用户可以访问路由，访问有效期等信息。</span><br><span class="line">支持跨域验证，可以应用于单点登陆</span><br><span class="line">签名的目的：</span><br><span class="line">	签名实际上是对头部以及载荷内容进行签名。所以，如果说有人对头部以及载荷的内容解码之后进行修改，在进行编码的话，那么新的签名和之前的签名就是不一样的。我们因此可以知道它是一个非法请求进行拦截。这样能保证token不会被纂改。</span><br><span class="line"> 最后，我们将上面拼接完的字符进行加密。在加密的时候，我们还需要提供提供一个密钥(sercet).类似盐</span><br><span class="line"></span><br><span class="line">使用json web token的好处？</span><br><span class="line"><span class="number">1.</span>性能问题。jwt方式将用户状态分散到了客户端中，相比于session,可以很明显减轻服务端的内存压力。session方式存储用户id的最大弊病在于session是存储在服务器端的，所以需要占用大量服务器内存，一般还需借助nosql和缓存机制来实现session的存储，如果分布式应用还需session共享。</span><br><span class="line"><span class="number">2.</span>单点登陆.jwt能轻松的实现单点登陆，因为用户的状态已经被传送到了客户端。tokem可保存自定义信息，如用户基本信息。</span><br><span class="line"><span class="number">3.</span>前后端分离。以前的传统模式下，后台对应的客户端就是浏览器，就可以使用session+cookie的方式实现登陆，但是在前后分离的情况下，后端只负责通过暴力的restApi提供数据，而页面的渲染，路由都由前端完成。因为rest是无状态的，因此也就不会有session记录到服务器端。</span><br><span class="line"><span class="number">4.</span>兼容性。支持移动设备，支持跨域程序调用，cookied是不允许跨域访问的。</span><br><span class="line"><span class="number">5.</span>可扩展性。jwt是无状态的，特别适用于分布式站点的单点登陆。</span><br><span class="line">jwt不适合存放大量信息，信息越多token越长。</span><br></pre></td></tr></table></figure>
+
+<h6 id="什么是csrf"><a href="#什么是csrf" class="headerlink" title="什么是csrf"></a>什么是csrf</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CSRF 中文名称：跨站请求伪造。</span><br><span class="line">你可以这么理解csrf攻击：攻击者盗用了你的身份，以你的名义发送恶意请求。csrf能够做的事情包括:以你名义发送邮件，发信息，盗取你的账号，甚至于购买商品，虚拟货币转账.....个人隐私泄露以及财产安全。</span><br></pre></td></tr></table></figure>
+
+<h6 id="什么是sql注入"><a href="#什么是sql注入" class="headerlink" title="什么是sql注入"></a>什么是sql注入</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sql注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据(比如用户敏感数据)隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。</span><br><span class="line">将sql代码注入到sql服务器中，解析并执行的一种攻击手法。</span><br><span class="line"></span><br><span class="line">任何防止？</span><br><span class="line"><span class="number">1.</span>过滤用户输入参数中的特殊字符，降低风险。</span><br><span class="line"><span class="number">2.</span>禁止通过字符串拼接sql语句，要严格适用参数绑定来传入参数。</span><br><span class="line"><span class="number">3.</span>合理使用数据库框架提供的机制。禁止拼接Sql语句，</span><br><span class="line">就是要正确使用参数化绑定sql变量</span><br></pre></td></tr></table></figure>
+
+<h6 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xss:跨站脚本攻击，为了和前端的css避免重名，简称为xss,是指通过技术手段，向正常用户请求的HTML页面中插入恶意脚本，执行。</span><br><span class="line">    这种攻击主要是用于信息窃取和破坏等目的。</span><br><span class="line">    </span><br><span class="line">关于防范xss，主要就是通过对用户输入的数据做过滤或者是转义。总结扼，过滤html标签。</span><br></pre></td></tr></table></figure>
+
+<h6 id="什么是celery"><a href="#什么是celery" class="headerlink" title="什么是celery?"></a>什么是celery?</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Django的请求处理过程都是同步的无法实现异步任务，若要实现异步任务处理需要通过其他方式(前端的一般解决方案是ajax操作)，而后台celery就是不错的选择。倘若一个用户在执行某些操作需要等待很就才放回，这大大降低了网站的吞吐量。</span><br><span class="line">celery是由python开发，简单，灵活，可靠的分布式任务队列，其本质是生产者消费者模型，生产者发送任务到消息队列，消费者负责处理任务。celery侧重于实时操作</span><br><span class="line">高可用:当任务执行失败或执行过程中发送连续中断，celery会自动吃屎重新执行任务。</span><br><span class="line">快速:一个单进程的celery每分钟可处理上百万个任务</span><br><span class="line"> 灵活:几乎celery的每个组件都可以被扩展及自定制</span><br><span class="line">工作原理：</span><br><span class="line"></span><br><span class="line">任务模块Task包含异步任务和定时任务。其中，异步任务通常在业务逻辑中被触发并发往消息队列，而定时任务由Celery Beat进程周期性地将任务发往消息队列； 任务执行单元Worker实时监视消息队列获取队列中的任务执行； Woker执行完任务后将结果保存在Backend中;</span><br><span class="line"></span><br><span class="line">消息中间件Broker 　　消息中间件Broker官方提供了很多备选方案，支持RabbitMQ、Redis、Amazon SQS、MongoDB、Memcached 等，官方推荐RabbitMQ。</span><br><span class="line"></span><br><span class="line">任务执行单元Worker 　　Worker是任务执行单元，负责从消息队列中取出任务执行，它可以启动一个或者多个，也可以启动在不同的机器节点，这就是其实现分布式的核心。</span><br><span class="line"></span><br><span class="line">结果存储Backend 　　Backend结果存储官方也提供了诸多的存储方式支持：RabbitMQ、 Redis、Memcached,SQLAlchemy, Django ORM、Apache Cassandra、Elasticsearch。</span><br><span class="line"></span><br><span class="line">Celery管理和监控功能是通过flower组件实现的，flower组件不仅仅提供监控功能，还提供HTTP API可实现对woker和task的管理。</span><br></pre></td></tr></table></figure>
+
+<h6 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">因为浏览器的同源策略规定某域下的客户端在没明确授权的情况下，不能读写另一个域的资源</span><br><span class="line">而在实际开发中，前后端是常常相互分离的。</span><br><span class="line">所谓同源(域名，协议，端口相同)</span><br></pre></td></tr></table></figure>
+
+<h6 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>开头(请求成功)表示成功处理了请求的状态码</span><br><span class="line"><span class="number">200</span>(成功)服务器已成功处理了请求</span><br><span class="line"><span class="number">201</span> （已创建） 请求成功并且服务器创建了新的资源。</span><br><span class="line"></span><br><span class="line"><span class="number">202</span> （已接受） 服务器已接受请求，但尚未处理。</span><br><span class="line"></span><br><span class="line"><span class="number">203</span> （非授权信息） 服务器已成功处理了请求，但返回的信息可能来自另一来源。</span><br><span class="line"></span><br><span class="line"><span class="number">204</span> （无内容） 服务器成功处理了请求，但没有返回任何内容。</span><br><span class="line"></span><br><span class="line"><span class="number">205</span> （重置内容） 服务器成功处理了请求，但没有返回任何内容。</span><br><span class="line"></span><br><span class="line"><span class="number">206</span> （部分内容） 服务器成功处理了部分 GET 请求。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>开头 （请求被重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</span><br><span class="line"></span><br><span class="line"><span class="number">300</span> （多种选择） 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</span><br><span class="line"></span><br><span class="line"><span class="number">301</span> （永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。</span><br><span class="line"></span><br><span class="line"><span class="number">302</span> （临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</span><br><span class="line"></span><br><span class="line"><span class="number">303</span> （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。</span><br><span class="line"></span><br><span class="line"><span class="number">304</span> （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。</span><br><span class="line"></span><br><span class="line"><span class="number">305</span> （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。</span><br><span class="line"></span><br><span class="line"><span class="number">307</span> （临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。</span><br><span class="line"></span><br><span class="line"><span class="number">400</span> （错误请求） 服务器不理解请求的语法。</span><br><span class="line"></span><br><span class="line"><span class="number">401</span> （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</span><br><span class="line"></span><br><span class="line"><span class="number">403</span> （禁止） 服务器拒绝请求。</span><br><span class="line"></span><br><span class="line"><span class="number">404</span> （未找到） 服务器找不到请求的网页。</span><br><span class="line"></span><br><span class="line"><span class="number">405</span> （方法禁用） 禁用请求中指定的方法。</span><br><span class="line"></span><br><span class="line"><span class="number">406</span> （不接受） 无法使用请求的内容特性响应请求的网页。</span><br><span class="line"></span><br><span class="line"><span class="number">407</span> （需要代理授权） 此状态代码与 <span class="number">401</span>（未授权）类似，但指定请求者应当授权使用代理。</span><br><span class="line"></span><br><span class="line"><span class="number">408</span> （请求超时） 服务器等候请求时发生超时。</span><br><span class="line"></span><br><span class="line"><span class="number">409</span> （冲突） 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。</span><br><span class="line"></span><br><span class="line"><span class="number">410</span> （已删除） 如果请求的资源已永久删除，服务器就会返回此响应。</span><br><span class="line"></span><br><span class="line"><span class="number">411</span> （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。</span><br><span class="line"></span><br><span class="line"><span class="number">412</span> （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。</span><br><span class="line"></span><br><span class="line"><span class="number">413</span> （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</span><br><span class="line"></span><br><span class="line"><span class="number">414</span> （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。</span><br><span class="line"></span><br><span class="line"><span class="number">415</span> （不支持的媒体类型） 请求的格式不受请求页面的支持。</span><br><span class="line"></span><br><span class="line"><span class="number">416</span> （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。</span><br><span class="line"></span><br><span class="line"><span class="number">417</span> （未满足期望值） 服务器未满足<span class="string">"期望"</span>请求标头字段的要求。</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</span><br><span class="line"></span><br><span class="line"><span class="number">500</span> （服务器内部错误） 服务器遇到错误，无法完成请求。</span><br><span class="line"></span><br><span class="line"><span class="number">501</span> （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。</span><br><span class="line"></span><br><span class="line"><span class="number">502</span> （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。</span><br><span class="line"></span><br><span class="line"><span class="number">503</span> （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。</span><br><span class="line"></span><br><span class="line"><span class="number">504</span> （网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。</span><br><span class="line"></span><br><span class="line"><span class="number">505</span> （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</span><br></pre></td></tr></table></figure>
+
+<h6 id="列举django-orm中所有的方法"><a href="#列举django-orm中所有的方法" class="headerlink" title="列举django orm中所有的方法"></a>列举django orm中所有的方法</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">从数据库中查询出来的结果一般是一个集合。Queryset</span><br><span class="line">filter过滤     all放回所有结果</span><br><span class="line">exclude排除    distince 去除查询结果中重复的行</span><br><span class="line">order_by排序</span><br><span class="line">reverse反向排序</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+    <div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://luckyle.top/Linux/Gunicorn-Nginx-Web%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -246,7 +367,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-05 20:56:18" itemprop="dateModified" datetime="2020-01-05T20:56:18+08:00">2020-01-05</time>
+                <time title="修改时间：2020-01-06 14:59:03" itemprop="dateModified" datetime="2020-01-06T14:59:03+08:00">2020-01-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -395,7 +516,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -472,12 +593,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">75k</span>
+    <span title="站点总字数">78k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:08</span>
+    <span title="站点阅读时长">1:11</span>
 </div>
 
 
@@ -494,7 +615,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38.2k字</span>
+  <span class="post-count">博客全站共40.7k字</span>
 </div>
 
 

@@ -48,18 +48,17 @@
   };
 </script>
 
-  <meta name="description" content="构建爬虫系统一、实现目的爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。">
-<meta name="keywords" content="Linux">
+  <meta name="description" content="Mysql主从复制 什么是主从复制？主从复制(也称AB复制)允许将来自一个Mysql数据库服务器(主服务器)的数据复制到一个或多个Mysql数据库服务器(从服务器) 主从复制至少需要两台服务器，或两个mysql服务，可以配置一主多从，多主多从 建立于某个业务数据库一样的数据库环境，即为主从复制 一般情况下，主库用以写，而从库用以读 为什么要搭建主从复制？1.构建主从热备，当某天数据库宕机或数据丢失">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟环境">
-<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;Linux&#x2F;%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&#x2F;index.html">
+<meta property="og:title" content="Mysql主从复制">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;uncategorized&#x2F;Mysql%E5%9F%BA%E7%A1%80&#x2F;index.html">
 <meta property="og:site_name" content="可乐">
-<meta property="og:description" content="构建爬虫系统一、实现目的爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。">
+<meta property="og:description" content="Mysql主从复制 什么是主从复制？主从复制(也称AB复制)允许将来自一个Mysql数据库服务器(主服务器)的数据复制到一个或多个Mysql数据库服务器(从服务器) 主从复制至少需要两台服务器，或两个mysql服务，可以配置一主多从，多主多从 建立于某个业务数据库一样的数据库环境，即为主从复制 一般情况下，主库用以写，而从库用以读 为什么要搭建主从复制？1.构建主从热备，当某天数据库宕机或数据丢失">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-25T08:21:45.972Z">
+<meta property="og:updated_time" content="2020-01-12T11:11:11.002Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://luckyle.top/Linux/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">
+<link rel="canonical" href="https://luckyle.top/uncategorized/Mysql%E5%9F%BA%E7%A1%80/">
 
 
 <script id="page-configurations">
@@ -71,7 +70,7 @@
   };
 </script>
 
-  <title>虚拟环境 | 可乐</title>
+  <title>Mysql主从复制 | 可乐</title>
   
 
 
@@ -217,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/Linux/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/uncategorized/Mysql%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -230,7 +229,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          虚拟环境
+          Mysql主从复制
         </h1>
 
         <div class="post-meta">
@@ -240,26 +239,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-11-24 15:41:57" itemprop="dateCreated datePublished" datetime="2018-11-24T15:41:57+08:00">2018-11-24</time>
+              <time title="创建时间：2020-01-06 15:04:02" itemprop="dateCreated datePublished" datetime="2020-01-06T15:04:02+08:00">2020-01-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-25 16:21:45" itemprop="dateModified" datetime="2019-12-25T16:21:45+08:00">2019-12-25</time>
+                <time title="修改时间：2020-01-12 19:11:11" itemprop="dateModified" datetime="2020-01-12T19:11:11+08:00">2020-01-12</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -267,14 +255,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -286,33 +274,75 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="构建爬虫系统"><a href="#构建爬虫系统" class="headerlink" title="构建爬虫系统"></a>构建爬虫系统</h1><h2 id="一、实现目的"><a href="#一、实现目的" class="headerlink" title="一、实现目的"></a>一、实现目的</h2><p>爬虫是文档的重要来源，所以这一节也比较重要，我会从爬虫的基础讲起，爬虫的构成如何编写爬虫等等，希望大家能跟着文档一步步动手做下去。<a id="more"></a></p>
-<h4 id="1-1-实验知识点"><a href="#1-1-实验知识点" class="headerlink" title="1.1 实验知识点"></a>1.1 实验知识点</h4><ul>
-<li>爬虫的基本概念</li>
-<li>异步爬虫框架ruia的使用介绍</li>
-<li>基于ruia构造异步爬虫系统</li>
-</ul>
-<h4 id="1-2-实验环境"><a href="#1-2-实验环境" class="headerlink" title="1.2 实验环境"></a>1.2 实验环境</h4><ul>
-<li>Python 3.6+</li>
-<li>MongoDB</li>
-</ul>
-<h2 id="二、开发准备"><a href="#二、开发准备" class="headerlink" title="二、开发准备"></a>二、开发准备</h2><h5 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建项目代码目录</span></span><br><span class="line"><span class="attr">mkdir</span> <span class="string">-p ~/Code/monkey</span></span><br><span class="line"><span class="comment"># 进入项目根目录</span></span><br><span class="line"><span class="attr">cd</span> <span class="string">~/Code/monkey</span></span><br><span class="line"><span class="comment"># 创建一个名叫env的虚拟环境(注：Python3自带pyenv)</span></span><br><span class="line"><span class="attr">python3</span> <span class="string">-m venv env  </span></span><br><span class="line"><span class="comment"># 激活虚拟环境</span></span><br><span class="line"><span class="attr">source</span> <span class="string">env/bin/activate</span></span><br><span class="line"><span class="comment"># 安装项目依赖的包</span></span><br><span class="line"><span class="attr">pip</span> <span class="string">install -r requirements.txt</span></span><br></pre></td></tr></table></figure>
+        <h4 id="Mysql主从复制"><a href="#Mysql主从复制" class="headerlink" title="Mysql主从复制"></a>Mysql主从复制</h4><hr>
+<h5 id="什么是主从复制？"><a href="#什么是主从复制？" class="headerlink" title="什么是主从复制？"></a>什么是主从复制？</h5><p>主从复制(也称AB复制)允许将来自一个Mysql数据库服务器(主服务器)的数据复制到一个或多个Mysql数据库服务器(从服务器)</p>
+<p>主从复制至少需要两台服务器，或两个mysql服务，可以配置一主多从，多主多从</p>
+<p>建立于某个业务数据库一样的数据库环境，即为主从复制</p>
+<p>一般情况下，主库用以写，而从库用以读</p>
+<h5 id="为什么要搭建主从复制？"><a href="#为什么要搭建主从复制？" class="headerlink" title="为什么要搭建主从复制？"></a>为什么要搭建主从复制？</h5><p>1.构建主从热备，当某天数据库宕机或数据丢失情况，可以有备份数据库继续工作</p>
+<p>2.降低IO频次，多库之间可以合理分配读写压力，提高单个数据库服务的数据库访问压力</p>
+<p>3.隔离读写，在某些锁表情况下，可以使数据库读操作继续进行</p>
+<h5 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h5><p>利用数据库 bin-log二进制文件，该文件包含有数据库操作的所有SQL语句</p>
+<p>复制该文件至其余数据库服务中并执行即可</p>
+<h5 id="主从复制过程"><a href="#主从复制过程" class="headerlink" title="主从复制过程"></a>主从复制过程</h5><p>当主库具有新数据时，主库会被从库请求，建立线程进行连接，用以传输binlog日志</p>
+<p>从库开启两个线程</p>
+<p>​    A线程:也叫做IO线程，连接主库，并请求binlog中的更新记录至从库中，写入从库的relaylog文件中</p>
+<p>​    B线程:也叫做SQL线程，读取relaylog文件中的更新操作并执行</p>
+<p>如果，有多个从库同时存在，主库会为每个从库建立一个binlog输出线程</p>
+<h4 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h4><p>索引是存储引擎用于快速找到记录的一种数据结构。</p>
+<p>一个常见的例子就是书的目录，我们都已经养成了看目录的习惯，拿到一本书时，我们首先会去查看它的目录，并且当我们要查找某个内容时，我们会在目录中查找，然后找到该片段相应的页码，在根据相应的页码去书中查找，如果没有索引(目录)的话，我们就只能一页一页的去查找了。</p>
+<p>在MySQL中,假设我们有一张如下记录的表:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>xiaoming</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>xiaohong</td>
+<td>15</td>
+</tr>
+<tr>
+<td>3</td>
+<td>xiaofang</td>
+<td>18</td>
+</tr>
+</tbody></table>
+<p>如果我们希望查找到年龄为15的人的名字,在没有索引的情况下我们只能遍历所有的数据去做逐一的对比,那么时间复杂度是O(n).</p>
+<p>而如果我们在插入数据的过程中, 额外维护一个数组,将age字段有序的存储.得到如下数组.</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">10</span>,<span class="number">15</span>,<span class="number">18</span>,<span class="number">20</span>,<span class="number">21</span>]</span><br><span class="line"> |  |  |  |  |</span><br><span class="line">[x1,x4,x2,x3,x5]</span><br></pre></td></tr></table></figure>
 
-<h2 id="三、小试牛刀"><a href="#三、小试牛刀" class="headerlink" title="三、小试牛刀"></a>三、小试牛刀</h2><h3 id="3-1-使用requests-lxml爬取网页"><a href="#3-1-使用requests-lxml爬取网页" class="headerlink" title="3.1 使用requests + lxml爬取网页"></a>3.1 使用requests + lxml爬取网页</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注：以下代码未经过运行测试，只是手写思路</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://movie.douban.com/subject/1292052/'</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Safari/605.1.15"</span></span><br><span class="line">&#125;</span><br><span class="line">r = requests.get(url,headers=headers)</span><br><span class="line">tree = etree.HTML(r.text)</span><br><span class="line">el = tree.xpath(<span class="string">'//*[@id="content"]/h1/span[1]/text()'</span>)</span><br><span class="line">print(el)</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-使用ruia框架爬取网页"><a href="#3-2-使用ruia框架爬取网页" class="headerlink" title="3.2 使用ruia框架爬取网页"></a>3.2 使用ruia框架爬取网页</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ruia <span class="keyword">import</span> Item, TextField</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubanItem</span><span class="params">(Item)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    定义爬虫的目标字段</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    title = TextField(css_select=<span class="string">'#content &gt; h1 &gt; span:nth-child(1)'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">async_func = DoubanItem.get_item(url=<span class="string">"https://movie.douban.com/subject/1292052/"</span>)</span><br><span class="line">item = asyncio.get_event_loop().run_until_complete(async_func)</span><br><span class="line">print(item.title)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="上午主要内容总结"><a href="#上午主要内容总结" class="headerlink" title="上午主要内容总结"></a>上午主要内容总结</h2><ul>
-<li><p>掌握快速学习的能力，任何框架都是那么容易</p>
-</li>
-<li><p>做项目时，一定要用虚拟环境，学会使用pip freeze &gt;&gt; requirements.txt命令，学会使用pip install -r requirements.txt</p>
-<p>我们通常会把项目依赖的环境命名为“requirements.txt”</p>
-</li>
-<li><p>学会借力：例如，借助浏览器的copy xpath功能快速定位元素位置</p>
-</li>
-</ul>
+<p>下面的x是模拟数据再磁盘上的存储位置.这个时候如果我们需要查找15岁的人的名字.我们可以对盖数组进行二分查找.众所周知,二分查找的时间复杂度为O(logn).查找到之后再根据具体的位置去获取真正的数据.</p>
+<p>PS:MySQL中的索引不是使用的数组,而是使用的B+树(后面讲),这里用数组举例只是因为比较好理解.</p>
+<h4 id="索引能为我们带来什么？"><a href="#索引能为我们带来什么？" class="headerlink" title="索引能为我们带来什么？"></a>索引能为我们带来什么？</h4><p>如上面所说，索引能帮助我们快速的查找到数据，其次因为索引中的值是顺序储存，那么可以帮助我们进行orderby操作。而且索引中也是存储了真正的值的，因此有一些的查询直接可以在索引中完成。</p>
+<p>总结下索引的优点:</p>
+<p>1.减少查询需要扫描的数据量(加快了查询速度)</p>
+<p>2.减少服务器的排序操作和创建临时表的操作(加快了groupby和orderby等操作)</p>
+<p>3.将服务器的随机IO变为顺序IO(加快查询速度)。</p>
+<p>索引有哪些缺点呢？</p>
+<p>首先索引也是数据，也需要存储，因此会带来额外的存储空间占用。其次，在插入，更新和删除操作的同时，需要维护索引，因此会带来额外的事件开销。</p>
+<p>索引占用磁盘或者内存空间。</p>
+<p>减慢了插入更新操作的速度</p>
+<p>实际上，在一定数据范围内(索引没有超级多的情况下)，建立索引带来的开销是远远小于它带来的好处，但是我们仍然要防止索引的滥用。</p>
+<h4 id="都有哪些类型的索引？"><a href="#都有哪些类型的索引？" class="headerlink" title="都有哪些类型的索引？"></a>都有哪些类型的索引？</h4><p>对于Mysq来说，在服务器层并不实现索引，而不是交给存储引擎来实现的，因此不同的存储引擎实现的索引类型不同意义。INNODB作为当前使用最广泛的存储引擎，使用的是B+树索引，因此我们大部分事件提到的索引也都是指的它。</p>
+<p>Mysql主要有以下几种索引：</p>
+<p>B-树索引/B+树索引</p>
+<p>哈希索引</p>
+<p>空间数据索引</p>
+<p>全文索引</p>
+<h6 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h6><p>B-树是一颗多路平衡查找树，对于一颗M阶的B-树有以下的性质:</p>
+<p>根节点至少有两个子女.<br>每个节点包含k-1个元素和k个孩子,其中m/2 &lt;= k &lt;= m.<br>每一个叶子节点都包含k-1个元素,其中m/2 &lt;= k &lt;= m.<br>所有的叶子节点位于同一层.<br>每个节点中的元素从小到大排列,那么k-1个元素正好是k个孩子包含的值域的划分.<br>这么说可能会有一些难理解,可以将B-树理解为一棵更加矮胖的二叉搜索树.</p>
+<h6 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h6><p>B+树是B-树的进阶版本，在B-树的基础上有做了如下的限制:</p>
+<p>1.每个中间节点不保存数据，只用来索引，也就意味着所有非叶子结点的值都被保存了一份在叶子节点中。</p>
+<p>2.叶子节点之间根据自身的顺序进行了链接。</p>
 
     </div>
 
@@ -338,7 +368,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://luckyle.top/Linux/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" title="虚拟环境">https://luckyle.top/Linux/虚拟环境/</a>
+    <a href="https://luckyle.top/uncategorized/Mysql%E5%9F%BA%E7%A1%80/" title="Mysql主从复制">https://luckyle.top/uncategorized/Mysql基础/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -348,9 +378,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-          </div>
 
         
 
@@ -358,12 +385,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Live/%E5%9B%9B%E5%8D%81%E5%B2%81%E7%9A%84%E5%90%83%E9%B8%A1%E7%8E%A9%E5%AE%B6/" rel="prev" title="四十岁的吃鸡玩家">
-      <i class="fa fa-chevron-left"></i> 四十岁的吃鸡玩家
+    <a href="/Vue/vue%E6%8B%A6%E6%88%AA%E5%99%A8/" rel="prev" title="vue拦截器">
+      <i class="fa fa-chevron-left"></i> vue拦截器
     </a></div>
       <div class="post-nav-item">
-    <a href="/Python/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="next" title="八大排序">
-      八大排序 <i class="fa fa-chevron-right"></i>
+    <a href="/Linux/%E5%88%A9%E7%94%A8Docker%E6%90%AD%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFastDfs/" rel="next" title="利用Docker搭建分布式文件系统FastDfs">
+      利用Docker搭建分布式文件系统FastDfs <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -426,7 +453,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建爬虫系统"><span class="nav-text">构建爬虫系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、实现目的"><span class="nav-text">一、实现目的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-实验知识点"><span class="nav-text">1.1 实验知识点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-实验环境"><span class="nav-text">1.2 实验环境</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、开发准备"><span class="nav-text">二、开发准备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建虚拟环境"><span class="nav-text">创建虚拟环境</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、小试牛刀"><span class="nav-text">三、小试牛刀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-使用requests-lxml爬取网页"><span class="nav-text">3.1 使用requests + lxml爬取网页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-使用ruia框架爬取网页"><span class="nav-text">3.2 使用ruia框架爬取网页</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上午主要内容总结"><span class="nav-text">上午主要内容总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mysql主从复制"><span class="nav-text">Mysql主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是主从复制？"><span class="nav-text">什么是主从复制？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么要搭建主从复制？"><span class="nav-text">为什么要搭建主从复制？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主从复制原理"><span class="nav-text">主从复制原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主从复制过程"><span class="nav-text">主从复制过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是索引"><span class="nav-text">什么是索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引能为我们带来什么？"><span class="nav-text">索引能为我们带来什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#都有哪些类型的索引？"><span class="nav-text">都有哪些类型的索引？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#B-树"><span class="nav-text">B-树</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#B-树-1"><span class="nav-text">B+树</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
