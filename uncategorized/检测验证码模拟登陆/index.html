@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://luckyle.top').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="爬虫：实时api(百度ai)检测验证码模拟登录(Selenium)页面老板让自动登录这个页面：https:&#x2F;&#x2F;www.dianxiaomi.com&#x2F;index.htm，毫无疑问登录页面基本都会有在线验证码，要破解这个验证码当然不是啥难事，诚然可以自己去训练模型，然而大量的训练集测试数据还得自己去打码，说白了，不值当，有现成的接口可以用，何乐而不为，于是我们向万恶的百度伸出了魔爪。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="检测验证码模拟登陆">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;uncategorized&#x2F;%E6%A3%80%E6%B5%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86&#x2F;index.html">
+<meta property="og:site_name" content="可乐">
+<meta property="og:description" content="爬虫：实时api(百度ai)检测验证码模拟登录(Selenium)页面老板让自动登录这个页面：https:&#x2F;&#x2F;www.dianxiaomi.com&#x2F;index.htm，毫无疑问登录页面基本都会有在线验证码，要破解这个验证码当然不是啥难事，诚然可以自己去训练模型，然而大量的训练集测试数据还得自己去打码，说白了，不值当，有现成的接口可以用，何乐而不为，于是我们向万恶的百度伸出了魔爪。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-15T10:15:07.902Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://luckyle.top/uncategorized/%E6%A3%80%E6%B5%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>检测验证码模拟登陆 | 可乐</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="可乐" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">可乐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">“我在寻找丢失的记忆”“说人话!”“我在复习”</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/uncategorized/%E6%A3%80%E6%B5%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          检测验证码模拟登陆
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-15 18:12:48 / 修改时间：18:15:07" itemprop="dateCreated datePublished" datetime="2020-05-15T18:12:48+08:00">2020-05-15</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="爬虫：实时api-百度ai-检测验证码模拟登录-Selenium-页面"><a href="#爬虫：实时api-百度ai-检测验证码模拟登录-Selenium-页面" class="headerlink" title="爬虫：实时api(百度ai)检测验证码模拟登录(Selenium)页面"></a>爬虫：实时api(百度ai)检测验证码模拟登录(Selenium)页面</h2><p>老板让自动登录这个页面：<a href="https://www.dianxiaomi.com/index.htm，毫无疑问登录页面基本都会有在线验证码，要破解这个验证码当然不是啥难事，诚然可以自己去训练模型，然而大量的训练集测试数据还得自己去打码，说白了，不值当，有现成的接口可以用，何乐而不为，于是我们向万恶的百度伸出了魔爪。" target="_blank" rel="noopener">https://www.dianxiaomi.com/index.htm，毫无疑问登录页面基本都会有在线验证码，要破解这个验证码当然不是啥难事，诚然可以自己去训练模型，然而大量的训练集测试数据还得自己去打码，说白了，不值当，有现成的接口可以用，何乐而不为，于是我们向万恶的百度伸出了魔爪。</a><a id="more"></a></p>
+<p>  首先申请百度api开发平台：<a href="https://cloud.baidu.com/" target="_blank" rel="noopener">https://cloud.baidu.com/</a></p>
+<p>  随后在人工智能-》文字识别 模块里建立一个应用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">人工智能 ----&gt; 文字识别</span><br></pre></td></tr></table></figure>
+
+<p>建立成功之后，会分配给你一个key(APl key)和secret(Secret key)</p>
+<p>只不过这个接口免费版的每秒最多只能请求两次，一天有500次的请求机会</p>
+<p>这里推荐适用高精度的接口，普通的识别率太差了</p>
+<h2 id="接口描述"><a href="#接口描述" class="headerlink" title="接口描述"></a>接口描述</h2><p>基于业界领先的深度学习技术，提供多场景、多语种、高精度的整图文字检测和识别服务，多项ICDAR指标居世界第一。</p>
+<h2 id="请求说明"><a href="#请求说明" class="headerlink" title="请求说明"></a>请求说明</h2><p><strong>请求示例</strong></p>
+<p>HTTP 方法：<code>POST</code></p>
+<p>请求URL： <code>https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic</code></p>
+<p>URL参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>access_token</td>
+<td>通过API Key和Secret Key获取的access_token,参考“<a href="http://ai.baidu.com/docs#/Auth" target="_blank" rel="noopener">Access Token获取</a>”</td>
+</tr>
+</tbody></table>
+<p>Header如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+</tr>
+</tbody></table>
+<p>Body中放置请求参数，参数详情如下：</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>是否必选</th>
+<th>类型</th>
+<th>可选值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>image</td>
+<td>和url二选一</td>
+<td>string</td>
+<td>-</td>
+<td>图像数据，base64编码后进行urlencode，要求base64编码和urlencode后大小不超过4M，最短边至少15px，最长边最大4096px,支持jjpg/jpeg/png/bmp格式，当image字段存在时url字段失效</td>
+</tr>
+<tr>
+<td>url</td>
+<td>和image二选一</td>
+<td>string</td>
+<td>-</td>
+<td>图片完整URL，URL长度不超过1024字节，URL对应的图片base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/jpeg/png/bmp格式，当image字段存在时url字段失效，不支持https的图片链接</td>
+</tr>
+<tr>
+<td>language_type</td>
+<td>否</td>
+<td>string</td>
+<td>CHN_ENG ENG JAP KOR FRE SPA POR GER ITA RUS</td>
+<td>识别语言类型，默认为CHN_ENG 可选值包括： - CHN_ENG：中英文混合 - ENG：英文 - JAP：日语 - KOR：韩语 - FRE：法语 - SPA：西班牙语 - POR：葡萄牙语 - GER：德语 - ITA：意大利语 - RUS：俄语</td>
+</tr>
+<tr>
+<td>detect_direction</td>
+<td>否</td>
+<td>string</td>
+<td>true/false</td>
+<td>是否检测图像朝向，默认不检测，即：false。朝向是指输入图像是正常方向、逆时针旋转90/180/270度。可选值包括: - true：检测朝向； - false：不检测朝向。</td>
+</tr>
+<tr>
+<td>detect_language</td>
+<td>否</td>
+<td>string</td>
+<td>true/false</td>
+<td>是否检测语言，默认不检测。当前支持（中文、英语、日语、韩语）</td>
+</tr>
+<tr>
+<td>paragraph</td>
+<td>否</td>
+<td>string</td>
+<td>true/false</td>
+<td>是否输出段落信息</td>
+</tr>
+<tr>
+<td>probability</td>
+<td>否</td>
+<td>string</td>
+<td>true/false</td>
+<td>是否返回识别结果中每一行的置信度</td>
+</tr>
+</tbody></table>
+<p>第一步，获取access_token</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res = requests.get(<span class="string">"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=你的key&amp;client_secret=你的秘钥"</span>)</span><br><span class="line"></span><br><span class="line">res = json.loads(str(res.text))</span><br><span class="line">token = res[<span class="string">'access_token'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>然后请求高精度识别接口，需要注意一点，这里图片需要转换成base64编码 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">temp_url = <span class="string">'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token='</span> + token</span><br><span class="line">temp_headers = &#123;<span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>&#125;</span><br><span class="line">temp_file = open(<span class="string">'./test.png'</span>, <span class="string">'rb'</span>)</span><br><span class="line">temp_image = temp_file.read()</span><br><span class="line">temp_file.close()</span><br><span class="line">temp_data = &#123;<span class="string">'image'</span>: base64.b64encode(temp_image)&#125;</span><br><span class="line">temp_data = urllib.parse.urlencode(temp_data)</span><br><span class="line">temp_res = requests.post(url=temp_url, data=temp_data, headers=temp_headers)</span><br><span class="line"></span><br><span class="line">res = json.loads(str(temp_res.text))</span><br><span class="line">code = res[<span class="string">'words_result'</span>][<span class="number">0</span>][<span class="string">'words'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>百度接口会将识别出的验证码文字返回给你，当然了有一定误差是在所难免的</p>
+<p>现在验证码识别已经搞定，问题的关键是，每次打开页面的时候，怎么将图片传给百度接口</p>
+<p>其实很简单，我们可以考虑适用Selenium自动化工具来截图，Selenium是可以根据选择器做局部截图的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nodes = driver.find_element_by_id(<span class="string">'loginImgVcode'</span>)</span><br><span class="line">nodes.screenshot(<span class="string">'test.png'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>虽然可以截图，但是其实发现有东西干扰了验证码图片，这样的干扰会让识别产生误差，当然这些html标签是可以移除的，适用Selenium运行js代码来删除这些干扰元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除元素</span></span><br><span class="line">js = <span class="string">"var elem = document.getElementsByClassName('dnf');elem[0].parentNode.removeChild(elem[0]);"</span></span><br><span class="line">driver.execute_script(js)</span><br><span class="line"></span><br><span class="line">js = <span class="string">"var elem = document.getElementsByClassName('qqshow');elem[0].parentNode.removeChild(elem[0]);"</span></span><br><span class="line">driver.execute_script(js)</span><br><span class="line"></span><br><span class="line">js = <span class="string">"var elem = document.getElementsByClassName('QR');elem[0].parentNode.removeChild(elem[0]);"</span></span><br><span class="line">driver.execute_script(js)</span><br></pre></td></tr></table></figure>
+
+<p>这里还有个技巧，可以提高百度api的识别准确度，就是利用opencv对验证码进行降噪去色的操作</p>
+<p>首先安装opencv</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install opencv-python</span><br></pre></td></tr></table></figure>
+
+<p>然后对原图进行去色处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">'./code.png'</span>, cv2.IMREAD_GRAYSCALE)</span><br><span class="line">print(<span class="string">"cv2.imread(imgfile, cv2.IMREAD_GRAYSCALE)结果如下："</span>)</span><br><span class="line">print(<span class="string">'大小：&#123;&#125;'</span>.format(img.shape))</span><br><span class="line">print(<span class="string">"类型：%s"</span>%type(img))</span><br><span class="line">print(img)</span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">'code1.png'</span>, img)</span><br></pre></td></tr></table></figure>
+
+<p>Selenium驱动下载地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://npm.taobao.org/mirrors/chromedriver/</span><br></pre></td></tr></table></figure>
+
+<p>剩下的就很简单了，直接利用Selenium输入账号密码以及验证码就可以自动登陆了</p>
+<p>完整代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#selenium 截图</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.get(<span class="string">'https://www.dianxiaomi.com/index.htm'</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除元素</span></span><br><span class="line">js = <span class="string">"var elem = document.getElementsByClassName('dnf');elem[0].parentNode.removeChild(elem[0]);"</span></span><br><span class="line">driver.execute_script(js)</span><br><span class="line"></span><br><span class="line">js = <span class="string">"var elem = document.getElementsByClassName('qqshow');elem[0].parentNode.removeChild(elem[0]);"</span></span><br><span class="line">driver.execute_script(js)</span><br><span class="line"></span><br><span class="line">js = <span class="string">"var elem = document.getElementsByClassName('QR');elem[0].parentNode.removeChild(elem[0]);"</span></span><br><span class="line">driver.execute_script(js)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nodes = driver.find_element_by_id(<span class="string">'loginImgVcode'</span>)</span><br><span class="line">nodes.screenshot(<span class="string">'test.png'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#用户名 exampleInputName exampleInputPassword</span></span><br><span class="line"></span><br><span class="line">driver.find_element_by_id(<span class="string">'exampleInputName'</span>).send_keys(<span class="string">'18231327142'</span>)</span><br><span class="line"></span><br><span class="line">driver.find_element_by_id(<span class="string">'exampleInputPassword'</span>).send_keys(<span class="string">'密码'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#请求百度api接口</span></span><br><span class="line"></span><br><span class="line">res = requests.get(<span class="string">"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=你的key&amp;client_secret=你的秘钥"</span>)</span><br><span class="line"></span><br><span class="line">res = json.loads(str(res.text))</span><br><span class="line">token = res[<span class="string">'access_token'</span>]</span><br><span class="line"></span><br><span class="line">temp_url = <span class="string">'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token='</span> + token</span><br><span class="line">temp_headers = &#123;<span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>&#125;</span><br><span class="line">temp_file = open(<span class="string">'./test.png'</span>, <span class="string">'rb'</span>)</span><br><span class="line">temp_image = temp_file.read()</span><br><span class="line">temp_file.close()</span><br><span class="line">temp_data = &#123;<span class="string">'image'</span>: base64.b64encode(temp_image)&#125;</span><br><span class="line">temp_data = urllib.parse.urlencode(temp_data)</span><br><span class="line">temp_res = requests.post(url=temp_url, data=temp_data, headers=temp_headers)</span><br><span class="line"></span><br><span class="line">res = json.loads(str(temp_res.text))</span><br><span class="line">print(res)</span><br><span class="line">code = res[<span class="string">'words_result'</span>][<span class="number">0</span>][<span class="string">'words'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">driver.find_element_by_id(<span class="string">'loginVerifyCode'</span>).send_keys(code.strip().replace(<span class="string">' '</span>,<span class="string">''</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#登录按钮</span></span><br><span class="line">driver.find_element_by_id(<span class="string">'loginBtn'</span>).click()</span><br><span class="line"></span><br><span class="line">time.sleep(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">driver.close()</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>杜家乐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://luckyle.top/uncategorized/%E6%A3%80%E6%B5%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86/" title="检测验证码模拟登陆">https://luckyle.top/uncategorized/检测验证码模拟登陆/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/uncategorized/%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/" rel="prev" title="协同过滤算法">
+      <i class="fa fa-chevron-left"></i> 协同过滤算法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/uncategorized/%E8%BF%9B%E7%A8%8B%E9%97%B4%E4%BB%BB%E4%BD%95%E9%80%9A%E4%BF%A1%EF%BC%9F/" rel="next" title="进程间任何通信？">
+      进程间任何通信？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  
+  </div>
+  
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫：实时api-百度ai-检测验证码模拟登录-Selenium-页面"><span class="nav-text">爬虫：实时api(百度ai)检测验证码模拟登录(Selenium)页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口描述"><span class="nav-text">接口描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求说明"><span class="nav-text">请求说明</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="杜家乐"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">杜家乐</p>
+  <div class="site-description" itemprop="description">Progress is not created by contented people..</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1315532054" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1315532054" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://47.97.210.11/" title="http:&#x2F;&#x2F;47.97.210.11&#x2F;" rel="noopener" target="_blank">基于Django搭建博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://changpengfei0.github.io/" title="https:&#x2F;&#x2F;changpengfei0.github.io&#x2F;" rel="noopener" target="_blank">飞弟</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 在很久很久以前 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+
+
+
+  <span class="author" itemprop="copyrightHolder">杜家乐</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:46</span>
+</div>
+
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共51.2k字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script type ="text/javascript" src ="/js/love-click.js"></script> 
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":300,"height":440},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+</html>
