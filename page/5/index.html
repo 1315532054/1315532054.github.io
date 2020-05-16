@@ -215,6 +215,133 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/Python/hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/Python/hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">'hexo快速搭建博客'</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-20 16:23:28" itemprop="dateCreated datePublished" datetime="2019-12-20T16:23:28+08:00">2019-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-25 16:25:11" itemprop="dateModified" datetime="2019-12-25T16:25:11+08:00">2019-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用Hexo建立一个轻量、简易、高逼格的博客</p>
+<pre><code>在之前的一篇文章中，介绍了如何使用Hugo在三分钟之内建立一个简单的个人博客系统，它是基于go lang的，其实，市面上还有一款类似的静态页生成器，就是Hexo 读音/hækso/ ，它是基于node.js的，和Hugo一样，Hexo 正常来说，不需要部署到我们的服务器上，我们的服务器上保存的，其实是基于在hexo通过markdown编写的文章，然后hexo帮我们生成静态的html页面，然后，将生成的html上传到我们的服务器。简而言之：hexo是个静态页面生成、上传的工具。</code></pre><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">首先安装Hexo，在此之前，请确保电脑里已经安装好新版的<span class="keyword">node</span>.<span class="title">js</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>npm install -g hexo-cli</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果感觉安装速度比较慢，可以为<span class="built_in">npm</span>指定国内的源</span><br></pre></td></tr></table></figure>
+
+<p>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装完成后，创建博客项目</span><br></pre></td></tr></table></figure>
+
+<p>hexo init blog</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这样，就建立起了一个<span class="keyword">blog文件夹，进入到blog目录下 </span>cd <span class="keyword">blog，建立第一篇文章</span></span><br></pre></td></tr></table></figure>
+
+<p>hexo new myfirst</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后运行hexo服务</span><br></pre></td></tr></table></figure>
+
+<p>hexo server</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">就可以在本地访问你的博客网站了，默认端口号是<span class="number">4000</span></span><br><span class="line"></span><br><span class="line">那么如何将博客网站打包呢？直接运行打包命令，这样就能使用 Hexo 引擎将 Markdown 格式的文件解析成可以使用浏览器查看的 HTML 文件，HTML 文件存储在 blog/<span class="keyword">public</span> 目录下</span><br></pre></td></tr></table></figure>
+
+<p>hexo generate</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下面我们可以配置一下hexo主题，Hexo 提供了默认主题 landscape，主题的位置在 blog -&gt;themes 文件夹下。主题根据自己喜好可以在网上找到<span class="symbol">:https</span><span class="symbol">://hexo</span>.io/themes/</span><br><span class="line"></span><br><span class="line">主题都放在blog/themes文件夹下面，这我们下载一个新的主题</span><br></pre></td></tr></table></figure>
+
+<p>mkdir themes/next<br>git clone –branch v5.1.2 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a> themes/next</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后在修改 <span class="regexp">/blog/</span>config.yml 文件，将其中的 theme 改成 <span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果没有自己的域名和服务器怎么办？没关系，可以申请 <span class="selector-tag">Github</span> 免费静态内容空间，在<span class="selector-tag">github</span><span class="selector-class">.com</span>注册一个账号，然后创建一个新的仓库</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">仓库名称一定要定义成 账号名<span class="selector-class">.github</span><span class="selector-class">.io</span>，这种形式，注意账号名一定要和你的<span class="selector-tag">github</span>当前登录的账号吻合</span><br></pre></td></tr></table></figure>
+
+<p>​      </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样你的静态内容空间就已经创建好了，在浏览器输入你的 <span class="string">https:</span><span class="comment">//你的账号.github.io/ 就可以访问了。</span></span><br><span class="line"></span><br><span class="line">将之前打包好的<span class="keyword">public</span>中的文件push到刚刚创建好的github仓库中去</span><br><span class="line"></span><br><span class="line">访问静态空间网址<span class="string">https:</span><span class="comment">//仓库名.github.io</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>没有问题，搞定收工</p>
+
+      
+    </div>
+
+    
+    
+    
+    <div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://luckyle.top/Python/send-verify/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -586,106 +713,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/uncategorized/%E8%A3%85%E9%A5%B0%E5%99%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://luckyle.top/Python/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="杜家乐">
-      <meta itemprop="description" content="Progress is not created by contented people..">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="可乐">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/Python/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">八大排序</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-11 15:53:09" itemprop="dateCreated datePublished" datetime="2018-12-11T15:53:09+08:00">2018-12-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-25 16:24:01" itemprop="dateModified" datetime="2019-12-25T16:24:01+08:00">2019-12-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>插入排序：插入排序的基本操作就是将一个数据插入到已经排好序的有序数据中，从而得到一个新的、个数加一的有序数据，算法适用于少量数据的排序；首先将第一个作为已经排好序的，然后每次从后的取出插入到前面并排序；
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Python/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
