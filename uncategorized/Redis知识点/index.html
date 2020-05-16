@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://luckyle.top').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="1.Redis数据结构有哪些 ？12String    List    Hash   Set    Sorted Setbitmap    Geo     HyperLogLog Streams  2.Redis相比memcached有哪些优势？memcached 所有的值均是简单的字符串;redis 作为其替代者，支持更为丰富的数据类型;redis 的速度比 memcached 快很多 redi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis知识点">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;uncategorized&#x2F;Redis%E7%9F%A5%E8%AF%86%E7%82%B9&#x2F;index.html">
+<meta property="og:site_name" content="可乐">
+<meta property="og:description" content="1.Redis数据结构有哪些 ？12String    List    Hash   Set    Sorted Setbitmap    Geo     HyperLogLog Streams  2.Redis相比memcached有哪些优势？memcached 所有的值均是简单的字符串;redis 作为其替代者，支持更为丰富的数据类型;redis 的速度比 memcached 快很多 redi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-16T08:32:16.954Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://luckyle.top/uncategorized/Redis%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Redis知识点 | 可乐</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="可乐" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">可乐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">“我在寻找丢失的记忆”“说人话!”“我在复习”</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/uncategorized/Redis%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis知识点
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-16 16:31:01" itemprop="dateCreated datePublished" datetime="2020-02-16T16:31:01+08:00">2020-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-16 16:32:16" itemprop="dateModified" datetime="2020-05-16T16:32:16+08:00">2020-05-16</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="1-Redis数据结构有哪些-？"><a href="#1-Redis数据结构有哪些-？" class="headerlink" title="1.Redis数据结构有哪些 ？"></a>1.Redis数据结构有哪些 ？</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String    List    Hash   Set    Sorted Set</span><br><span class="line">bitmap    Geo     HyperLogLog Streams</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Redis相比memcached有哪些优势？"><a href="#2-Redis相比memcached有哪些优势？" class="headerlink" title="2.Redis相比memcached有哪些优势？"></a>2.Redis相比memcached有哪些优势？</h4><p><code>memcached</code> 所有的值均是简单的字符串;<br><code>redis</code> 作为其替代者，支持更为丰富的数据类型;<br><code>redis</code> 的速度比 <code>memcached</code> 快很多 <code>redis</code> 可以持久化数据。</p>
+<a id="more"></a>
+
+<h4 id="3-Redis是单线程，如何解决并发请求访问？"><a href="#3-Redis是单线程，如何解决并发请求访问？" class="headerlink" title="3.Redis是单线程，如何解决并发请求访问？"></a>3.Redis是单线程，如何解决并发请求访问？</h4><p><code>redis</code> 利用<strong>队列技术**</strong>将并发访问变为串行访问**，消除了传统数据库串行控制的开销。</p>
+<h4 id="4-Reids6淘汰策略有哪些？"><a href="#4-Reids6淘汰策略有哪些？" class="headerlink" title="4. Reids6淘汰策略有哪些？"></a>4. Reids6淘汰策略有哪些？</h4><p><code>noeviction</code>: <strong>不删除策略</strong>, 达到最大内存限制时, 如果需要更多内存, 直接返回错误信息。大多数写命令都会导致占用更多的内存，有极少数会例外。</p>
+<ul>
+<li><strong>LRU算法</strong><br><code>allkeys-lru</code>:所有<code>key</code>通用;<br>优先删除最近最少使用(<code>less recently used ,LRU</code>) 的 <code>key</code>。<br><code>volatile-lru</code>:只限于设置了<code>expire</code> 的部分;<br>优先删除最近最少使用(<code>less recently used ,LRU</code>) 的 <code>key</code>。</li>
+<li><strong>随机淘汰</strong><br><code>allkeys-random</code>: 所有<code>key</code>通用; 随机删除一部分 <code>key</code>。<br><code>volatile-random</code>: 只限于设置了 <code>expire</code> 的部分; 随机删除一部分 <code>key</code>。<br><code>volatile-ttl</code>: 只限于设置了<code>expire</code> 的部分; 优先删除剩余时间(<code>time to live,TTL</code>) 短的<code>key</code>。</li>
+</ul>
+<h4 id="5-Redis持久化方案有哪些？"><a href="#5-Redis持久化方案有哪些？" class="headerlink" title="5.Redis持久化方案有哪些？"></a>5.Redis持久化方案有哪些？</h4><ul>
+<li><strong>RDB(Redis DataBase)持久化</strong><br>是指<strong>用数据集快照</strong>的方式半持久化模式，记录<code>redis</code>数据库的所有键值对,在某个时间点将数据写入一个临时文件，持久化结束后，用这个临时文件替换上次持久化的文件，达到数据恢复；</li>
+<li><strong>AOF(Append-only file)持久化：</strong><br>是指所有的命令行记录以<code>redis</code>命令请求协议的格式完全持久化存储，保存为<code>aof</code>文件。</li>
+</ul>
+<h5 id="RDB和AOF的优缺点-："><a href="#RDB和AOF的优缺点-：" class="headerlink" title="RDB和AOF的优缺点 ："></a><code>RDB</code>和<code>AOF</code>的优缺点 ：</h5><p><strong><code>RDB</code>持久化:</strong></p>
+<ul>
+<li><strong>优点</strong>：RDB文件紧凑，体积小，网络传输快，适合全量复制；恢复速度比AOF快很多。当然，与AOF相比，RDB最重要的优点之一是对性能的影响相对较小。</li>
+<li><strong>缺点</strong>：RDB文件的致命缺点在于其数据快照的持久化方式决定了必然<strong>做不到实时持久化</strong>，而在数据越来越重要的今天，数据的大量丢失很多时候是无法接受的，因此AOF持久化成为主流。此外，RDB文件需要满足特定格式，兼容性差（如老版本的Redis不兼容新版本的RDB文件）。</li>
+</ul>
+<p><strong><code>AOF</code>持久化:</strong></p>
+<ul>
+<li>与RDB持久化相对应；</li>
+<li><strong>优点</strong>在于支持秒级持久化、兼容性好；</li>
+<li><strong>缺点</strong>是文件大、恢复速度慢、对性能影响大。</li>
+</ul>
+<h4 id="6-Redis内存划分"><a href="#6-Redis内存划分" class="headerlink" title="6.Redis内存划分"></a>6.Redis内存划分</h4><p>**数据:</p>
+<p>**作为数据库，数据是最主要的部分；<br>这部分占用的内存会统计在<code>used_memory</code>中。</p>
+<p>**进程本身运行需要的内存:</p>
+<p>**<code>Redis</code>主进程本身运行肯定需要占用内存，如代码、常量池等等；<br>这部分内存大约几兆，在大多数生产环境中与<code>Redis</code>数据占用的内存相比可以忽略。<br>这部分内存不是由<code>jemalloc</code>分配，因此不会统计在<code>used_memory</code>中。</p>
+<p>**缓冲内存:</p>
+<p>**缓冲内存包括客户端缓冲区、复制积压缓冲区、<code>AOF</code>缓冲区等；<br>其中，客户端缓冲存储客户端连接的输入输出缓冲；复制积压缓冲用于部分复制功能；<br><code>AOF</code>缓冲区用于在进行<code>AOF</code>重写时，保存最近的写入命令。<br>在了解相应功能之前，不需要知道这些缓冲的细节；这部分内存由<code>jemalloc</code>分配， 因此会统计在<code>used_memory</code>中。</p>
+<p>**内存碎片:</p>
+<p>**内存碎片是<code>Redis</code>在分配、回收物理内存过程中产生的。<br>例如，如果对数据的更改频繁，而且数据之间的大小相差很大，可能导致<code>redis</code>释放的空间在物理内存中并没有释放，但<code>redis</code>又无法有效利用，这就形成了内存碎片。内存碎片不会统计在<code>used_memory</code>中。</p>
+<h4 id="7-Reids主从复制"><a href="#7-Reids主从复制" class="headerlink" title="7.Reids主从复制"></a>7.Reids主从复制</h4><p>复制是高可用<code>Redis</code>的基础，哨兵和集群都是在复制基础上实现高可用的。<br>复制主要实现了数据的多机备份，以及对于读操作的负载均衡和简单的故障恢复。<br>缺陷：故障恢复无法自动化；写操作无法负载均衡；存储能力受到单机的限制 。</p>
+<h4 id="8-Redis哨兵"><a href="#8-Redis哨兵" class="headerlink" title="8.Redis哨兵"></a>8.Redis哨兵</h4><p>在复制的基础上，哨兵实现了自动化的故障恢复。<br><strong>缺陷</strong>：写操作无法负载均衡；存储能力受到单机的限制。</p>
+<h4 id="9-redis缓存被击穿处理机制"><a href="#9-redis缓存被击穿处理机制" class="headerlink" title="9.redis缓存被击穿处理机制"></a>9.redis缓存被击穿处理机制</h4><p>使用<code>mutex</code>。简单地来说，就是在缓存失效的时候（判断拿出来的值为空），不是立即去<code>load db</code>，而是先使用缓存工具的某些带成功操作返回值的操作（比如<code>Redis</code>的<code>SETNX</code>或者<code>Memcache</code>的<code>ADD</code>）去<code>set</code>一个<code>mutex key</code>，当操作返回成功时，再进行<code>load db</code>的操作并回设缓存；否则，就重试整个 get缓存方法。</p>
+<h4 id="10-缓存和数据库间数据一致性问题"><a href="#10-缓存和数据库间数据一致性问题" class="headerlink" title="10.缓存和数据库间数据一致性问题"></a>10.缓存和数据库间数据一致性问题</h4><p>分布式环境下非常容易出现缓存和数据库间的数据一致性问题，针对这一点的话，如果你的项目对缓存的要求是强一致性的，那么请不要使用缓存。<br>只能采取合适的策略来降低缓存和数据库间数据不一致的概率，而无法保证两者间的强一致性。合适的策略包括合适的缓存更新策略，更新数据库后要及时更新缓存、缓存失败时增加重试机制，例如MQ模式的消息队列 。</p>
+<h4 id="11-缓存雪崩问题"><a href="#11-缓存雪崩问题" class="headerlink" title="11.缓存雪崩问题"></a>11.缓存雪崩问题</h4><ul>
+<li>像解决缓存穿透一样加锁排队；</li>
+<li>建立备份缓存，缓存A和缓存B，A设置超时时间，B不设值超时时间，先从A读缓存，A没有读B，并且更新A缓存和B缓存。</li>
+</ul>
+<h4 id="12-Redis分布式"><a href="#12-Redis分布式" class="headerlink" title="12.Redis分布式"></a>12.Redis分布式</h4><p><strong>redis支持主从的模式。<br>原则</strong>：<code>Master</code>会将数据同步到<code>slave</code>，而<code>slave</code>不会将数据同步到<code>master</code>。<code>Slave</code>启动时会连接<code>master</code>来同步数据。 这是一个典型的分布式读写分离模型。利用<code>master</code>来插入数据，<code>slave</code>提供检索服务。这样可以有效减少单个机器的并发访问数量 。</p>
+<h4 id="13-读写分离模型"><a href="#13-读写分离模型" class="headerlink" title="13.读写分离模型"></a>13.读写分离模型</h4><p>通过增加<code>Slave DB</code>的数量，读的性能可以线性增长。为了避免<code>Master DB</code>的单点故障，集群一般都会采用两台<code>Master DB</code>做双机热备，所以整个集群的读和写的可用性都非常高。<br>读写分离架构的缺陷在于，不管是<code>Master</code>还是<code>Slave</code>，每个节点都必须保存完整的数据，如果在数据量很大的情况下，集群的扩展能力还是受限于单个节点的存储能力，而且对于<code>Write-intensive</code>类型的应用，读写分离架构并不适合。</p>
+<h4 id="14-数据分片模型"><a href="#14-数据分片模型" class="headerlink" title="14.数据分片模型"></a>14.数据分片模型</h4><p>为解决读写分离模型的缺陷，可以将数据分片模型应用进来。 可以将每个节点看成，都是独立的<code>master</code>，然后通过业务实现数据分片。 结合上面两种模型，可以将每个<code>master</code>设计成由一个<code>master</code>和多个<code>slave</code>组成的模型。</p>
+<h4 id="15-Redis分布式锁实现"><a href="#15-Redis分布式锁实现" class="headerlink" title="15.Redis分布式锁实现"></a>15.Redis分布式锁实现</h4><p>先拿<code>setnx</code>来争抢锁，抢到之后，再用<code>expire</code>给锁加一个过期时间防止锁忘记了释放。如果在<code>setnx</code>之后执行<code>expire</code>之前进程意外<code>crash</code>或者要重启维护了，那会怎么样？<br><code>set</code>指令有非常复杂的参数，这个应该是可以同时把<code>setnx</code>和<code>expire</code>合成一条指令来用的！</p>
+<h4 id="16-Redis做异步队列"><a href="#16-Redis做异步队列" class="headerlink" title="16.Redis做异步队列"></a>16.Redis做异步队列</h4><p>一般使用<code>list</code>结构作为队列，<code>rpush</code>生产消息，<code>lpop</code>消费消息。当<code>lpop</code>没有消息的时候，要适当<code>sleep</code>一会再重试。<br><strong>缺点：</strong>在消费者下线的情况下，生产的消息会丢失，得使用专业的消息队列如<code>rabbitmq</code>等。 能不能生产一次消费多次呢？使用<code>pub/sub</code>主题订阅者模式，可以实现<code>1:N</code>的消息队列。</p>
+<h4 id="17-Redis中海量数据的正确操作方式"><a href="#17-Redis中海量数据的正确操作方式" class="headerlink" title="17.Redis中海量数据的正确操作方式"></a>17.Redis中海量数据的正确操作方式</h4><p>利用<code>SCAN</code>系列命令<code>（SCAN、SSCAN、HSCAN、ZSCAN）</code>完成数据迭代。</p>
+<h4 id="18-是否使用过Redis集群，集群的原理是什么？"><a href="#18-是否使用过Redis集群，集群的原理是什么？" class="headerlink" title="18.是否使用过Redis集群，集群的原理是什么？"></a>18.是否使用过Redis集群，集群的原理是什么？</h4><ul>
+<li><code>Redis Sentinal</code>着眼于高可用，在<code>master</code>宕机时会自动将<code>slave</code>提升为<code>master</code>，继续提供服务。</li>
+<li><code>Redis Cluster</code>着眼于扩展性，在单个<code>redis</code>内存不足时，使用<code>Cluster</code>进行分片存储。</li>
+</ul>
+<h4 id="19-Redis集群方案什么情况下会导致整个集群不可用？"><a href="#19-Redis集群方案什么情况下会导致整个集群不可用？" class="headerlink" title="19.Redis集群方案什么情况下会导致整个集群不可用？"></a>19.Redis集群方案什么情况下会导致整个集群不可用？</h4><p>如果有A，B，C三个节点的集群,在没有复制模型的情况下,如果节点B失败了，那么整个集群就会以为缺少5501-11000这个范围的槽而不可用。</p>
+<h4 id="20-说说Redis哈希槽的概念"><a href="#20-说说Redis哈希槽的概念" class="headerlink" title="20.说说Redis哈希槽的概念"></a>20.说说Redis哈希槽的概念</h4><p>Redis集群没有使用一致性hash，而是引入了哈希槽的概念，Redis集群有16384个哈希槽，每个key通过CRC16校验后对16384取模来决定放置哪个槽，集群的每个节点负责一部分hash槽。</p>
+<h4 id="21-Redis集群会有写操作丢失吗？为什么？"><a href="#21-Redis集群会有写操作丢失吗？为什么？" class="headerlink" title="21.Redis集群会有写操作丢失吗？为什么？"></a>21.Redis集群会有写操作丢失吗？为什么？</h4><p>Redis并不能保证数据的强一致性，这意味这在实际中集群在特定的条件下可能会丢失写操作。</p>
+<h4 id="22-怎么测试Redis的连通性？"><a href="#22-怎么测试Redis的连通性？" class="headerlink" title="22.怎么测试Redis的连通性？"></a>22.怎么测试Redis的连通性？</h4><p><strong>使用ping命令。</strong></p>
+<h4 id="23-怎么理解Redis事务？"><a href="#23-怎么理解Redis事务？" class="headerlink" title="23.怎么理解Redis事务？"></a>23.怎么理解Redis事务？</h4><p>事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。 事务是一个原子操作：事务中的命令要么全部被执行，要么全部都不执行。</p>
+<h4 id="24-Redis如何做内存优化？"><a href="#24-Redis如何做内存优化？" class="headerlink" title="24.Redis如何做内存优化？"></a>24.Redis如何做内存优化？</h4><p>尽可能使用散列表（<code>hashes</code>），散列表（是说散列表里面存储的数少）使用的内存非常小，所以你应该尽可能的将你的数据模型抽象到一个散列表里面。<br>比如你的web系统中有一个用户对象，不要为这个用户的名称，姓氏，邮箱，密码设置单独的key,而是应该把这个用户的所有信息存储到一张散列表里面。</p>
+<h4 id="25-Redis回收进程如何工作的？"><a href="#25-Redis回收进程如何工作的？" class="headerlink" title="25.Redis回收进程如何工作的？"></a>25.Redis回收进程如何工作的？</h4><p>一个客户端运行了新的命令，添加了新的数据。Redis检查内存使用情况，如果大于<code>max memory</code>的限制, 则根据设定好的策略进行回收。一个新的命令被执行，等等。所以我们不断地穿越内存限制的边界，通过不断达到边界然后不断地回收回到边界以下。如果一个命令的结果导致大量内存被使用（ 例如很大的集合的交集保存到一个新的键），不用多久内存限制就会被这个内存使用量超越。</p>
+<h4 id="26-MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？"><a href="#26-MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？" class="headerlink" title="26.MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？"></a>26.MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？</h4><p>Redis内存数据集大小上升到一定大小的时候，就会施行数据淘汰策略。</p>
+<h4 id="27-假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？"><a href="#27-假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？" class="headerlink" title="27.假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？"></a>27.假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？</h4><p>使用<code>keys</code>指令可以扫出指定模式的<code>key</code>列表。如果这个<code>redis</code>正在给线上的业务提供服务，那使用<code>keys</code>指令会有什么问题？会造成阻塞卡顿。<br>因为<code>redis</code>是单线程的。<code>keys</code>指令会导致线程阻塞一段时间，线上服务会停顿，直到指令执行完毕，服务才能恢复。这个时候可以使用<code>scan</code>指令，<code>scan</code>指令可以 无阻塞的提取出指定模式的<code>key</code>列表，但是会有一定的重复概率，在客户端做一次去重就可以了，但是整体所花费的时间会比直接用<code>keys</code>指令长。</p>
+<h4 id="28-如果有大量的key需要设置同一时间过期，一般需要注意什么？"><a href="#28-如果有大量的key需要设置同一时间过期，一般需要注意什么？" class="headerlink" title="28.如果有大量的key需要设置同一时间过期，一般需要注意什么？"></a>28.如果有大量的key需要设置同一时间过期，一般需要注意什么？</h4><p>如果大量的<code>key</code>过期时间设置的过于集中，到过期的那个时间点，<code>redis</code>可能会出现短暂的卡顿现象。一般需要在时间上加一个随机值，使得过期时间分散一些。</p>
+<h3 id="头条面试"><a href="#头条面试" class="headerlink" title="头条面试"></a>头条面试</h3><h4 id="1-Redis连接时的connect与pconnect的区别"><a href="#1-Redis连接时的connect与pconnect的区别" class="headerlink" title="1.Redis连接时的connect与pconnect的区别"></a>1.Redis连接时的connect与pconnect的区别</h4><p><code>connect</code>：脚本结束之后连接就释放了。<br><code>pconnect</code>：脚本结束之后连接不释放，连接保持在<code>php-fpm</code>进程中。</p>
+<h4 id="2-Redis有哪些结构时间复杂度较高"><a href="#2-Redis有哪些结构时间复杂度较高" class="headerlink" title="2.Redis有哪些结构时间复杂度较高"></a>2.Redis有哪些结构时间复杂度较高</h4><p>List</p>
+<h4 id="3-Redis-hash的实现"><a href="#3-Redis-hash的实现" class="headerlink" title="3.Redis hash的实现"></a>3.Redis hash的实现</h4><p>哈希对象的编码可以是 <code>ziplist</code> 或者 <code>hashtable</code> 。<br><code>ziplist</code> 编码的哈希对象使用压缩列表作为底层实现， 每当有新的键值对要加入到哈希对象时， 程序会先将保存了键的压缩列表节点推入到压缩列表表尾， 然后再将保存了值的压缩列表节点推入到压缩列表表尾， 因此,保存了同一键值对的两个节点总是紧挨在一起， 保存键的节点在前，保存值的节点在后；先添加到哈希对象中的键值对会被放在压缩列表的表头方向， 而后来添加到哈希对象中的键值对会被放在压缩列表的表尾方向。</p>
+<h4 id="4-redis-主从同步是怎样的过程？-见第7题"><a href="#4-redis-主从同步是怎样的过程？-见第7题" class="headerlink" title="4.redis 主从同步是怎样的过程？ 见第7题"></a>4.redis 主从同步是怎样的过程？ 见第7题</h4><h4 id="5-redis-的-zset-怎么实现的？"><a href="#5-redis-的-zset-怎么实现的？" class="headerlink" title="5.redis 的 zset 怎么实现的？"></a>5.redis 的 zset 怎么实现的？</h4><p>有序集合的编码可以是 <code>ziplist</code> 或者 <code>skiplist</code> 。<br><code>ziplist</code> 编码的有序集合对象使用压缩列表作为底层实现， 每个集合元素使用两个紧挨在一起的压缩列表节点来保存， 第一个节点保存元素的成员（<code>member</code>）， 而第二个元素则保存元素的分值（<code>score</code>）。 <code>skiplist</code> 编码的有序集合对象使用 <code>zset</code> 结构作为底层实现， 一个 <code>zset</code> 结构同时包含一个字典和一个跳跃表。</p>
+<h3 id="小米面试"><a href="#小米面试" class="headerlink" title="小米面试"></a>小米面试</h3><h4 id="1-Redis数据结构有哪些"><a href="#1-Redis数据结构有哪些" class="headerlink" title="1.Redis数据结构有哪些"></a>1.Redis数据结构有哪些</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String，List，Hash，Set，Sorted Set，bitmap，Geo，HyperLogLog ，Streams</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Redis-持久化方案有哪些？"><a href="#2-Redis-持久化方案有哪些？" class="headerlink" title="2.Redis 持久化方案有哪些？"></a>2.Redis 持久化方案有哪些？</h4><p><code>RDB(Redis DataBase)</code>持久化：是指用数据集快照的方式半持久化模式，记录<code>redis</code>数据库的所有键值对,在某个时间点将数据写入一个临时文件，持久化结束后，用这个临时文件替换上次持久化的文件，达到数据恢复 <code>**AOFAppend-only file**</code>。<br><strong>持久化： 是指所有的命令行记录以<code>redis</code>命令请求协议的格式完全持久化存储)保存为<code>aof</code>文件。</strong></p>
+<h3 id="360面试"><a href="#360面试" class="headerlink" title="360面试"></a>360面试</h3><h4 id="1-redis的持久化"><a href="#1-redis的持久化" class="headerlink" title="1.redis的持久化"></a>1.redis的持久化</h4><p><code>RDB(Redis DataBase)</code>持久化： 是指用数据集快照的方式半持久化模式，记录redis数据库的所有键值对,在某个时间点将数据写入一个临时文件，持久化结束后，用这个临时文件替换上次持久化的文件，达到数据恢复<code>**AOFAppend-only file**</code>。<br><strong>持久化： 是指所有的命令行记录以<code>redis</code>命令请求协议的格式完全持久化存储)保存为<code>aof</code>文件。</strong></p>
+<h4 id="2-lru算法实现"><a href="#2-lru算法实现" class="headerlink" title="2.lru算法实现"></a>2.lru算法实现</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LRU是最近最少使用页面置换算法(Least Recently Used)</span></span><br><span class="line"><span class="comment"> * 也就是首先淘汰最长时间未被使用的页面</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRU_Cache</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $array_lru = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">private</span> $max_size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($size)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 缓存最大存储</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;max_size = $size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">set_value</span><span class="params">($key, $value)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 如果存在，则向队尾移动，先删除，后追加</span></span><br><span class="line">        <span class="keyword">if</span> (array_key_exists($key, <span class="keyword">$this</span>-&gt;array_lru)) &#123;</span><br><span class="line">            <span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;array_lru[$key]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 长度检查，超长则删除首元素</span></span><br><span class="line">        <span class="keyword">if</span> (count(<span class="keyword">$this</span>-&gt;array_lru) &gt; <span class="keyword">$this</span>-&gt;max_size) &#123;</span><br><span class="line">            array_shift(<span class="keyword">$this</span>-&gt;array_lru);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 队尾追加元素</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;array_lru[$key] = $value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_value</span><span class="params">($key)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $ret_value = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (array_key_exists($key, <span class="keyword">$this</span>-&gt;array_lru)) &#123;</span><br><span class="line">            $ret_value = <span class="keyword">$this</span>-&gt;array_lru[$key];</span><br><span class="line">            <span class="comment">// 移动到队尾</span></span><br><span class="line">            <span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;array_lru[$key]);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;array_lru[$key] = $ret_value;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $ret_value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">vardump_cache</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">$this</span>-&gt;array_lru);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$cache = <span class="keyword">new</span> LRU_Cache(<span class="number">5</span>);</span><br><span class="line">$cache-&gt;set_value(<span class="string">"01"</span>, <span class="string">"01"</span>);</span><br><span class="line">$cache-&gt;set_value(<span class="string">"02"</span>, <span class="string">"02"</span>);</span><br><span class="line">$cache-&gt;set_value(<span class="string">"03"</span>, <span class="string">"03"</span>);</span><br><span class="line">$cache-&gt;set_value(<span class="string">"04"</span>, <span class="string">"04"</span>);</span><br><span class="line">$cache-&gt;set_value(<span class="string">"05"</span>, <span class="string">"05"</span>);</span><br><span class="line">$cache-&gt;vardump_cache();</span><br><span class="line">$cache-&gt;set_value(<span class="string">"06"</span>, <span class="string">"06"</span>);</span><br><span class="line">$cache-&gt;vardump_cache();</span><br><span class="line">$cache-&gt;set_value(<span class="string">"03"</span>, <span class="string">"03"</span>);</span><br><span class="line">$cache-&gt;vardump_cache();</span><br><span class="line">$cache-&gt;set_value(<span class="string">"07"</span>, <span class="string">"07"</span>);</span><br><span class="line">$cache-&gt;vardump_cache();</span><br><span class="line">$cache-&gt;set_value(<span class="string">"01"</span>, <span class="string">"01"</span>);</span><br><span class="line">$cache-&gt;vardump_cache();</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>杜家乐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://luckyle.top/uncategorized/Redis%E7%9F%A5%E8%AF%86%E7%82%B9/" title="Redis知识点">https://luckyle.top/uncategorized/Redis知识点/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Spider/Python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B9%8BRequests%E6%A8%A1%E5%9D%97/" rel="prev" title="Python网络爬虫之Requests模块">
+      <i class="fa fa-chevron-left"></i> Python网络爬虫之Requests模块
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/uncategorized/%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/" rel="next" title="协同过滤算法">
+      协同过滤算法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  
+  </div>
+  
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Redis数据结构有哪些-？"><span class="nav-text">1.Redis数据结构有哪些 ？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Redis相比memcached有哪些优势？"><span class="nav-text">2.Redis相比memcached有哪些优势？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Redis是单线程，如何解决并发请求访问？"><span class="nav-text">3.Redis是单线程，如何解决并发请求访问？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Reids6淘汰策略有哪些？"><span class="nav-text">4. Reids6淘汰策略有哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Redis持久化方案有哪些？"><span class="nav-text">5.Redis持久化方案有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RDB和AOF的优缺点-："><span class="nav-text">RDB和AOF的优缺点 ：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Redis内存划分"><span class="nav-text">6.Redis内存划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Reids主从复制"><span class="nav-text">7.Reids主从复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Redis哨兵"><span class="nav-text">8.Redis哨兵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-redis缓存被击穿处理机制"><span class="nav-text">9.redis缓存被击穿处理机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-缓存和数据库间数据一致性问题"><span class="nav-text">10.缓存和数据库间数据一致性问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-缓存雪崩问题"><span class="nav-text">11.缓存雪崩问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-Redis分布式"><span class="nav-text">12.Redis分布式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-读写分离模型"><span class="nav-text">13.读写分离模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-数据分片模型"><span class="nav-text">14.数据分片模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-Redis分布式锁实现"><span class="nav-text">15.Redis分布式锁实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-Redis做异步队列"><span class="nav-text">16.Redis做异步队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-Redis中海量数据的正确操作方式"><span class="nav-text">17.Redis中海量数据的正确操作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-是否使用过Redis集群，集群的原理是什么？"><span class="nav-text">18.是否使用过Redis集群，集群的原理是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-Redis集群方案什么情况下会导致整个集群不可用？"><span class="nav-text">19.Redis集群方案什么情况下会导致整个集群不可用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-说说Redis哈希槽的概念"><span class="nav-text">20.说说Redis哈希槽的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-Redis集群会有写操作丢失吗？为什么？"><span class="nav-text">21.Redis集群会有写操作丢失吗？为什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-怎么测试Redis的连通性？"><span class="nav-text">22.怎么测试Redis的连通性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-怎么理解Redis事务？"><span class="nav-text">23.怎么理解Redis事务？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-Redis如何做内存优化？"><span class="nav-text">24.Redis如何做内存优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-Redis回收进程如何工作的？"><span class="nav-text">25.Redis回收进程如何工作的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？"><span class="nav-text">26.MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？"><span class="nav-text">27.假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如果将它们全部找出来？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-如果有大量的key需要设置同一时间过期，一般需要注意什么？"><span class="nav-text">28.如果有大量的key需要设置同一时间过期，一般需要注意什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头条面试"><span class="nav-text">头条面试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Redis连接时的connect与pconnect的区别"><span class="nav-text">1.Redis连接时的connect与pconnect的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Redis有哪些结构时间复杂度较高"><span class="nav-text">2.Redis有哪些结构时间复杂度较高</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Redis-hash的实现"><span class="nav-text">3.Redis hash的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-redis-主从同步是怎样的过程？-见第7题"><span class="nav-text">4.redis 主从同步是怎样的过程？ 见第7题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-redis-的-zset-怎么实现的？"><span class="nav-text">5.redis 的 zset 怎么实现的？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小米面试"><span class="nav-text">小米面试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Redis数据结构有哪些"><span class="nav-text">1.Redis数据结构有哪些</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Redis-持久化方案有哪些？"><span class="nav-text">2.Redis 持久化方案有哪些？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#360面试"><span class="nav-text">360面试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-redis的持久化"><span class="nav-text">1.redis的持久化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-lru算法实现"><span class="nav-text">2.lru算法实现</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="杜家乐"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">杜家乐</p>
+  <div class="site-description" itemprop="description">Progress is not created by contented people..</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1315532054" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1315532054" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://47.97.210.11/" title="http:&#x2F;&#x2F;47.97.210.11&#x2F;" rel="noopener" target="_blank">基于Django搭建博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://changpengfei0.github.io/" title="https:&#x2F;&#x2F;changpengfei0.github.io&#x2F;" rel="noopener" target="_blank">飞弟</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 在很久很久以前 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+
+
+
+  <span class="author" itemprop="copyrightHolder">杜家乐</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">130k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:59</span>
+</div>
+
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共57.7k字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script type ="text/javascript" src ="/js/love-click.js"></script> 
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":300,"height":440},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+</html>
