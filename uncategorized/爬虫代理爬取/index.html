@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://luckyle.top').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="使用代理爬取 信息14.1 目标： 本节目标是利用代理爬取微信公众号的文章信息，从中提取标题、摘要、发布日期、公众号以及url地址等内容。 本节爬取的是搜索关键字为python的，类别为微信的所有文章信息，并将信息存储到MongoDB中。 URL地址：http:&#x2F;&#x2F;weixin.sogou.com&#x2F;weixin?type=2&amp;amp;query=python&amp;amp;ie=utf8&amp;amp;s_f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫代理爬取">
+<meta property="og:url" content="https:&#x2F;&#x2F;luckyle.top&#x2F;uncategorized&#x2F;%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%88%AC%E5%8F%96&#x2F;index.html">
+<meta property="og:site_name" content="可乐">
+<meta property="og:description" content="使用代理爬取 信息14.1 目标： 本节目标是利用代理爬取微信公众号的文章信息，从中提取标题、摘要、发布日期、公众号以及url地址等内容。 本节爬取的是搜索关键字为python的，类别为微信的所有文章信息，并将信息存储到MongoDB中。 URL地址：http:&#x2F;&#x2F;weixin.sogou.com&#x2F;weixin?type=2&amp;amp;query=python&amp;amp;ie=utf8&amp;amp;s_f">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-20T07:25:39.551Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://luckyle.top/uncategorized/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%88%AC%E5%8F%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>爬虫代理爬取 | 可乐</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="可乐" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">可乐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">“我在寻找丢失的记忆”“说人话!”“我在复习”</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">36</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckyle.top/uncategorized/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%88%AC%E5%8F%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="杜家乐">
+      <meta itemprop="description" content="Progress is not created by contented people..">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          爬虫代理爬取
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-20 15:24:20 / 修改时间：15:25:39" itemprop="dateCreated datePublished" datetime="2020-05-20T15:24:20+08:00">2020-05-20</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h5 id="使用代理爬取-信息"><a href="#使用代理爬取-信息" class="headerlink" title="使用代理爬取 信息"></a>使用代理爬取 信息</h5><h3 id="14-1-目标："><a href="#14-1-目标：" class="headerlink" title="14.1 目标："></a>14.1 目标：</h3><ul>
+<li>本节目标是利用代理爬取微信公众号的文章信息，从中提取标题、摘要、发布日期、公众号以及url地址等内容。</li>
+<li>本节爬取的是搜索关键字为<code>python</code>的，类别为<code>微信</code>的所有文章信息，并将信息存储到MongoDB中。</li>
+<li>URL地址：<a href="http://weixin.sogou.com/weixin?type=2&amp;query=python&amp;ie=utf8&amp;s_from=input" target="_blank" rel="noopener">http://weixin.sogou.com/weixin?type=2&amp;query=python&amp;ie=utf8&amp;s_from=input</a><a id="more"></a>
+
+</li>
+</ul>
+<h3 id="14-2-准备工作："><a href="#14-2-准备工作：" class="headerlink" title="14.2 准备工作："></a>14.2 准备工作：</h3><ul>
+<li>首先对要爬取的微信公众号的文章信息进行分析，确定url地址。</li>
+<li>分析要爬取的信息加载方式，确定属性普通加载（在响应里使用xpath或css解析）。</li>
+<li>分析如何获取更多页信息的爬取。就是如何跳转下一页。(没有登录的用户只能看到10页，登陆后才可看到其他页)</li>
+<li>本次案例需要使用的Python库：Scrapy、requests、pymongo。</li>
+<li>在MongoDB中创建一个数据库<code>wenxin</code>，让后在此库中创建一个集合<code>wx</code>，最后开启MongoDB数据库</li>
+</ul>
+<h3 id="14-3-具体实现："><a href="#14-3-具体实现：" class="headerlink" title="14.3 具体实现："></a>14.3 具体实现：</h3><h4 id="①-创建项目"><a href="#①-创建项目" class="headerlink" title="① 创建项目"></a>① 创建项目</h4><ul>
+<li>首先新建项目，名为weixin：</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scrapy startproject weixin</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进入项目weixin目录下，创建一个Spider（爬虫类wx）：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cd</span> <span class="selector-tag">weixin</span></span><br><span class="line"><span class="selector-tag">scrapy</span> <span class="selector-tag">genspider</span> <span class="selector-tag">wx</span> <span class="selector-tag">weixin</span><span class="selector-class">.sogou</span><span class="selector-class">.com</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进入settings.py的配置文件：将ROBOTSTXT_OBEY改为false，忽略爬虫协议</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ROBOTSTXT_OBEY</span> = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="②-定义Item类"><a href="#②-定义Item类" class="headerlink" title="② 定义Item类"></a>② 定义Item类</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义信息封装类（标题、摘要、公众号、时间、URL地址）</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WxItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    collection = ‘wx’</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    content = scrapy.Field()</span><br><span class="line">    nickname = scrapy.Field()</span><br><span class="line">    date = scrapy.Field()</span><br><span class="line">    url = scrapy.Field()</span><br></pre></td></tr></table></figure>
+
+<h4 id="③-解析页面"><a href="#③-解析页面" class="headerlink" title="③ 解析页面"></a>③ 解析页面</h4><ul>
+<li>进入spider/wx.py文件中编写，代码如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> weixin.items <span class="keyword">import</span> WxItem</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WxSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'wx'</span></span><br><span class="line">    allowed_domains = [<span class="string">'weixin.sogou.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://weixin.sogou.com/weixin?query=python&amp;type=2&amp;page=1&amp;ie=utf8'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="comment">#解析出当前页面中的所有文章信息</span></span><br><span class="line">        ullist = response.selector.css(<span class="string">"ul.news-list li"</span>)</span><br><span class="line">        <span class="comment">#遍历文章信息</span></span><br><span class="line">        <span class="keyword">for</span> ul <span class="keyword">in</span> ullist:</span><br><span class="line">            <span class="comment">#解析具体信息并封装到item中</span></span><br><span class="line">            item = WxItem()</span><br><span class="line">            item[<span class="string">'title'</span>] = ul.css(<span class="string">"h3 a"</span>).re_first(<span class="string">"&lt;a.*?&gt;(.*?)&lt;/a&gt;"</span>)  </span><br><span class="line">            item[<span class="string">'content'</span>] = ul.css(<span class="string">"p.txt-info::text"</span>).extract_first()</span><br><span class="line">            item[<span class="string">'nickname'</span>] = ul.css(<span class="string">"a.account::text"</span>).extract_first()</span><br><span class="line">            item[<span class="string">'date'</span>] = ul.re_first(<span class="string">"document.write\(timeConvert\('([0-9]+)'\)\)"</span>)</span><br><span class="line">            item[<span class="string">'url'</span>] = ul.css(<span class="string">"h3 a::attr(href)"</span>).extract_first()</span><br><span class="line">            print(item)</span><br><span class="line">            <span class="comment"># 交给pipelines（item管道）处理</span></span><br><span class="line">            <span class="keyword">yield</span> item</span><br><span class="line"></span><br><span class="line">        <span class="comment">#解析出下一頁的url地址</span></span><br><span class="line">        next_url = response.selector.css(<span class="string">"#sogou_next::attr(href)"</span>).extract_first()</span><br><span class="line">        <span class="comment">#判断是否存在</span></span><br><span class="line">        <span class="keyword">if</span> next_url:</span><br><span class="line">            url = response.urljoin(next_url) <span class="comment">#构建绝对url地址</span></span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(url=url,callback=self.parse) <span class="comment">#交给调度去继续爬取下一页信息</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="④-存储结果"><a href="#④-存储结果" class="headerlink" title="④ 存储结果"></a>④ 存储结果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MongoPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">''' 完成MongoDB数据库对Item信息的存储'''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, mongo_uri, mongo_db)</span>:</span></span><br><span class="line">        <span class="string">'''对象初始化'''</span></span><br><span class="line">        self.mongo_uri = mongo_uri</span><br><span class="line">        self.mongo_db = mongo_db</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></span><br><span class="line">        <span class="string">'''通过依赖注入方式实例化当前类，并返回，参数是从配置文件获取MongoDB信息'''</span></span><br><span class="line">        <span class="keyword">return</span> cls(mongo_uri=crawler.settings.get(<span class="string">'MONGO_URI'</span>), mongo_db=crawler.settings.get(<span class="string">'MONGO_DB'</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        <span class="string">'''Spider开启自动调用此方法，负责连接MongoDB，并选择数据库'''</span></span><br><span class="line">        self.client = pymongo.MongoClient(self.mongo_uri)</span><br><span class="line">        self.db = self.client[self.mongo_db]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        <span class="string">'''选择对应集合并写入Item信息'''</span></span><br><span class="line">        self.db[item.collection].insert(dict(item))</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        <span class="string">'''Spider关闭时自动调用，负责关闭MongoDB的连接'''</span></span><br><span class="line">        self.client.close()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改配置文件settings.py信息：（开启MongoPipeline管道类，设置MongoDB的连接信息）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'scrapyseleniumtest.pipelines.MongoPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MONGO_URI = <span class="string">'localhost'</span></span><br><span class="line"></span><br><span class="line">MONGO_DB = <span class="string">'taobao'</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="⑤-执行爬虫文件开始信息爬取"><a href="#⑤-执行爬虫文件开始信息爬取" class="headerlink" title="⑤ 执行爬虫文件开始信息爬取"></a>⑤ 执行爬虫文件开始信息爬取</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scrapy crawl wx</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意：当前爬取信息过多时会报如下302错误：</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2018</span><span class="number">-05</span><span class="number">-30</span> <span class="number">22</span>:<span class="number">40</span>:<span class="number">10</span> [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (</span><br><span class="line"><span class="number">302</span>) to &lt;GET http:<span class="comment">//weixin.sogou.com/antispider/?from=%2fweixin%3Fquery%3dpython</span></span><br><span class="line">%<span class="number">26</span>type%<span class="number">3</span>d2%<span class="number">26</span>page%<span class="number">3</span>d1%<span class="number">26</span>ie%<span class="number">3</span>dutf8&gt; <span class="keyword">from</span> &lt;GET http:<span class="comment">//weixin.sogou.com/weixin?que</span></span><br><span class="line">ry=python&amp;type=<span class="number">2</span>&amp;page=<span class="number">1</span>&amp;ie=utf8&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="⑥-在中间件中使用付费代理服务来解决上面错误："><a href="#⑥-在中间件中使用付费代理服务来解决上面错误：" class="headerlink" title="⑥ 在中间件中使用付费代理服务来解决上面错误："></a>⑥ 在中间件中使用付费代理服务来解决上面错误：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在middlewares.py文件中定义一个Downloader中间件</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpbinProxyMiddleware</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(self, request, spider)</span>:</span></span><br><span class="line">        pro_addr = requests.get(<span class="string">'http://tvp.daxiangdaili.com/ip/?tid=559775358931681&amp;num=1'</span>).text</span><br><span class="line">        request.meta[<span class="string">'proxy'</span>] = <span class="string">'http://'</span> + pro_addr</span><br><span class="line">        <span class="comment"># 设置启动上面我们写的这个代理</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在settings.py配置文件中.设置我们自定义的Downloader MiddleWares中间件设置：</span></span><br><span class="line">DOWNLOADER_MIDDLEWARES = &#123;</span><br><span class="line">   <span class="string">'httpbin.middlewares.HttpbinProxyMiddleware'</span>: <span class="number">543</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>杜家乐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://luckyle.top/uncategorized/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%88%AC%E5%8F%96/" title="爬虫代理爬取">https://luckyle.top/uncategorized/爬虫代理爬取/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/uncategorized/%E6%A3%80%E6%B5%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86/" rel="prev" title="检测验证码模拟登陆">
+      <i class="fa fa-chevron-left"></i> 检测验证码模拟登陆
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/uncategorized/%E8%BF%9B%E7%A8%8B%E9%97%B4%E4%BB%BB%E4%BD%95%E9%80%9A%E4%BF%A1%EF%BC%9F/" rel="next" title="进程间任何通信？">
+      进程间任何通信？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  
+  </div>
+  
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用代理爬取-信息"><span class="nav-text">使用代理爬取 信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-1-目标："><span class="nav-text">14.1 目标：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-准备工作："><span class="nav-text">14.2 准备工作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-3-具体实现："><span class="nav-text">14.3 具体实现：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-创建项目"><span class="nav-text">① 创建项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②-定义Item类"><span class="nav-text">② 定义Item类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③-解析页面"><span class="nav-text">③ 解析页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#④-存储结果"><span class="nav-text">④ 存储结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑤-执行爬虫文件开始信息爬取"><span class="nav-text">⑤ 执行爬虫文件开始信息爬取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑥-在中间件中使用付费代理服务来解决上面错误："><span class="nav-text">⑥ 在中间件中使用付费代理服务来解决上面错误：</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="杜家乐"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">杜家乐</p>
+  <div class="site-description" itemprop="description">Progress is not created by contented people..</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1315532054" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1315532054" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://47.97.210.11/" title="http:&#x2F;&#x2F;47.97.210.11&#x2F;" rel="noopener" target="_blank">基于Django搭建博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://changpengfei0.github.io/" title="https:&#x2F;&#x2F;changpengfei0.github.io&#x2F;" rel="noopener" target="_blank">飞弟</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 在很久很久以前 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+
+
+
+  <span class="author" itemprop="copyrightHolder">杜家乐</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:04</span>
+</div>
+
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共59.5k字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script type ="text/javascript" src ="/js/love-click.js"></script> 
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":300,"height":440},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+</html>
