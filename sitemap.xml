@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luckyle.top/about/index.html</loc>
+    
+    <lastmod>2020-05-27T09:22:24.373Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://luckyle.top/uncategorized/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%88%AC%E5%8F%96/</loc>
     
     <lastmod>2020-05-20T07:33:10.389Z</lastmod>
@@ -117,13 +124,6 @@
     <loc>https://luckyle.top/Django/%E4%B8%80%E4%B8%87%E5%BF%AB%E7%9A%84%E7%81%AB%E8%85%BF/</loc>
     
     <lastmod>2020-01-03T02:04:23.275Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luckyle.top/about/index.html</loc>
-    
-    <lastmod>2020-01-03T00:19:02.447Z</lastmod>
     
   </url>
   
